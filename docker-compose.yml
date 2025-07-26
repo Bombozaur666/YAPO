@@ -1,0 +1,53 @@
+services:
+  yapo-databse:
+    image: postgres:17-alpine
+    container_name: "yapo-database"
+    restart: always
+    ports:
+      - "127.0.0.1:54323:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-yapo}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-changeme}
+      - POSTGRES_DB=${POSTGRES_DB:-yapo}
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER:-yapo} -d ${POSTGRES_DB:-yapo}'"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    volumes:
+      - yapo-database-data:/var/lib/postgresql/data
+
+  yapo-api:
+    image: yapo-api:latest
+    build:
+      context: api
+    container_name: "yapo-api"
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      - spring_profiles_active=prod
+      - spring_datasource_url=jdbc:postgresql://yapo-databse:5432/${POSTGRES_DB:-yapo}
+      - spring_datasource_username=${POSTGRES_USER:-yapo}
+      - spring_datasource_password=${POSTGRES_PASSWORD:-changeme}
+      - spring_datasource_driver-class-name=org.postgresql.Driver
+      - spring_mail_host=${MAIL_HOST}
+      - spring_mail_port=${MAIL_PORT}
+      - spring_mail_username=${MAIL_USERNAME}
+      - spring_mail_password=${MAIL_PASSWORD}
+      - spring_mail_protocol=${MAIL_PROTOCOL}
+      - spring_mail_default-encoding=${MAIL_ENCODING}
+      - spring_mail_properties_mail_smtp_auth=${MAIL_AUTH}
+      - spring_mail_properties_mail_smtp_starttls_enable=${MAIL_TTLS_ENABLE}
+      - spring_mail_properties_mail_smtp_starttls_required=${MAIL_TTLS_REQUIRED}
+      - spring_mail_properties_mail_smtp_connectiontimeout=${MAIL_CONNECTION_TIMEOUT}
+      - spring_mail_properties_mail_smtp_timeout=${MAIL_TIMEOUT}
+      - spring_mail_properties_mail_smtp_writetimeout=${MAIL_WRITE_TIMEOUT}
+      - spring_security_user_name=${ROOT_USER:-yapo}
+      - spring_security_user_password=${ROOT_PASSWORD:-yapo}
+    depends_on:
+      yapo-databse:
+        condition: service_healthy
+
+volumes:
+  yapo-database-data:
