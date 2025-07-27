@@ -4,7 +4,7 @@ services:
     container_name: "yapo-database"
     restart: always
     ports:
-      - "127.0.0.1:54323:5432"
+      - "${POSTGRES_EXPOSED_HOST:-127.0.0.1}:${POSTGRES_EXPOSED_PORT:-54323}:${POSTGRES_PORT:-5432}"
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-yapo}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-yapo}
@@ -27,7 +27,7 @@ services:
       - 8080:8080
     environment:
       - spring_profiles_active=prod
-      - spring_datasource_url=jdbc:postgresql://yapo-databse:5432/${POSTGRES_DB:-yapo}
+      - spring_datasource_url=${DB_INTERFACE:-jdbc}:${DB_TYPE:-postgresql}://yapo-databse:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-YAPO}
       - spring_datasource_username=${POSTGRES_USER:-yapo}
       - spring_datasource_password=${POSTGRES_PASSWORD:-yapo}
       - spring_datasource_driver-class-name=org.postgresql.Driver
