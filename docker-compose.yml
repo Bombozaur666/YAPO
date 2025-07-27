@@ -7,7 +7,7 @@ services:
       - "127.0.0.1:54323:5432"
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-yapo}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-changeme}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-yapo}
       - POSTGRES_DB=${POSTGRES_DB:-yapo}
     healthcheck:
       test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER:-yapo} -d ${POSTGRES_DB:-yapo}'"]
@@ -29,7 +29,7 @@ services:
       - spring_profiles_active=prod
       - spring_datasource_url=jdbc:postgresql://yapo-databse:5432/${POSTGRES_DB:-yapo}
       - spring_datasource_username=${POSTGRES_USER:-yapo}
-      - spring_datasource_password=${POSTGRES_PASSWORD:-changeme}
+      - spring_datasource_password=${POSTGRES_PASSWORD:-yapo}
       - spring_datasource_driver-class-name=org.postgresql.Driver
       - spring_mail_host=${MAIL_HOST}
       - spring_mail_port=${MAIL_PORT}
