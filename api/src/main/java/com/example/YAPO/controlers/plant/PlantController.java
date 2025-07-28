@@ -29,7 +29,7 @@ public class PlantController {
     }
 
     @PostMapping("/create-plant")
-    public Plant createPlant(@AuthenticationPrincipal MyUserDetails userDetails, @RequestBody @Valid Plant plant) throws NoSuchElementException{
+    public Plant createPlantPage(@AuthenticationPrincipal MyUserDetails userDetails, @RequestBody @Valid Plant plant) throws NoSuchElementException{
         return plantService.createPlant(plant, userDetails.getUser());
     }
 
@@ -44,7 +44,7 @@ public class PlantController {
     }
 
     @PatchMapping("/{id}/update")
-    public  Plant updateField(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid UpdateField updateField) {
+    public  Plant updateFieldPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid UpdateField updateField) {
         return plantService.updateField(id, userDetails.getUser(), updateField);
     }
 

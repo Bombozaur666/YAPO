@@ -21,21 +21,21 @@ public class CommentController {
     }
 
     @GetMapping("")
-    public List<Comment> getComments(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
+    public List<Comment> getCommentsPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
         return commentService.getComments(id, userDetails.getUser());
     }
     @PostMapping("")
-    public Comment createComment (@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid Comment comment) {
+    public Comment createCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid Comment comment) {
         return commentService.createComment(id, userDetails.getUser(), comment);
     }
 
     @DeleteMapping("/{commentId}")
-    public Boolean deleteComment(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @PathVariable Long commentId) {
+    public Boolean deleteCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @PathVariable Long commentId) {
         return commentService.deleteComment(id, commentId, userDetails.getUser());
     }
 
     @PatchMapping("")
-    public Comment updateComment(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid UpdateField  updateField) {
+    public Comment updateCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid UpdateField  updateField) {
         return commentService.updateComment(id, updateField, userDetails.getUser());
     }
 }

@@ -23,12 +23,12 @@ public class AdminController {
     }
 
     @PostMapping("/create-admin")
-    public User createAdmin(@RequestBody @Valid User user) {
+    public User createAdminPage(@RequestBody @Valid User user) {
         return userService.registerUser(user, Roles.ROLE_ADMIN.toString());
     }
 
     @PostMapping("/ban-user/{userId}")
-    public ResponseEntity<?> banUser(@PathVariable Long userId) {
+    public ResponseEntity<?> banUserPage(@PathVariable Long userId) {
         userService.banUser(userId);
         return ResponseEntity.ok().build();
     }

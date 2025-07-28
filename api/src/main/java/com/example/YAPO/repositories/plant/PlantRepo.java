@@ -15,4 +15,6 @@ public interface PlantRepo extends JpaRepository<Plant, Long> {
     void deletePlantByIdAndUser_Username(Long id, String userUsername);
 
     Plant findByIdAndShared(Long id, boolean shared);
+
+    Plant findByIdAndUser_UsernameOrShared(Long id, String userUsername, boolean shared);
 }

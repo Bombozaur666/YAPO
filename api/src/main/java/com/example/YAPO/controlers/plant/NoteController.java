@@ -20,17 +20,17 @@ public class NoteController {
     }
 
     @PostMapping("")
-    public Note createNote(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid Note note) {
+    public Note createNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid Note note) {
         return noteService.createNote(id, note, userDetails.getUser());
     }
 
     @DeleteMapping("/{idNote}")
-    public boolean deleteNote(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @PathVariable Long idNote) {
+    public boolean deleteNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @PathVariable Long idNote) {
         return noteService.deleteNoteById(id, idNote, userDetails.getUser());
     }
 
     @PatchMapping("/{idNote}")
-    public Note updateNote(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @PathVariable Long idNote, @RequestBody @Valid UpdateField updateField) {
+    public Note updateNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @PathVariable Long idNote, @RequestBody @Valid UpdateField updateField) {
         return noteService.updateNote(id, idNote, userDetails.getUser(), updateField);
     }
 }

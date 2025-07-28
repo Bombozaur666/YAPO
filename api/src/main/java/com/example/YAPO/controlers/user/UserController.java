@@ -25,47 +25,47 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public User getUser(@AuthenticationPrincipal MyUserDetails userDetails) {
+    public User getUserPage(@AuthenticationPrincipal MyUserDetails userDetails) {
         return userDetails.getUser();
     }
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public User registerUser(@RequestBody @Valid User user){
+    public User registerUserPage(@RequestBody @Valid User user){
         return  userService.registerUser(user, Roles.ROLE_USER.toString());
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody User user) {
+    public ResponseEntity<?> loginUserPage(@RequestBody User user) {
         String response = userService.verifyUser(user);
         return !Objects.equals(response, "fail") ? ResponseEntity.ok(response) : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
     @PostMapping("/deactivate")
-    public ResponseEntity<?> deactivateUser(@AuthenticationPrincipal MyUserDetails userDetails) {
+    public ResponseEntity<?> deactivateUserPage(@AuthenticationPrincipal MyUserDetails userDetails) {
         userService.deactivateUser(userDetails.getUser());
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<?> forgotPassword(@RequestBody @Valid UsernameField username) {
+    public ResponseEntity<?> forgotPasswordPage(@RequestBody @Valid UsernameField username) {
         userService.forgotPassword(username.getUsername());
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/reactivate-user")
-    public ResponseEntity<?> restoreUser(@RequestBody UsernameField usernameField){
+    public ResponseEntity<?> restoreUserPage(@RequestBody UsernameField usernameField){
         userService.reactivateUser(usernameField.getUsername());
         return ResponseEntity.ok().build();
     }
 
     @GetMapping( "/enable")
-    public ResponseEntity<?> enableUser(@RequestParam String token ){
+    public ResponseEntity<?> enableUserPage(@RequestParam String token ){
         userService.enableUser(token);
         return ResponseEntity.ok().build();
     }
     @PostMapping("/reset")
-    public ResponseEntity<?> resetUserPassword(@RequestParam String token , @RequestBody @Valid PasswordField  passwordField){
+    public ResponseEntity<?> resetUserPasswordPage(@RequestParam String token , @RequestBody @Valid PasswordField  passwordField){
         userService.resetUserPassword(token, passwordField);
         return ResponseEntity.ok().build();
     }

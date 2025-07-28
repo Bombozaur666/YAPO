@@ -55,7 +55,10 @@ public class PlantService {
     }
 
     public Plant getPlant(Long plant_id, String username) {
-        return plantRepo.findByIdAndUser_Username(plant_id, username);
+        //Plant plant = plantRepo.findByIdAndUser_Username(plant_id, username);
+        Plant plant = plantRepo.findByIdAndUser_UsernameOrShared(plant_id, username, true);
+        if (plant == null) {throw new RuntimeException(ErrorList.PLANT_NOT_FOUND.toString());}
+        return plant;
     }
 
     @Transactional

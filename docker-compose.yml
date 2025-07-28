@@ -10,7 +10,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-yapo}
       - POSTGRES_DB=${POSTGRES_DB:-YAPO}
     healthcheck:
-      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER:-yapo} -d ${POSTGRES_DB:-yapo}'"]
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER:-yapo} -d ${POSTGRES_DB:-YAPO}'"]
       interval: 10s
       timeout: 3s
       retries: 3
@@ -18,7 +18,7 @@ services:
       - yapo-database-data:/var/lib/postgresql/data
 
   yapo-api:
-    image: yapo-api:latest
+    #image: yapo-api:latest
     build:
       context: api
     container_name: "yapo-api"

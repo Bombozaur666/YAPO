@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "https://localhost:4200/")
 public class UtilityController {
     @GetMapping("/csrf-token")
-    public CsrfToken getCsrfToken(HttpServletRequest request) {
+    public CsrfToken getCsrfTokenPage(HttpServletRequest request) {
         return (CsrfToken) request.getAttribute("_csrf");
     }
     @GetMapping(value = "/session", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getSession(HttpServletRequest request) {
+    public String getSessionPage(HttpServletRequest request) {
         return "{\"Session ID\": " + request.getSession().getId() + "}";
     }
 }

@@ -20,17 +20,17 @@ public class PhotoController {
     }
 
     @PostMapping("")
-    public PhotoGallery addPhoto(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid PhotoGallery photoGallery) {
+    public PhotoGallery addPhotoPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid PhotoGallery photoGallery) {
         return photoService.createPhoto(id, userDetails.getUser(), photoGallery);
     }
 
     @GetMapping("")
-    public List<PhotoGallery> getAllPhotos(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
+    public List<PhotoGallery> getAllPhotosPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
         return photoService.getPhotos(id, userDetails.getUser());
     }
 
     @PatchMapping("/{photoId}")
-    public PhotoGallery updatePhoto(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long photoId, @RequestBody PhotoGallery photoGallery) {
+    public PhotoGallery updatePhotoPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long photoId, @RequestBody PhotoGallery photoGallery) {
         return photoService.updatePhoto(userDetails.getUser(), photoId, photoGallery);
     }
 
