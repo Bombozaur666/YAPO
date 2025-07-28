@@ -48,6 +48,15 @@ services:
     depends_on:
       yapo-databse:
         condition: service_healthy
+  yapo-web:
+    build:
+      context: angular
+      target: builder
+    ports:
+      - 4200:4200
+    volumes:
+      - ./web:/project
+      - /project/node_modules
 
 volumes:
   yapo-database-data:
