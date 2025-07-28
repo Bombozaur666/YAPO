@@ -18,7 +18,7 @@ services:
       - yapo-database-data:/var/lib/postgresql/data
 
   yapo-api:
-    #image: yapo-api:latest
+    image: yapo-api:latest
     build:
       context: api
     container_name: "yapo-api"
@@ -48,15 +48,25 @@ services:
     depends_on:
       yapo-databse:
         condition: service_healthy
+
   yapo-web:
+    image: yapo-web:latest
     build:
       context: web
       target: builder
+    container_name: "yapo-web"
+    restart:
+      always
     ports:
       - "4200:4200"
     volumes:
       - ./web:/project
       - /project/node_modules
+    healthcheck:
+      test: [ "CMD", "curl", "--fail", "-G", "http://localhost:4200" ]
+      interval: 30s
+      timeout: 10s
+      retries: 30
 
 volumes:
   yapo-database-data:
