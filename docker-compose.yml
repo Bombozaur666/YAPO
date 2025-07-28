@@ -50,10 +50,10 @@ services:
         condition: service_healthy
   yapo-web:
     build:
-      context: angular
+      context: web
       target: builder
     ports:
-      - 4200:4200
+      - "4200:4200"
     volumes:
       - ./web:/project
       - /project/node_modules
