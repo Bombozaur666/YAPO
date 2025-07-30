@@ -58,13 +58,19 @@ services:
     restart:
       always
     ports:
-      - "8099:80"
+      - "${EXPOSED_PORT:-8099}:${NGINX_PORT:-80}"
     volumes:
       - ./web:/project
       - /project/node_modules
     environment:
       - NGINX_HOST=yapo.com
       - NGINX_PORT=80
+      - EXPOSED_PORT=8099
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:${EXPOSED_PORT:-8099}" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
   yapo-database-data:
