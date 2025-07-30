@@ -1,29 +1,17 @@
-FROM --platform=$BUILDPLATFORM node:24-alpine3.21  as builder
+FROM node:24-alpine AS builder
 
-RUN mkdir /project
-WORKDIR /project
-
-RUN npm install -g @angular/cli@20
-
-COPY package.json package-lock.json ./
-RUN npm ci
+WORKDIR /usr/src/app
 
 COPY . .
-CMD ["ng", "serve", "--host", "0.0.0.0"]
 
-FROM builder as dev-envs
+RUN npm ci
 
-RUN <<EOF
-apt-get update
-apt-get install -y --no-install-recommends git
-EOF
+RUN npm run build -- --configuration production
 
-RUN <<EOF
-useradd -s /bin/bash -m vscode
-groupadd docker
-usermod -aG docker vscode
-EOF
-# install Docker tools (cli, buildx, compose)
-COPY --from=gloursdocker/docker / /
+FROM nginx:1.29-alpine AS server
 
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+COPY ./nginx.conf /etc/nginx/conf.g/default.conf
+
+COPY --from=builder /usr/src/app/dist/Yapo/browser /usr/share/nginx/html
+
+EXPOSE 80

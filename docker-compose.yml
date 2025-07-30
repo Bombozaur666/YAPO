@@ -53,20 +53,18 @@ services:
     image: yapo-web:latest
     build:
       context: web
-      target: builder
+      target: server
     container_name: "yapo-web"
     restart:
       always
     ports:
-      - "4200:4200"
+      - "8099:80"
     volumes:
       - ./web:/project
       - /project/node_modules
-    healthcheck:
-      test: [ "CMD", "curl", "--fail", "-G", "http://localhost:4200" ]
-      interval: 30s
-      timeout: 10s
-      retries: 30
+    environment:
+      - NGINX_HOST=yapo.com
+      - NGINX_PORT=80
 
 volumes:
   yapo-database-data:
