@@ -53,7 +53,6 @@ services:
     image: yapo-web:latest
     build:
       context: web
-      target: server
     container_name: "yapo-web"
     restart:
       always

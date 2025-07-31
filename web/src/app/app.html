@@ -1,1 +1,7 @@
+<div class="title">
+  <h1>{{ 'app.title' | translate }}</h1>
+  <span>Switch languages at runtime: </span>
+  <button (click)="useLanguage('en')">en</button>
+  <button (click)="useLanguage('pl')">pl</button>
+</div>
 <router-outlet></router-outlet>
