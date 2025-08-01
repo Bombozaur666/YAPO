@@ -6,7 +6,14 @@
     }
   },
   "plantCondition": {
-
+    "HEALTHY": "Zdrowa",
+    "NEEDS_WATER": "Potrzebuje wody",
+    "NEEDS_SUNLIGHT": "Potrzebuje światła",
+    "NEEDS_FERTILIZER": "Potrzebuje nawozu",
+    "DIEBACK": "Umiera",
+    "INFESTED": "Zaatakowana przez szkodniki",
+    "DISEASED": "Zainfekowana",
+    "FUCK_THIS_SHIT_IM_OUT": "Roślina postanowała umrzeć"
   },
   "plantSoil": {
     "POTTING_SOIL": "Ziemia doniczkowa",
