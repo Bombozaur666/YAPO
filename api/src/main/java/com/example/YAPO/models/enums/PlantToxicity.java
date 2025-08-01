@@ -1,5 +1,8 @@
 package com.example.YAPO.models.enums;
 
 public enum PlantToxicity {
-    SAFE_FOR_HUMAN_AND_ANIMALS
+    NON_TOXIC,
+    TOXIC_TO_HUMANS,
+    TOXIC_TO_ANIMALS,
+    TOXIC_TO_HUMANS_AND_ANIMALS,
 }

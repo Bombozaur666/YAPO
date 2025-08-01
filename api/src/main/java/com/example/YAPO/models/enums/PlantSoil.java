@@ -2,5 +2,20 @@ package com.example.YAPO.models.enums;
 
 
 public enum PlantSoil {
-    NORMAL
+    POTTING_SOIL,
+    UNIVERSAL_SOIL,
+    PEAT_SOIL,
+    SANDY_SOIL,
+    LOAMY_SOIL,
+    CLAY_SOIL,
+    COMPOST_SOIL,
+    CACTUS_SOIL,
+    HERB_SOIL,
+    VEGETABLE_SOIL,
+    ACIDIC_SOIL,
+    ALKALINE_SOIL,
+    NEUTRAL_SOIL,
+    PERLITE_MIX,
+    COCONUT_SUBSTRATE,
+    ORCHID_SOIL
 }

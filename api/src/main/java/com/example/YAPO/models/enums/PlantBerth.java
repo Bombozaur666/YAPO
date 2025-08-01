@@ -1,5 +1,8 @@
 package com.example.YAPO.models.enums;
 
 public enum PlantBerth {
-        SUNNY
+        FULL_SUN,
+        PARTIAL_SUN,
+        SHADE,
+        INDIRECT_SUNLIGHT
 }

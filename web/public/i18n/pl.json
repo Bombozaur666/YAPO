@@ -1,5 +1,70 @@
 {
   "app": {
-    "title": "YAPO -pl"
+    "title":{
+      "short": "YAPO -pl",
+      "full": "YAPO - Yet Another Plant Organiser"
+    }
+  },
+  "plantCondition": {
+
+  },
+  "plantSoil": {
+    "POTTING_SOIL": "Ziemia doniczkowa",
+    "UNIVERSAL_SOIL": "Ziemia uniwersalna",
+    "PEAT_SOIL": "Ziemia torfowa",
+    "SANDY_SOIL": "Gleba piaszczysta",
+    "LOAMY_SOIL": "Gleba gliniasto-piaszczysta",
+    "CLAY_SOIL": "Gleba gliniasta",
+    "COMPOST_SOIL": "Ziemia kompostowa",
+    "CACTUS_SOIL": "Ziemia do kaktusów",
+    "HERB_SOIL": "Ziemia do ziół",
+    "VEGETABLE_SOIL": "Ziemia do warzyw",
+    "ACIDIC_SOIL": "Gleba kwaśna",
+    "ALKALINE_SOIL": "Gleba zasadowa",
+    "NEUTRAL_SOIL": "Gleba obojętna",
+    "PERLITE_MIX": "Mieszanka z perlitem",
+    "COCONUT_SUBSTRATE": "Włókno kokosowe",
+    "ORCHID_SOIL": "Ziemia do storczyków"
+  },
+  "plantWatering": {
+    "DAILY": "Codziennie",
+    "EVERY_2_DAYS": "Co 2 dni",
+    "TWO_TIMES_A_WEEK": "Dwa razy w tygodniu",
+    "WEEKLY": "Co tydzień",
+    "MONTHLY": "Co miesiąc",
+    "WHEN_NEEDED": "Kiedy potrzeba"
+
+  },
+  "plantBerth": {
+    "FULL_SUN": "Pełne słońce",
+    "PARTIAL_SUN": "Częściowe słońce",
+    "SHADE": "Cień",
+    "INDIRECT_SUNLIGHT": "Pośrednie światło"
+  },
+  "plantToxicity": {
+    "NON_TOXIC": "Nietoksyczna",
+    "TOXIC_TO_HUMANS": "Toksyczna dla ludzi",
+    "TOXIC_TO_ANIMALS": "Toksyczna dla zwierząt",
+    "TOXIC_TO_HUMANS_AND_ANIMALS": "Toksyczna dla ludzi i zwierząt"
+  },
+  "plantLifeExpectancy": {
+    "ANNUAL": "Jednoroczna",
+    "PERENNIAL": "Wieloletnia"
+  },
+  "ErrorList": {
+    "WRONG_FIELD_TO_UPDATE": "Nieprawidłowe pole do zaktualizowania",
+    "ERROR_DURING_DATABASE_SAVING": "Błąd podczas zapisywania w bazie danych",
+    "LOCALIZATION_NOT_FOUND": "Lokalizacja nie znaleziona",
+    "USER_NOT_FOUND": "Użytkownik nie znaleziony",
+    "PLANT_NOT_FOUND": "Roślina nie znaleziona",
+    "COMMENT_NOT_FOUND": "Komentarz nie znaleziony",
+    "PHOTO_NOT_FOUND": "Zdjęcie nie znalezione",
+    "USERNAME_OR_EMAIL_ALREADY_IN_USE": "Nazwa użytkownika lub email jest już w użyciu",
+    "UNEXPECTED_ERROR_DURING_DELETE": "Niespodziewany błąd podczas usuwania",
+    "VALIDATION_ERROR": "Błąd walidacji",
+    "ERROR_DURING_SENDING_MAIL": "Błąd podczas wysyłania wiadomości email",
+    "INVALID_TOKEN": "Nieprawidłowy token",
+    "TOKEN_EXPIRED": "Token wygasł",
+    "PLANT_NOT_SHARED_OR_NOT_EXIST": "Roślina nie jest udostępniona lub nie istnieje"
   }
 }
