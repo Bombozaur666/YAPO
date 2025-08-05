@@ -1,8 +1,18 @@
 {
   "app": {
     "title":{
-      "short": "YAPO -pl",
+      "short": "YAPO",
       "full": "YAPO - Yet Another Plant Organiser"
+    }
+  },
+  "menu": {
+    "home": "Strona Główna",
+    "plants": "Rośliny",
+    "localizations": "Lokalizacje",
+    "language": {
+      "general": "Języki",
+      "pl": "Polski",
+      "en": "Angielski"
     }
   },
   "plantCondition": {

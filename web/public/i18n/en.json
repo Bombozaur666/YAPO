@@ -1,5 +1,86 @@
 {
-	"app": {
-    "title": "YAPO -en"
+  "app": {
+    "title": {
+      "short": "YAPO",
+      "full": "YAPO - Yet Another Plant Organiser"
+    }
+  },
+  "menu": {
+    "home": "Home",
+    "plants": "Plants",
+    "localizations": "Locations",
+    "language": {
+      "general": "Languages",
+      "pl": "Polish",
+      "en": "English"
+    }
+  },
+  "plantCondition": {
+    "HEALTHY": "Healthy",
+    "NEEDS_WATER": "Needs water",
+    "NEEDS_SUNLIGHT": "Needs sunlight",
+    "NEEDS_FERTILIZER": "Needs fertilizer",
+    "DIEBACK": "Dying",
+    "INFESTED": "Infested by pests",
+    "DISEASED": "Infected",
+    "FUCK_THIS_SHIT_IM_OUT": "The plant decided to die"
+  },
+  "plantSoil": {
+    "POTTING_SOIL": "Potting soil",
+    "UNIVERSAL_SOIL": "Universal soil",
+    "PEAT_SOIL": "Peat soil",
+    "SANDY_SOIL": "Sandy soil",
+    "LOAMY_SOIL": "Loamy soil",
+    "CLAY_SOIL": "Clay soil",
+    "COMPOST_SOIL": "Compost soil",
+    "CACTUS_SOIL": "Cactus soil",
+    "HERB_SOIL": "Herb soil",
+    "VEGETABLE_SOIL": "Vegetable soil",
+    "ACIDIC_SOIL": "Acidic soil",
+    "ALKALINE_SOIL": "Alkaline soil",
+    "NEUTRAL_SOIL": "Neutral soil",
+    "PERLITE_MIX": "Perlite mix",
+    "COCONUT_SUBSTRATE": "Coconut fiber",
+    "ORCHID_SOIL": "Orchid soil"
+  },
+  "plantWatering": {
+    "DAILY": "Daily",
+    "EVERY_2_DAYS": "Every 2 days",
+    "TWO_TIMES_A_WEEK": "Twice a week",
+    "WEEKLY": "Weekly",
+    "MONTHLY": "Monthly",
+    "WHEN_NEEDED": "When needed"
+  },
+  "plantBerth": {
+    "FULL_SUN": "Full sun",
+    "PARTIAL_SUN": "Partial sun",
+    "SHADE": "Shade",
+    "INDIRECT_SUNLIGHT": "Indirect sunlight"
+  },
+  "plantToxicity": {
+    "NON_TOXIC": "Non-toxic",
+    "TOXIC_TO_HUMANS": "Toxic to humans",
+    "TOXIC_TO_ANIMALS": "Toxic to animals",
+    "TOXIC_TO_HUMANS_AND_ANIMALS": "Toxic to humans and animals"
+  },
+  "plantLifeExpectancy": {
+    "ANNUAL": "Annual",
+    "PERENNIAL": "Perennial"
+  },
+  "ErrorList": {
+    "WRONG_FIELD_TO_UPDATE": "Incorrect field to update",
+    "ERROR_DURING_DATABASE_SAVING": "Error during database saving",
+    "LOCALIZATION_NOT_FOUND": "Location not found",
+    "USER_NOT_FOUND": "User not found",
+    "PLANT_NOT_FOUND": "Plant not found",
+    "COMMENT_NOT_FOUND": "Comment not found",
+    "PHOTO_NOT_FOUND": "Photo not found",
+    "USERNAME_OR_EMAIL_ALREADY_IN_USE": "Username or email already in use",
+    "UNEXPECTED_ERROR_DURING_DELETE": "Unexpected error during deletion",
+    "VALIDATION_ERROR": "Validation error",
+    "ERROR_DURING_SENDING_MAIL": "Error while sending email",
+    "INVALID_TOKEN": "Invalid token",
+    "TOKEN_EXPIRED": "Token expired",
+    "PLANT_NOT_SHARED_OR_NOT_EXIST": "Plant not shared or does not exist"
   }
 }
