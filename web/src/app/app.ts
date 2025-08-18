@@ -39,5 +39,4 @@ export class App implements OnInit {
   changeLanguage(language: string): void {
     this.translate.use(language);
   }
-
 }

@@ -1,15 +1,15 @@
 package com.example.YAPO.controlers.user;
 
-import com.example.YAPO.models.User.MyUserDetails;
-import com.example.YAPO.models.User.PasswordField;
-import com.example.YAPO.models.User.User;
-import com.example.YAPO.models.User.UsernameField;
+import com.example.YAPO.models.User.*;
 import com.example.YAPO.models.enums.Roles;
+import com.example.YAPO.service.JWTService;
+import com.example.YAPO.service.user.MyUserDetailService;
 import com.example.YAPO.service.user.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -20,9 +20,11 @@ import java.util.Objects;
 @CrossOrigin(origins = "https://localhost:4200/")
 public class UserController {
     private final UserService userService;
+    private final JWTService jWTService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, JWTService jWTService) {
         this.userService = userService;
+        this.jWTService = jWTService;
     }
 
     @GetMapping("/")
@@ -40,6 +42,21 @@ public class UserController {
     public ResponseEntity<?> loginUserPage(@RequestBody User user) {
         String response = userService.verifyUser(user);
         return !Objects.equals(response, "fail") ? ResponseEntity.ok(Map.of("token", response)) : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refreshToken(@RequestBody TokenRequest request) {
+        String refreshToken = request.getRefreshToken();
+        String username = jWTService.extractUsername(refreshToken);
+
+        UserDetails userDetails = userService.loadUserByUsername(username);
+
+        if (jWTService.validateToken(refreshToken, userDetails)) {
+            String newAccessToken = jWTService.generateToken(username);
+            return ResponseEntity.ok(Map.of("token", newAccessToken));
+        } else {
+            return ResponseEntity.badRequest().body("Invalid or expired refresh token");
+        }
     }
 
     @PostMapping("/deactivate")

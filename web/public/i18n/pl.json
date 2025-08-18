@@ -103,5 +103,12 @@
       "username": "Nazwa użytkownika",
       "isRequired": "Nazwa użytkownika nie może być pusta!"
     }
-  }
+  },
+  "profile": {
+    "profile": "Profil użytkownika",
+    "username": "Nazwa użytkownika: ",
+    "email": "Email: ",
+    "registrationDate": "Data rejestracji: "
+  },
+  "fetching": "Pobieram dane..."
 }
