@@ -1,11 +1,10 @@
 import {Component, OnInit, signal} from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import {RouterOutlet} from '@angular/router';
 import {
   TranslateService,
   TranslateModule,
 } from "@ngx-translate/core";
 import {Title} from "@angular/platform-browser";
-import {AuthService} from './auth/auth-service';
 import {CookieService} from 'ngx-cookie-service';
 import {MenuComponent} from './menu-component/menu-component';
 
