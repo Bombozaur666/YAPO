@@ -5,17 +5,22 @@ import {
   TranslateModule,
 } from "@ngx-translate/core";
 import {Title} from "@angular/platform-browser";
+import {AuthService} from './auth/auth-service';
+import {CookieService} from 'ngx-cookie-service';
+import {MenuComponent} from './menu-component/menu-component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TranslateModule, RouterLink],
+  imports: [RouterOutlet, TranslateModule, MenuComponent],
+  providers: [CookieService],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App implements OnInit {
   protected readonly title = signal('Yapo');
 
-  constructor(private translate: TranslateService, private titleService:Title) {
+  constructor(private translate: TranslateService,
+              private titleService:Title) {
     this.translate.addLangs(['pl', 'en']);
     this.translate.setFallbackLang('pl');
     this.translate.use('pl');
@@ -35,4 +40,5 @@ export class App implements OnInit {
   changeLanguage(language: string): void {
     this.translate.use(language);
   }
+
 }

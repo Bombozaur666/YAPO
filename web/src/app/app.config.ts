@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideHttpClient } from "@angular/common/http";
+import {provideHttpClient, withFetch, withInterceptors} from "@angular/common/http";
 import {provideTranslateService, TranslateService} from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 
@@ -13,7 +13,10 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes), provideClientHydration(withEventReplay()),
-    provideHttpClient(),
+    provideHttpClient(
+      withFetch(),
+      //withInterceptors([authInterceptor])
+    ),
     provideTranslateService({
       loader: provideTranslateHttpLoader({
         prefix: './i18n/',

@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Objects;
 
 @RestController
@@ -38,7 +39,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> loginUserPage(@RequestBody User user) {
         String response = userService.verifyUser(user);
-        return !Objects.equals(response, "fail") ? ResponseEntity.ok(response) : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        return !Objects.equals(response, "fail") ? ResponseEntity.ok(Map.of("token", response)) : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
     @PostMapping("/deactivate")
