@@ -1,0 +1,24 @@
+import { Component } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {LoginRequest} from '../../Interfaces/Users/user';
+import {TranslatePipe} from '@ngx-translate/core';
+import {AuthService} from '../auth-service';
+
+@Component({
+  selector: 'app-login-component',
+  imports: [
+    FormsModule,
+    TranslatePipe
+  ],
+  templateUrl: './login-component.html',
+  styleUrl: './login-component.css'
+})
+export class LoginComponent {
+  protected loginRequest: LoginRequest = {username: '', password: ''};
+
+  constructor(private authService: AuthService) {}
+
+  onSubmit() {
+    this.authService.login(this.loginRequest);
+  }
+}

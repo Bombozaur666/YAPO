@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">{{'app.title.short' | translate}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/plants">{{ 'menu.plants' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/localizations">{{ 'menu.localizations' | translate }}</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown" style="margin-left: auto;">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-globe"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="changeLanguage('pl')"><span class="fi fi-pl"></span> {{ 'menu.language.pl' | translate }}<span class="fi fi-pl"></span></a></li>
+            <li><a class="dropdown-item" (click)="changeLanguage('en')"><span class="fi fi-us"></span> {{ 'menu.language.en' | translate }}<span class="fi fi-us"></span></a></li>
+          </ul>
+        </li>
+
+        <li  class="nav-item">
+          <i class="bi bi-person-circle"></i>
+        </li>
+      </ul>
+
+      <div class="btn-group dropstart">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-globe"></i>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" (click)="changeLanguage('pl')"><span class="fi fi-pl"></span>{{ 'menu.language.pl' | translate }}</a></li>
+          <li><a class="dropdown-item" (click)="changeLanguage('en')"><span class="fi fi-us"></span>{{ 'menu.language.en' | translate }}</a></li>
+        </ul>
+      </div>
+      <a class="btn btn-outline-info" routerLink="/profile"><i class="bi bi-person-circle"></i> {{ 'menu.user.profile' | translate }}</a>
+      <a class="btn btn-outline-warning" routerLink="/register">{{ 'menu.user.register' | translate }}</a>
+      <a class="btn btn-outline-success" routerLink="/login">{{ 'menu.user.login' | translate }}</a>
+      <button class="btn btn-outline-danger" (click)="logout()">{{ 'menu.user.logout' | translate }}</button>
+    </div>
+
+  </div>
+</nav>
