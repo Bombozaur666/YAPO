@@ -6,7 +6,7 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import {provideHttpClient, withFetch, withInterceptors} from "@angular/common/http";
 import {provideTranslateService, TranslateService} from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
-import {authInterceptor} from './auth/auth-interceptor-interceptor';
+import {authInterceptor} from './auth/auth-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [

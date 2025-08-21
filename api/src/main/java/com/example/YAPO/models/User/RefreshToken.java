@@ -25,6 +25,7 @@ public class RefreshToken {
     @JsonIgnore
     private User user;
 
+    @JsonIgnore
     @Column(nullable = false)
     private Instant expiryDate;
 

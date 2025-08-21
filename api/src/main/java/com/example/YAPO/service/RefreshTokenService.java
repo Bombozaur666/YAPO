@@ -2,6 +2,7 @@ package com.example.YAPO.service;
 
 import com.example.YAPO.models.User.RefreshToken;
 import com.example.YAPO.models.User.User;
+import com.example.YAPO.models.enums.ErrorList;
 import com.example.YAPO.repositories.RefreshTokenRepo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +45,7 @@ public class RefreshTokenService {
     @Transactional(readOnly = true)
     public RefreshToken verify(RefreshToken token) {
         if (token.isRevoked() || token.getExpiryDate().isBefore(Instant.now())) {
-            throw new IllegalStateException("Refresh token expired or revoked");
+            throw new IllegalStateException(ErrorList.REFRESHMENT_EXPIRED.toString());
         }
         return token;
     }

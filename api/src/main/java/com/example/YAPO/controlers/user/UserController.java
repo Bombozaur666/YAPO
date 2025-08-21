@@ -41,7 +41,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUserPage(@RequestBody User user) {
-        Map<String, Object> response = userService.verifyUser(user);
+        Map<String, String> response = userService.verifyUser(user);
         return ResponseEntity.ok(response);
     }
 

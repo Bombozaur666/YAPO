@@ -16,9 +16,4 @@ export interface RegisterRequest {
   password: string;
 }
 
-export interface TokenResponse {
-  token: string;
-}
 
-export const JWT_TOKEN: string = "JWT_TOKEN";
-export const REFRESH_TOKEN: string = "REFRESH_TOKEN";

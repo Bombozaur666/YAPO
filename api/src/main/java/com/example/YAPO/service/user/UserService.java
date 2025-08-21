@@ -80,7 +80,7 @@ public class UserService {
         return user;
     }
 
-    public Map<String, Object> verifyUser(User user) {
+    public Map<String, String> verifyUser(User user) {
         Authentication authentication =
                 authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(
@@ -91,7 +91,7 @@ public class UserService {
             User _user =  userRepo.findByUsername(user.getUsername());
             String accessToken = jwtService.generateToken(_user.getUsername());
             RefreshToken refreshToken = refreshTokenService.issueToken(_user);
-            return Map.of("accessToken",accessToken,"refreshToken", refreshToken);
+            return Map.of("accessToken",accessToken,"refreshToken", refreshToken.getToken());
         }
         throw new RuntimeException(ErrorList.AUTHENTICATION_ERROR.toString());
     }
