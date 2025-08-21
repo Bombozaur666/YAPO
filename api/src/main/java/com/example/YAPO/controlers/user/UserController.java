@@ -3,13 +3,12 @@ package com.example.YAPO.controlers.user;
 import com.example.YAPO.models.User.*;
 import com.example.YAPO.models.enums.Roles;
 import com.example.YAPO.service.JWTService;
-import com.example.YAPO.service.user.MyUserDetailService;
+import com.example.YAPO.service.RefreshTokenService;
 import com.example.YAPO.service.user.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -21,10 +20,12 @@ import java.util.Objects;
 public class UserController {
     private final UserService userService;
     private final JWTService jWTService;
+    private final RefreshTokenService refreshTokenService;
 
-    public UserController(UserService userService, JWTService jWTService) {
+    public UserController(UserService userService, JWTService jWTService, RefreshTokenService refreshTokenService) {
         this.userService = userService;
         this.jWTService = jWTService;
+        this.refreshTokenService = refreshTokenService;
     }
 
     @GetMapping("/")
@@ -40,23 +41,14 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUserPage(@RequestBody User user) {
-        String response = userService.verifyUser(user);
-        return !Objects.equals(response, "fail") ? ResponseEntity.ok(Map.of("token", response)) : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        Map<String, Object> response = userService.verifyUser(user);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/refresh")
     public ResponseEntity<?> refreshToken(@RequestBody TokenRequest request) {
-        String refreshToken = request.getRefreshToken();
-        String username = jWTService.extractUsername(refreshToken);
-
-        UserDetails userDetails = userService.loadUserByUsername(username);
-
-        if (jWTService.validateToken(refreshToken, userDetails)) {
-            String newAccessToken = jWTService.generateToken(username);
-            return ResponseEntity.ok(Map.of("token", newAccessToken));
-        } else {
-            return ResponseEntity.badRequest().body("Invalid or expired refresh token");
-        }
+        var tokens = userService.refresh(request.getRefreshToken());
+        return ResponseEntity.ok(tokens);
     }
 
     @PostMapping("/deactivate")
@@ -86,5 +78,11 @@ public class UserController {
     public ResponseEntity<?> resetUserPasswordPage(@RequestParam String token , @RequestBody @Valid PasswordField  passwordField){
         userService.resetUserPassword(token, passwordField);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(@RequestBody TokenRequest request) {
+        userService.logout(request.getRefreshToken());
+        return ResponseEntity.noContent().build();
     }
 }

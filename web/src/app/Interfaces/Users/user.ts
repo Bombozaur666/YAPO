@@ -21,3 +21,4 @@ export interface TokenResponse {
 }
 
 export const JWT_TOKEN: string = "JWT_TOKEN";
+export const REFRESH_TOKEN: string = "REFRESH_TOKEN";

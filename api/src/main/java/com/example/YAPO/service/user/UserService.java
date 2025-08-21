@@ -1,5 +1,6 @@
 package com.example.YAPO.service.user;
 
+import com.example.YAPO.models.User.RefreshToken;
 import com.example.YAPO.models.User.PasswordField;
 import com.example.YAPO.models.User.VerificationToken;
 import com.example.YAPO.models.enums.ErrorList;
@@ -9,6 +10,7 @@ import com.example.YAPO.models.User.User;
 import com.example.YAPO.repositories.user.VerificationTokenRepo;
 import com.example.YAPO.service.EmailService;
 import com.example.YAPO.service.JWTService;
+import com.example.YAPO.service.RefreshTokenService;
 import com.example.YAPO.service.UtilityService;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
@@ -29,6 +31,7 @@ import java.util.*;
 @Service
 public class UserService {
     private final UserRepo userRepo;
+    private final RefreshTokenService refreshTokenService;
     AuthenticationManager authenticationManager;
     private final JWTService jwtService;
     private final RoleRepo roleRepo;
@@ -37,10 +40,11 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UtilityService utilityService;
 
-    public UserService(UserRepo userRepo, AuthenticationManager authenticationManager, JWTService jwtService, RoleRepo roleRepo, VerificationTokenRepo verificationTokenRepo, EmailService emailService, PasswordEncoder passwordEncoder, UtilityService utilityService) {
+    public UserService(UserRepo userRepo, AuthenticationManager authenticationManager, JWTService jwtService, RefreshTokenService refreshTokenService, RoleRepo roleRepo, VerificationTokenRepo verificationTokenRepo, EmailService emailService, PasswordEncoder passwordEncoder, UtilityService utilityService) {
         this.userRepo = userRepo;
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
+        this.refreshTokenService = refreshTokenService;
         this.roleRepo = roleRepo;
         this.verificationTokenRepo = verificationTokenRepo;
         this.emailService = emailService;
@@ -76,16 +80,20 @@ public class UserService {
         return user;
     }
 
-    public String verifyUser(User user) {
+    public Map<String, Object> verifyUser(User user) {
         Authentication authentication =
                 authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(
                                 user.getUsername(),
                                 user.getPassword())
                 );
-        if(authentication.isAuthenticated())
-            return jwtService.generateToken(user.getUsername());
-        return "fail";
+        if(authentication.isAuthenticated()) {
+            User _user =  userRepo.findByUsername(user.getUsername());
+            String accessToken = jwtService.generateToken(_user.getUsername());
+            RefreshToken refreshToken = refreshTokenService.issueToken(_user);
+            return Map.of("accessToken",accessToken,"refreshToken", refreshToken);
+        }
+        throw new RuntimeException(ErrorList.AUTHENTICATION_ERROR.toString());
     }
 
     @Transactional
@@ -97,10 +105,6 @@ public class UserService {
             throw new RuntimeException(ErrorList.ERROR_DURING_DATABASE_SAVING.toString());
         }
 
-    }
-
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return (UserDetails) userRepo.findByUsername(username);
     }
 
     @Transactional
@@ -183,7 +187,7 @@ public class UserService {
         }
     }
 
-    private VerificationToken tokenVerification(String token) {
+    public VerificationToken tokenVerification(String token) {
         Optional<VerificationToken> optional = verificationTokenRepo.findByToken(token);
         if(optional.isEmpty()){ throw new RuntimeException(ErrorList.INVALID_TOKEN.toString()); }
 
@@ -191,9 +195,23 @@ public class UserService {
         if (verificationToken.getExpiryDate().isBefore(LocalDateTime.now())) {
             throw new RuntimeException(ErrorList.TOKEN_EXPIRED.toString());
         }
-
         return verificationToken;
     }
 
+    @Transactional
+    public void logout(String refreshToken) {
+        refreshTokenService.findByToken(refreshToken).ifPresent(refreshTokenService::revoke);
+    }
+
+    public Map<String, String> refresh(String providedRefreshToken) {
+        RefreshToken stored = refreshTokenService.findByToken(providedRefreshToken)
+                .map(refreshTokenService::verify)
+                .orElseThrow(() -> new IllegalArgumentException(ErrorList.AUTHENTICATION_ERROR.toString()));
+
+        RefreshToken newRt = refreshTokenService.rotate(stored);
+
+        String newAccess = jwtService.generateToken(stored.getUser().getUsername());
+        return Map.of("accessToken", newAccess, "refreshToken", newRt.getToken());
+    }
 
 }

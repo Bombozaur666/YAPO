@@ -1,5 +1,5 @@
 import { Injectable} from '@angular/core';
-import {JWT_TOKEN, LoginRequest, RegisterRequest, TokenResponse, User} from '../Interfaces/Users/user';
+import {JWT_TOKEN, LoginRequest, REFRESH_TOKEN, RegisterRequest, TokenResponse, User} from '../Interfaces/Users/user';
 import {HttpClient} from '@angular/common/http';
 import {map, Observable, of, tap} from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
@@ -37,7 +37,7 @@ export class AuthService {
     ).subscribe({
       next: (data) => {
         this.cookieService.set(JWT_TOKEN,data.token);
-        this.router.navigate(['/']);
+        this.router.navigate(['/user/']);
       },
       error: (err) => {
         console.log(err.message);
@@ -45,8 +45,12 @@ export class AuthService {
     });
   }
 
-  logout() {
+  logout(): void {
     this.cookieService.delete(JWT_TOKEN);
+    this.cookieService.delete(REFRESH_TOKEN);
+
+    this.user = {} as User;
+    this.router.navigate(['/login']);
   }
 
 
@@ -59,7 +63,7 @@ export class AuthService {
   }
 
   refresh(): Observable<string | null> {
-    const refreshToken = this.cookieService.get('refreshToken');
+    const refreshToken = this.cookieService.get(REFRESH_TOKEN);
     if (!refreshToken) return of(null);
 
     return this.httpClient
