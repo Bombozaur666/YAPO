@@ -38,10 +38,15 @@
           <li><a class="dropdown-item" (click)="changeLanguage('en')"><span class="fi fi-us"></span>{{ 'menu.language.en' | translate }}</a></li>
         </ul>
       </div>
-      <a class="btn btn-outline-info" routerLink="/profile"><i class="bi bi-person-circle"></i> {{ 'menu.user.profile' | translate }}</a>
-      <a class="btn btn-outline-warning" routerLink="/register">{{ 'menu.user.register' | translate }}</a>
-      <a class="btn btn-outline-success" routerLink="/login">{{ 'menu.user.login' | translate }}</a>
-      <button class="btn btn-outline-danger" (click)="logout()">{{ 'menu.user.logout' | translate }}</button>
+
+      @if (authService.isAuthenticated) {
+        <a class="btn btn-outline-info" routerLink="/profile"><i class="bi bi-person-circle"></i> {{ 'menu.user.profile' | translate }}</a>
+        <button class="btn btn-outline-danger" (click)="logout()">{{ 'menu.user.logout' | translate }}</button>
+      } @else {
+        <a class="btn btn-outline-success" routerLink="/login">{{ 'menu.user.login' | translate }}</a>
+        <a class="btn btn-outline-warning" routerLink="/register">{{ 'menu.user.register' | translate }}</a>
+      }
+
     </div>
 
   </div>

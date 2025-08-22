@@ -14,7 +14,7 @@ import {AuthService} from '../auth/auth-service';
 })
 export class MenuComponent {
   @Output() newLang: EventEmitter<string> = new EventEmitter<string>();
-  constructor(private authService: AuthService) {}
+  constructor(protected authService: AuthService) {}
 
   logout() {
     this.authService.logout();
