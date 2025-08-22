@@ -95,9 +95,15 @@
     }
   },
   "loginPage": {
+    "register": "Zarejestruj się",
+    "login": "Zaloguj się",
     "password": {
       "password": "Hasło",
       "isRequired": "Hasło nie może być puste!"
+    },
+    "email": {
+      "email": "Email",
+      "isRequired": "Email nie może być pusty!"
     },
     "username": {
       "username": "Nazwa użytkownika",

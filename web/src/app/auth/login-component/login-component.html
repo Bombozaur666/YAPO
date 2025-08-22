@@ -4,8 +4,7 @@
 
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
 
-      <!-- Email -->
-      <div class="mb-3">
+     <div class="mb-3">
         <label for="username" class="form-label">{{ 'loginPage.username.username' | translate }}</label>
         <input
           type="text"
@@ -22,7 +21,6 @@
         }
       </div>
 
-      <!-- Password -->
       <div class="mb-3">
         <label for="password" class="form-label">{{ 'loginPage.password.password' | translate }}</label>
         <input
@@ -44,7 +42,7 @@
         type="submit"
         class="btn btn-primary w-100"
         [disabled]="loginForm.invalid">
-        Login
+        {{ 'loginPage.login' | translate }}
       </button>
     </form>
   </div>

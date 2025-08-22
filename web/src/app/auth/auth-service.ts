@@ -55,8 +55,8 @@ export class AuthService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  register(registerRequest: RegisterRequest):Observable<Object> {
-    return  this.httpClient.post(this.baseUrl + 'register', registerRequest);
+  register(registerRequest: RegisterRequest):Observable<User> {
+    return  this.httpClient.post<User>(this.baseUrl + 'register', registerRequest);
   }
 
   refresh():  Observable<TokenResponse | null>  {
@@ -69,17 +69,12 @@ export class AuthService {
         tap((data) => {
           this.cookieService.set(JWT_TOKEN, data.accessToken, { path: '/' });
           this.cookieService.set(REFRESH_TOKEN, data.refreshToken, { path: '/' });
-          console.log("sss")
         }),
         map((data) => data),
         catchError( () => {
-          console.log("dddd")
           return of(null);
         }
       ));
-            //this.cookieService.set(JWT_TOKEN, data.accessToken, { path: '/' });
-            //this.cookieService.set(REFRESH_TOKEN, data.refreshToken, { path: '/' });
-
   }
 }
 
