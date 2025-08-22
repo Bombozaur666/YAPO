@@ -5,3 +5,5 @@ export interface Localization {
   name: string;
   plants: [Plant];
 }
+
+export type LocalizationWithoutPlants = Omit<Localization, 'plants'>;

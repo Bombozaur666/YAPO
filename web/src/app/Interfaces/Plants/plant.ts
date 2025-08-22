@@ -19,7 +19,7 @@ export interface Plant {
   photoGallery: PhotoGallery[];
   fertilizationDate: Date;
   alive: boolean;
-  sharedL: boolean;
+  shared: boolean;
   deathReason: string;
   wateringDate: Date;
   creationDate: Date;
