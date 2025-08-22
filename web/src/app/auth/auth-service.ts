@@ -11,6 +11,7 @@ import {JWT_TOKEN, REFRESH_TOKEN, TokenResponse} from '../Interfaces/Users/token
   providedIn: 'root'
 })
 export class AuthService {
+  private authenticated: boolean = false;
   protected user!: User;
   protected baseUrl: string = 'http://localhost:8080/user/';
   constructor(private httpClient: HttpClient,
@@ -19,6 +20,13 @@ export class AuthService {
 
   get token(): string | null {
     return this.cookieService.get(JWT_TOKEN);
+  }
+
+  get isAuthenticated(): boolean {
+    return this.authenticated;
+  }
+  hasToken(): boolean {
+    return !!this.cookieService.get(JWT_TOKEN);
   }
 
   userProfile(): Observable<User> {
@@ -34,6 +42,7 @@ export class AuthService {
       next: (data) => {
         this.cookieService.set(JWT_TOKEN ,data.accessToken);
         this.cookieService.set(REFRESH_TOKEN ,data.accessToken);
+        this.authenticated = true;
         this.router.navigate(['/user/']);
       },
       error: (err) => {
@@ -45,6 +54,7 @@ export class AuthService {
   logout(): void {
     this.cookieService.delete(JWT_TOKEN);
     this.cookieService.delete(REFRESH_TOKEN);
+    this.authenticated = false;
 
     this.user = {} as User;
     this.router.navigate(['/login']);
