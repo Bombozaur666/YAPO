@@ -6,27 +6,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/plants">{{ 'menu.plants' | translate }}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/localizations">{{ 'menu.localizations' | translate }}</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown" style="margin-left: auto;">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-globe"></i>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" (click)="changeLanguage('pl')"><span class="fi fi-pl"></span> {{ 'menu.language.pl' | translate }}<span class="fi fi-pl"></span></a></li>
-            <li><a class="dropdown-item" (click)="changeLanguage('en')"><span class="fi fi-us"></span> {{ 'menu.language.en' | translate }}<span class="fi fi-us"></span></a></li>
-          </ul>
-        </li>
-
-        <li  class="nav-item">
-          <i class="bi bi-person-circle"></i>
-        </li>
+        @if (authService.isAuthenticated) {
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/collection">{{ 'menu.collection' | translate }}</a>
+          </li>
+        }
       </ul>
 
       <div class="btn-group dropstart">
