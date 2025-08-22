@@ -1,0 +1,21 @@
+@if (initialized) {
+  <app-localizations-component
+    [localizations]="localizationsWithoutPlants"
+    (localizationsChange)="localizationChange($event)">
+  </app-localizations-component>
+
+  @if (selectedLocalization) {
+    <app-plants-component
+      [plants]="showPlants"
+      (plantsChange)="selectPlant($event)">
+    </app-plants-component>
+  }
+
+  @if (selectedPlant) {
+    <app-plant-detail-component [plant]="plant">
+    </app-plant-detail-component>
+  }
+} @else {
+  <span>loading</span>
+}
+

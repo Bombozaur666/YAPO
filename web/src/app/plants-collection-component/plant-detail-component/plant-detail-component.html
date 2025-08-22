@@ -1,0 +1,31 @@
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img ngSrc="plant.avatar" class="img-fluid rounded-start" alt="{{plant.name}}" fill>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ plant.name }}</h5>
+        <p class="card-text">{{ plant.species }}</p>
+        <p class="card-text">{{ plant.purchaseDate | date:'hh:mm:ss dd:MM:yyyy'}}</p>
+        <p class="card-text">{{ plant.purchaseLocalization }}</p>
+        <p class="card-text">{{ plant.localization }}</p>
+        <p class="card-text">{{ plant.fertilizationDate }}</p>
+        <p class="card-text">{{ plant.alive }}</p>
+        <p class="card-text">{{ plant.shared }}</p>
+        <p class="card-text">{{ plant.deathReason }}</p>
+        <p class="card-text">{{ plant.wateringDate }}</p>
+        <p class="card-text">{{ plant.creationDate | date:'hh:mm:ss dd:MM:yyyy'}}</p>
+        <p class="card-text">{{ plant.plantCondition }}</p>
+        <p class="card-text">{{ plant.plantSoil }}</p>
+        <p class="card-text">{{ plant.plantWatering }}</p>
+        <p class="card-text">{{ plant.plantBerth }}</p>
+        <p class="card-text">{{ plant.plantToxicity }}</p>
+        <p class="card-text">{{ plant.plantLifeExpectancy }}</p>
+        <p class="card-text">
+          <small class="text-muted">Created: {{ plant.creationDate | date:'dd.MM.yyyy HH:mm' }}</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
