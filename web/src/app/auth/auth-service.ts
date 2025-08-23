@@ -35,18 +35,19 @@ export class AuthService {
 
   login(loginRequest: LoginRequest): void{
     this.httpClient.post<TokenResponse>(this.baseUrl + 'login', loginRequest, {
-      headers: {
-        'Content-Type': 'application/json'
-      }}
+      headers: {'Content-Type': 'application/json'},
+      withCredentials: true
+    }
     ).subscribe({
       next: (data) => {
         this.cookieService.set(JWT_TOKEN ,data.accessToken);
-        this.cookieService.set(REFRESH_TOKEN ,data.accessToken);
+        this.cookieService.set(REFRESH_TOKEN ,data.refreshToken);
         this.authenticated = true;
         this.router.navigate(['/user/']);
       },
       error: (err) => {
         console.log(err.message);
+        alert(`Błąd logowania: ${err.status} - ${err.error}`);
       }
     });
   }
@@ -85,6 +86,10 @@ export class AuthService {
           return of(null);
         }
       ));
+  }
+
+  avatarUpload(file: File) {
+    return this.httpClient.post<User>(this.baseUrl + 'avatarUpload', file);
   }
 }
 

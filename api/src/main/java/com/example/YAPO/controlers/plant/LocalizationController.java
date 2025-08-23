@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "https://localhost:4200/")
 @RequestMapping("/localization")
 public class LocalizationController {
     private final LocalizationService localizationService;

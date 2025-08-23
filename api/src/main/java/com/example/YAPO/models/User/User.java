@@ -62,4 +62,10 @@ public class User {
     @Column()
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private boolean enabled = false;
+
+    @Column()
+    private String avatarPath;
+
+    @Column()
+    private String avatarContentType = "application/octet-stream";
 }

@@ -17,6 +17,12 @@
         <div class="col-sm-4 fw-bold">{{ 'profile.registrationDate' | translate }}</div>
         <div class="col-sm-8">{{ user.registrationDate | date:'dd.MM.yyyy' }}</div>
       </div>
+      <div class="row mb-3">
+
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#uploadImageModal">{{'profile.settings.editAvatar' | translate}}</button>
     </div>
     } @else {
       <div class="row mb-3">
@@ -25,3 +31,9 @@
     }
   </div>
 </div>
+
+<app-upload-image-dialog-component
+  (imageUploaded)="onAvatarUploaded($event)"
+  [circled]="false"
+  [modalTitle]="'profile.settings.editAvatarTitle' | translate">
+</app-upload-image-dialog-component>

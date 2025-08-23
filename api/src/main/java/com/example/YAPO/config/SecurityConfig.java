@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -39,12 +38,20 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(requests
                     -> requests
-                        .requestMatchers("user/register", "user/login", "user/forgot-password", "user/reactivate-user", "user/enable**", "user/reset**", "plants/shared/**")
-                        .permitAll()
-                        .requestMatchers("admin**")
-                        .hasAnyRole("ADMIN")
+                        .requestMatchers(
+                                "/user/register",
+                                "/user/login",
+                                "/user/forgot-password",
+                                "/user/reactivate-user",
+                                "/user/enable",
+                                "/user/reset",
+                                "/plants/shared/**")
+                            .permitAll()
+                        .requestMatchers("/user/avatar/")
+                            .permitAll()
+                        .requestMatchers("/admin")
+                            .hasAnyRole("ADMIN")
                         .anyRequest().authenticated())
-            .httpBasic(Customizer.withDefaults())
             .cors(cors -> {})
             .sessionManagement(session
                     -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -114,7 +114,18 @@
     "profile": "Profil użytkownika",
     "username": "Nazwa użytkownika: ",
     "email": "Email: ",
-    "registrationDate": "Data rejestracji: "
+    "registrationDate": "Data rejestracji: ",
+    "settings": {
+      "editAvatar": "Edytuj Awatar.",
+      "editAvatarTitle": "Wybierz zdjęcie"
+    }
   },
-  "fetching": "Pobieram dane..."
+  "fetching": "Pobieram dane...",
+  "shared": {
+    "uploadPhoto": {
+      "close": "Zamknij",
+      "cancel": "Anuluj",
+      "upload": "Wgraj"
+    }
+  }
 }

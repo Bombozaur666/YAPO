@@ -1,0 +1,64 @@
+package com.example.YAPO.service.user;
+
+import com.example.YAPO.models.User.User;
+import com.example.YAPO.repositories.user.UserRepo;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Set;
+import java.util.UUID;
+
+@Service
+public class AvatarService {
+    private final UserRepo userRepo;
+    private static final Set<String> ALLOWED_TYPES = Set.of("image/jpeg","image/png","image/webp");
+
+    @Value("${upload.path}")
+    private String uploadDir;
+
+    private AvatarService(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
+
+    public User uploadAvatar(User user, MultipartFile file) throws IOException {
+        if (file == null || file.isEmpty()) {
+            throw new IllegalArgumentException("Empty file");
+        }
+        if (!ALLOWED_TYPES.contains(file.getContentType())) {
+            throw new IllegalArgumentException("Unsupported file type");
+        }
+
+        File dir = new File(uploadDir);
+        if (!dir.exists()) dir.mkdirs();
+
+        String original = file.getOriginalFilename() != null ? file.getOriginalFilename() : "avatar";
+        String ext = original.contains(".") ? original.substring(original.lastIndexOf(".")) : ".jpg";
+        String fileName = UUID.randomUUID() + "_" + original.replaceAll("\\s+","_");
+        if (!fileName.endsWith(ext)) fileName += ext;
+
+        Path destination = Paths.get(uploadDir).resolve(fileName).normalize();
+
+        if (user.getAvatarPath() != null) {
+            try {
+                Files.deleteIfExists(Paths.get(uploadDir).resolve(user.getAvatarPath()));
+            } catch (Exception ignored) {}
+        }
+
+        Files.copy(file.getInputStream(), destination, StandardCopyOption.REPLACE_EXISTING);
+
+        user.setAvatarPath(fileName);
+        user.setAvatarContentType(file.getContentType());
+        return userRepo.save(user);
+    }
+
+    public Path getAvatarPath(String path) {
+        return Paths.get(uploadDir).resolve(path).normalize();
+    }
+}

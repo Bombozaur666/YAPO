@@ -15,21 +15,28 @@ import com.example.YAPO.service.UtilityService;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
 public class UserService {
+    @Value("${upload.path}")
+    private String uploadPath;
     private final UserRepo userRepo;
     private final RefreshTokenService refreshTokenService;
     AuthenticationManager authenticationManager;
@@ -213,5 +220,4 @@ public class UserService {
         String newAccess = jwtService.generateToken(stored.getUser().getUsername());
         return Map.of("accessToken", newAccess, "refreshToken", newRt.getToken());
     }
-
 }

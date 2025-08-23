@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@CrossOrigin(origins = "https://localhost:4200/")
 @RequestMapping("/plants/{id}/note")
 public class NoteController {
     private final NoteService noteService;

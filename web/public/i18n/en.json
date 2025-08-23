@@ -7,7 +7,7 @@
   },
   "menu": {
     "home": "Home",
-    "plants": "Plants",
+    "collection": "Collection",
     "localizations": "Locations",
     "language": {
       "general": "Languages",
@@ -30,14 +30,14 @@
       "DIEBACK": "Dying",
       "INFESTED": "Infested with pests",
       "DISEASED": "Diseased",
-      "FUCK_THIS_SHIT_IM_OUT": "The plant has decided to die"
+      "FUCK_THIS_SHIT_IM_OUT": "The plant decided to die"
     },
     "plantSoil": {
       "POTTING_SOIL": "Potting soil",
       "UNIVERSAL_SOIL": "Universal soil",
       "PEAT_SOIL": "Peat soil",
       "SANDY_SOIL": "Sandy soil",
-      "LOAMY_SOIL": "Loamy-sandy soil",
+      "LOAMY_SOIL": "Loamy soil",
       "CLAY_SOIL": "Clay soil",
       "COMPOST_SOIL": "Compost soil",
       "CACTUS_SOIL": "Cactus soil",
@@ -90,17 +90,39 @@
       "ERROR_DURING_SENDING_MAIL": "Error while sending email",
       "INVALID_TOKEN": "Invalid token",
       "TOKEN_EXPIRED": "Token expired",
-      "PLANT_NOT_SHARED_OR_NOT_EXIST": "Plant is not shared or does not exist"
+      "PLANT_NOT_SHARED_OR_NOT_EXIST": "Plant not shared or does not exist"
     }
   },
   "loginPage": {
+    "register": "Register",
+    "login": "Login",
     "password": {
       "password": "Password",
-      "isRequired": "Password is required!"
+      "isRequired": "Password cannot be empty!"
+    },
+    "email": {
+      "email": "Email",
+      "isRequired": "Email cannot be empty!"
     },
     "username": {
       "username": "Username",
-      "isRequired": "Username is required!"
+      "isRequired": "Username cannot be empty!"
+    }
+  },
+  "profile": {
+    "profile": "User profile",
+    "username": "Username: ",
+    "email": "Email: ",
+    "registrationDate": "Registration date: ",
+    "settings": {
+      "editAvatar": "Edit avatar"
+    }
+  },
+  "fetching": "Fetching data...",
+  "shared": {
+    "uploadPhoto": {
+      "cancel": "Cancel",
+      "upload": "Upload"
     }
   }
 }

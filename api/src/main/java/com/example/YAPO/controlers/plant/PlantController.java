@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@CrossOrigin(origins = "https://localhost:4200/")
 @RequestMapping("/plants")
 public class PlantController {
 

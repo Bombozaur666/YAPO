@@ -2,30 +2,31 @@ package com.example.YAPO.controlers.user;
 
 import com.example.YAPO.models.User.*;
 import com.example.YAPO.models.enums.Roles;
-import com.example.YAPO.service.JWTService;
-import com.example.YAPO.service.RefreshTokenService;
+import com.example.YAPO.service.user.AvatarService;
 import com.example.YAPO.service.user.UserService;
 import jakarta.validation.Valid;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Map;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "https://localhost:4200/")
 public class UserController {
     private final UserService userService;
-    private final JWTService jWTService;
-    private final RefreshTokenService refreshTokenService;
+    private final AvatarService avatarService;
 
-    public UserController(UserService userService, JWTService jWTService, RefreshTokenService refreshTokenService) {
+    public UserController(UserService userService, AvatarService avatarService) {
         this.userService = userService;
-        this.jWTService = jWTService;
-        this.refreshTokenService = refreshTokenService;
+        this.avatarService = avatarService;
     }
 
     @GetMapping("/")
@@ -35,8 +36,9 @@ public class UserController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public User registerUserPage(@RequestBody @Valid User user){
-        return  userService.registerUser(user, Roles.ROLE_USER.toString());
+    public ResponseEntity<User> registerUserPage(@RequestBody @Valid User user){
+        User _user = userService.registerUser(user, Roles.ROLE_USER.toString());
+        return  ResponseEntity.ok(_user);
     }
 
     @PostMapping("/login")
@@ -46,8 +48,8 @@ public class UserController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<?> refreshToken(@RequestBody TokenRequest request) {
-        var tokens = userService.refresh(request.getRefreshToken());
+    public ResponseEntity<Map<String, String>> refreshToken(@RequestBody TokenRequest request) {
+        Map<String, String> tokens = userService.refresh(request.getRefreshToken());
         return ResponseEntity.ok(tokens);
     }
 
@@ -83,6 +85,22 @@ public class UserController {
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(@RequestBody TokenRequest request) {
         userService.logout(request.getRefreshToken());
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping(value = "/avatar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<User> uploadAvatar(@AuthenticationPrincipal MyUserDetails userDetails, @RequestParam("file") MultipartFile file) throws Exception {
+        User user = avatarService.uploadAvatar(userDetails.getUser(), file);
+        return ResponseEntity.ok(user);
+    }
+
+    @GetMapping("/avatar/")
+    public ResponseEntity<Resource> getAvatar(@RequestBody AvatarRequest avatarRequest) throws Exception {
+        Path path = avatarService.getAvatarPath(avatarRequest.getAvatarPath());
+        byte[] bytes = Files.readAllBytes(path);
+        String contentType = avatarRequest.getAvatarContentType();
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .body(new ByteArrayResource(bytes));
     }
 }

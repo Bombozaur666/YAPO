@@ -4,6 +4,7 @@ export interface User {
   password: string;
   email: string;
   registrationDate: Date;
+  avatarPath: string;
 }
 export interface LoginRequest {
   username: string;
