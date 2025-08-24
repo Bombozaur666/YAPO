@@ -1,4 +1,4 @@
-import { Injectable} from '@angular/core';
+import {computed, Injectable} from '@angular/core';
 import {LoginRequest,  RegisterRequest,  User} from '../Interfaces/Users/user';
 import {HttpClient} from '@angular/common/http';
 import {catchError, map, Observable, of, tap} from 'rxjs';
@@ -14,6 +14,7 @@ export class AuthService {
   private authenticated: boolean = false;
   protected user!: User;
   protected baseUrl: string = 'http://localhost:8080/user/';
+
   constructor(private httpClient: HttpClient,
               private cookieService: CookieService,
               private router: Router) {}
@@ -22,11 +23,12 @@ export class AuthService {
     return this.cookieService.get(JWT_TOKEN);
   }
 
+  get path(): string {
+    return this.baseUrl + "avatar";
+  }
+
   get isAuthenticated(): boolean {
     return this.authenticated;
-  }
-  hasToken(): boolean {
-    return !!this.cookieService.get(JWT_TOKEN);
   }
 
   userProfile(): Observable<User> {
@@ -89,7 +91,9 @@ export class AuthService {
   }
 
   avatarUpload(file: File) {
-    return this.httpClient.post<User>(this.baseUrl + 'avatarUpload', file);
+    const form = new FormData();
+    form.append('file', file);
+    return this.httpClient.post<User>(this.path, form);
   }
 }
 

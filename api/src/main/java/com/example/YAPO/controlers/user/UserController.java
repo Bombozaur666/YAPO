@@ -94,13 +94,12 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping("/avatar/")
-    public ResponseEntity<Resource> getAvatar(@RequestBody AvatarRequest avatarRequest) throws Exception {
-        Path path = avatarService.getAvatarPath(avatarRequest.getAvatarPath());
+    @GetMapping("/avatar/{fileName}")
+    public ResponseEntity<Resource> getAvatar(@PathVariable String fileName) throws Exception {
+        Path path = avatarService.getAvatarPath(fileName);
         byte[] bytes = Files.readAllBytes(path);
-        String contentType = avatarRequest.getAvatarContentType();
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
                 .body(new ByteArrayResource(bytes));
     }
 }

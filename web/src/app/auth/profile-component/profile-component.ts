@@ -4,6 +4,7 @@ import {AuthService} from '../auth-service';
 import {DatePipe} from '@angular/common';
 import {TranslatePipe} from '@ngx-translate/core';
 import {UploadImageDialogComponent} from '../../shared/upload-image-dialog-component/upload-image-dialog-component';
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile-component',
@@ -17,12 +18,17 @@ import {UploadImageDialogComponent} from '../../shared/upload-image-dialog-compo
 })
 export class ProfileComponent implements OnInit {
   protected user!: User;
+  protected avatarUrl!: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+              private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.authService.userProfile().subscribe({
-        next: data => {this.user = data;},
+        next: data => {
+          this.user = data;
+          this.avatarUrl = this.authService.path + "/" + this.user.avatarPath;
+          },
         error: err => {console.log(err.message);}
       }
     );

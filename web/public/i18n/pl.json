@@ -117,7 +117,8 @@
     "registrationDate": "Data rejestracji: ",
     "settings": {
       "editAvatar": "Edytuj Awatar.",
-      "editAvatarTitle": "Wybierz zdjęcie"
+      "editAvatarTitle": "Wybierz zdjęcie",
+      "avatarAlt": "Awatar użytkownika"
     }
   },
   "fetching": "Pobieram dane...",
