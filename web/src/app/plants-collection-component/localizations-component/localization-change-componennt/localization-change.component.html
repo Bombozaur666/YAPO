@@ -6,9 +6,7 @@
           @if (localization) {{{'collections.localizations.editLocalization' | translate}}}
           @else {{{'collections.localizations.addLocalization' | translate}}}
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" [attr.aria-label]="'collections.localizations.editLocalization' | translate">
-          {{'collections.localizations.modal.close' | translate}}
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" [attr.aria-label]="'collections.localizations.editLocalization' | translate">        </button>
       </div>
 
       <form (ngSubmit)="onSubmit()">

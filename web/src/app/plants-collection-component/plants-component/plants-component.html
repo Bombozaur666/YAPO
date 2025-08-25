@@ -1,8 +1,10 @@
 <br>
 <div class="plants" style="float: left">
-  <button type="button" class="btn btn-info" data-bs-toggle="modal"  data-bs-target="#locationModal">{{'collections.plants.addPlant' | translate}}</button>
+  <button type="button" class="btn btn-info" data-bs-toggle="modal"  data-bs-target="#addPlantModal">{{'collections.plants.addPlant' | translate}}</button>
 
   @for (plant of plants; track plant.id) {
     <button class="btn btn-light" (click)="selectLocalization(plant)">{{plant.name}}</button>
   }
 </div>
+
+<app-add-plant-component></app-add-plant-component>

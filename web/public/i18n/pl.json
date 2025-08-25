@@ -21,61 +21,6 @@
       "profile": "Profil"
     }
   },
-  "plants": {
-    "plantCondition": {
-    "HEALTHY": "Zdrowa",
-    "NEEDS_WATER": "Potrzebuje wody",
-    "NEEDS_SUNLIGHT": "Potrzebuje światła",
-    "NEEDS_FERTILIZER": "Potrzebuje nawozu",
-    "DIEBACK": "Umiera",
-    "INFESTED": "Zaatakowana przez szkodniki",
-    "DISEASED": "Zainfekowana",
-    "FUCK_THIS_SHIT_IM_OUT": "Roślina postanowała umrzeć"
-  },
-    "plantSoil": {
-    "POTTING_SOIL": "Ziemia doniczkowa",
-    "UNIVERSAL_SOIL": "Ziemia uniwersalna",
-    "PEAT_SOIL": "Ziemia torfowa",
-    "SANDY_SOIL": "Gleba piaszczysta",
-    "LOAMY_SOIL": "Gleba gliniasto-piaszczysta",
-    "CLAY_SOIL": "Gleba gliniasta",
-    "COMPOST_SOIL": "Ziemia kompostowa",
-    "CACTUS_SOIL": "Ziemia do kaktusów",
-    "HERB_SOIL": "Ziemia do ziół",
-    "VEGETABLE_SOIL": "Ziemia do warzyw",
-    "ACIDIC_SOIL": "Gleba kwaśna",
-    "ALKALINE_SOIL": "Gleba zasadowa",
-    "NEUTRAL_SOIL": "Gleba obojętna",
-    "PERLITE_MIX": "Mieszanka z perlitem",
-    "COCONUT_SUBSTRATE": "Włókno kokosowe",
-    "ORCHID_SOIL": "Ziemia do storczyków"
-  },
-    "plantWatering": {
-    "DAILY": "Codziennie",
-    "EVERY_2_DAYS": "Co 2 dni",
-    "TWO_TIMES_A_WEEK": "Dwa razy w tygodniu",
-    "WEEKLY": "Co tydzień",
-    "MONTHLY": "Co miesiąc",
-    "WHEN_NEEDED": "Kiedy potrzeba"
-
-  },
-    "plantBerth": {
-    "FULL_SUN": "Pełne słońce",
-    "PARTIAL_SUN": "Częściowe słońce",
-    "SHADE": "Cień",
-    "INDIRECT_SUNLIGHT": "Pośrednie światło"
-  },
-    "plantToxicity": {
-    "NON_TOXIC": "Nietoksyczna",
-    "TOXIC_TO_HUMANS": "Toksyczna dla ludzi",
-    "TOXIC_TO_ANIMALS": "Toksyczna dla zwierząt",
-    "TOXIC_TO_HUMANS_AND_ANIMALS": "Toksyczna dla ludzi i zwierząt"
-  },
-    "plantLifeExpectancy": {
-    "ANNUAL": "Jednoroczna",
-    "PERENNIAL": "Wieloletnia"
-  }
-  },
   "errors": {
     "ErrorList": {
       "WRONG_FIELD_TO_UPDATE": "Nieprawidłowe pole do zaktualizowania",
@@ -142,7 +87,82 @@
       }
     },
     "plants": {
-      "addPlant": "Dodaj roślinę"
+      "addPlant": "Dodaj roślinę",
+      "details": {
+        "name": "Imię",
+        "species": "Gatunek",
+        "purchaseDate": "Data zakupu",
+        "purchaseLocalization": "Miejsce zakupu",
+        "fertilizationDate": "Data nawożenia",
+        "alive": "Czy żyje",
+        "shared": "Czy udostępniona",
+        "wateringDay": "Data podlewania",
+        "deathReason": "Powód śmierci",
+        "plantCondition": "Stan rośliny",
+        "plantSoil": "Gleba",
+        "plantWatering": "Podlewanie",
+        "plantBerth": "Stanowisko",
+        "plantToxicity": "Stopień zagrożenia",
+        "plantLifeExpectancy": "Spodziewana długość życia",
+        "plantConditionsValues": {
+          "HEALTHY": "Zdrowa",
+          "NEEDS_WATER": "Potrzebuje wody",
+          "NEEDS_SUNLIGHT": "Potrzebuje światła",
+          "NEEDS_FERTILIZER": "Potrzebuje nawozu",
+          "DIEBACK": "Umiera",
+          "INFESTED": "Zaatakowana przez szkodniki",
+          "DISEASED": "Zainfekowana",
+          "STRESSED": "Zestresowana",
+          "FUCK_THIS_SHIT_IM_OUT": "Roślina postanowała umrzeć"
+        },
+        "plantSoilValues": {
+          "POTTING_SOIL": "Ziemia doniczkowa",
+          "UNIVERSAL_SOIL": "Ziemia uniwersalna",
+          "PEAT_SOIL": "Ziemia torfowa",
+          "SANDY_SOIL": "Gleba piaszczysta",
+          "LOAMY_SOIL": "Gleba gliniasto-piaszczysta",
+          "CLAY_SOIL": "Gleba gliniasta",
+          "COMPOST_SOIL": "Ziemia kompostowa",
+          "CACTUS_SOIL": "Ziemia do kaktusów",
+          "HERB_SOIL": "Ziemia do ziół",
+          "VEGETABLE_SOIL": "Ziemia do warzyw",
+          "ACIDIC_SOIL": "Gleba kwaśna",
+          "ALKALINE_SOIL": "Gleba zasadowa",
+          "NEUTRAL_SOIL": "Gleba obojętna",
+          "PERLITE_MIX": "Mieszanka z perlitem",
+          "COCONUT_SUBSTRATE": "Włókno kokosowe",
+          "ORCHID_SOIL": "Ziemia do storczyków"
+        },
+        "plantWateringValues": {
+          "DAILY": "Codziennie",
+          "EVERY_2_DAYS": "Co 2 dni",
+          "TWO_TIMES_A_WEEK": "Dwa razy w tygodniu",
+          "WEEKLY": "Co tydzień",
+          "MONTHLY": "Co miesiąc",
+          "WHEN_NEEDED": "Kiedy potrzeba"
+        },
+        "plantBerthValues": {
+          "FULL_SUN": "Pełne słońce",
+          "PARTIAL_SUN": "Częściowe słońce",
+          "SHADE": "Cień",
+          "INDIRECT_SUNLIGHT": "Pośrednie światło"
+        },
+        "plantToxicityValues": {
+          "NON_TOXIC": "Nietoksyczna",
+          "TOXIC_TO_HUMANS": "Toksyczna dla ludzi",
+          "TOXIC_TO_ANIMALS": "Toksyczna dla zwierząt",
+          "TOXIC_TO_HUMANS_AND_ANIMALS": "Toksyczna dla ludzi i zwierząt"
+        },
+        "plantLifeExpectancyValues": {
+          "ANNUAL": "Jednoroczna",
+          "PERENNIAL": "Wieloletnia"
+        }
+      },
+      "modal": {
+        "close": "Zamknij",
+        "save": "Zapisz",
+        "cancel": "Anuluj"
+      }
     }
   }
 }
