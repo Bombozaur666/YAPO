@@ -29,7 +29,6 @@ export class LocalizationsComponent {
   }
 
   onRemoveLocalization(localization: LocalizationWithoutPlants) {
-    console.log("wykryło usuniecie - localization componenet",  localization);
     this.localizationRemove.emit(localization);
   }
 }

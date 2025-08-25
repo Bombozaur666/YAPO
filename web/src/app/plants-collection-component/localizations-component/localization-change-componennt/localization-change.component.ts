@@ -20,5 +20,5 @@ export class LocalizationChangeComponent {
 
   onSubmit() {this.save.emit(this.localization!);}
 
-  onRemove() {console.log("wykryło usuniecie - localization change"); this.remove.emit(this.localization!);}
+  onRemove() {this.remove.emit(this.localization!);}
 }

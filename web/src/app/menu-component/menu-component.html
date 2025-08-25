@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">{{'app.title.short' | translate}}</a>
+    <button type="button" class="navbar-brand" (click)="router.navigate(['/'])" >{{'app.title.short' | translate}}</button>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,11 +14,11 @@
       </ul>
 
       @if (authService.isAuthenticated) {
-        <a class="btn btn-outline-info" routerLink="/profile"><i class="bi bi-person-circle"></i> {{ 'menu.user.profile' | translate }}</a>
-        <button class="btn btn-outline-danger" (click)="logout()">{{ 'menu.user.logout' | translate }}</button>
+        <button type="button" class="btn btn-outline-info" (click)="router.navigate(['/profile'])"><i class="bi bi-person-circle"></i> {{ 'menu.user.profile' | translate }}</button>
+        <button type="button" class="btn btn-outline-danger" (click)="logout()">{{ 'menu.user.logout' | translate }}</button>
       } @else {
-        <a class="btn btn-outline-success" routerLink="/login">{{ 'menu.user.login' | translate }}</a>
-        <a class="btn btn-outline-warning" routerLink="/register">{{ 'menu.user.register' | translate }}</a>
+        <button type="button" class="btn btn-outline-success" (click)="router.navigate(['/login'])">{{ 'menu.user.login' | translate }}</button>
+        <button type="button" class="btn btn-outline-warning" (click)="router.navigate(['/register'])">{{ 'menu.user.register' | translate }}</button>
       }
 
       <div class="btn-group dropstart">

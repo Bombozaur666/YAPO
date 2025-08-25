@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {TranslatePipe} from "@ngx-translate/core";
 import {AuthService} from '../auth/auth-service';
 
@@ -14,7 +14,8 @@ import {AuthService} from '../auth/auth-service';
 })
 export class MenuComponent {
   @Output() newLang: EventEmitter<string> = new EventEmitter<string>();
-  constructor(protected authService: AuthService) {}
+  constructor(protected authService: AuthService,
+              protected router: Router) {}
 
   logout() {
     this.authService.logout();

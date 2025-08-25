@@ -30,12 +30,12 @@ public class Plant {
     @Column()
     private String purchaseLocalization;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JsonBackReference
     private User user;
 
     @JsonBackReference(value = "localization-plant")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Localization localization;
 
     @JsonManagedReference(value = "plant-plantupdate")

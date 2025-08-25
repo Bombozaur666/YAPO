@@ -1,4 +1,4 @@
-import {computed, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {LoginRequest,  RegisterRequest,  User} from '../Interfaces/Users/user';
 import {HttpClient} from '@angular/common/http';
 import {catchError, map, Observable, of, tap} from 'rxjs';
@@ -45,10 +45,9 @@ export class AuthService {
         this.cookieService.set(JWT_TOKEN ,data.accessToken);
         this.cookieService.set(REFRESH_TOKEN ,data.refreshToken);
         this.authenticated = true;
-        this.router.navigate(['/user/']);
+        this.router.navigate(['/']);
       },
       error: (err) => {
-        console.log(err.message);
         alert(`Błąd logowania: ${err.status} - ${err.error}`);
       }
     });

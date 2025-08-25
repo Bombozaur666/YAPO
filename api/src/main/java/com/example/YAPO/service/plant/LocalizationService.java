@@ -76,7 +76,7 @@ public class LocalizationService {
     @Transactional
     public boolean deleteByIdAndUsername(long id, String username) {
         try {
-            localizationRepo.deleteByIdAndUsername(id, username);
+            localizationRepo.deleteByIdAndUser_Username(id, username);
         } catch (EmptyResultDataAccessException | DataIntegrityViolationException | TransactionSystemException e ) {
             throw  new RuntimeException(ErrorList.UNEXPECTED_ERROR_DURING_DELETE.toString());
         }

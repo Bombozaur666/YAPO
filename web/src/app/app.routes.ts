@@ -8,8 +8,7 @@ import {PlantsCollectionComponent} from './plants-collection-component/plants-co
 
 
 export const routes: Routes = [
-  { path: '',
-    component: HomeComponent},
+  { path: '', component: HomeComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'register', component: RegisterComponent },

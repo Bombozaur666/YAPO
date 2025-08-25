@@ -116,10 +116,8 @@ export class PlantsCollectionComponent implements OnInit {
   }
 
   localizationRemove(localization: LocalizationWithoutPlants) {
-    console.log("wykryło usuniecie - plants collection", localization);
     this.plantsCollectionService.removeLocalization(localization).subscribe({
-      next: (response: boolean) => {
-        console.log(response);
+      next: () => {
         this.localizations = this.localizations.filter(loc => loc.id !== localization.id);
         this.localizationsWithoutPlants = this.localizationList();
         this.selectedLocalization = null;
