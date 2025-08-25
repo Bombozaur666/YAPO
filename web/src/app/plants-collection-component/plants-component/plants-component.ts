@@ -1,10 +1,13 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {LocalizationWithoutPlants} from '../../Interfaces/Plants/localization';
 import {Plant} from '../../Interfaces/Plants/plant';
+import {TranslatePipe} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-plants-component',
-  imports: [],
+    imports: [
+        TranslatePipe
+    ],
   templateUrl: './plants-component.html',
   styleUrl: './plants-component.css'
 })

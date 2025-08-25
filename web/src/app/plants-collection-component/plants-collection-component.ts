@@ -5,13 +5,15 @@ import {Plant} from '../Interfaces/Plants/plant';
 import {LocalizationsComponent} from './localizations-component/localizations-component';
 import {PlantsComponent} from './plants-component/plants-component';
 import {PlantDetailComponent} from './plant-detail-component/plant-detail-component';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-plants-collection-component',
   imports: [
     LocalizationsComponent,
     PlantsComponent,
-    PlantDetailComponent
+    PlantDetailComponent,
+    TranslatePipe
   ],
   templateUrl: './plants-collection-component.html',
   styleUrl: './plants-collection-component.css'

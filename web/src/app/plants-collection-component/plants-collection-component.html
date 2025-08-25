@@ -1,22 +1,29 @@
-@if (initialized) {
-  <app-localizations-component
-    [localizations]="localizationsWithoutPlants"
-    (localizationsChange)="localizationChange($event)"
-    (localizationUpdateOrCreate)="localizationUpdateOrCreate($event)">
-  </app-localizations-component>
-
-  @if (selectedLocalization) {
-    <app-plants-component
-      [plants]="showPlants"
-      (plantsChange)="selectPlant($event)">
-    </app-plants-component>
+<div class="container">
+  @if (initialized) {
+    <div class="row">
+      <app-localizations-component
+        [localizations]="localizationsWithoutPlants"
+        (localizationsChange)="localizationChange($event)"
+        (localizationUpdateOrCreate)="localizationUpdateOrCreate($event)">
+      </app-localizations-component>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        @if (selectedLocalization) {
+          <app-plants-component
+            [plants]="showPlants"
+            (plantsChange)="selectPlant($event)">
+          </app-plants-component>
+        }
+      </div>
+      <div class="col">
+        @if (selectedPlant) {
+          <app-plant-detail-component [plant]="plant">
+          </app-plant-detail-component>
+        }
+      </div>
+    </div>
+  } @else {
+    <span>{{'collections.loading' | translate}}</span>
   }
-
-  @if (selectedPlant) {
-    <app-plant-detail-component [plant]="plant">
-    </app-plant-detail-component>
-  }
-} @else {
-  <span>loading</span>
-}
-
+</div>

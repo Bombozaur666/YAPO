@@ -130,6 +130,7 @@
     }
   },
   "collections": {
+    "loading": "Pobieranie danych...",
     "localizations": {
       "addLocalization": "Dodaj lokalizację",
       "editLocalization": "Edytuj wybraną lokalizację",
@@ -139,6 +140,9 @@
         "save": "Zapisz",
         "cancel": "Anuluj"
       }
+    },
+    "plants": {
+      "addPlant": "Dodaj roślinę"
     }
   }
 }
