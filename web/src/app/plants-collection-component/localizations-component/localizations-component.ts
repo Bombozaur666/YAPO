@@ -17,6 +17,7 @@ export class LocalizationsComponent {
   @Input() localizations: LocalizationWithoutPlants[] = [];
   @Output() localizationsChange = new EventEmitter<number>();
   @Output() localizationUpdateOrCreate = new EventEmitter<LocalizationWithoutPlants>();
+  @Output() localizationRemove = new EventEmitter<LocalizationWithoutPlants>();
 
   selectLocalization(localization: LocalizationWithoutPlants): void {
     this.selectedLocalization = localization;
@@ -25,5 +26,10 @@ export class LocalizationsComponent {
 
   onUpdateOrCreate(localization: LocalizationWithoutPlants): void {
     this.localizationUpdateOrCreate.emit(localization);
+  }
+
+  onRemoveLocalization(localization: LocalizationWithoutPlants) {
+    console.log("wykryło usuniecie - localization componenet",  localization);
+    this.localizationRemove.emit(localization);
   }
 }

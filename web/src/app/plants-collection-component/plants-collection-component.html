@@ -4,7 +4,8 @@
       <app-localizations-component
         [localizations]="localizationsWithoutPlants"
         (localizationsChange)="localizationChange($event)"
-        (localizationUpdateOrCreate)="localizationUpdateOrCreate($event)">
+        (localizationUpdateOrCreate)="localizationUpdateOrCreate($event)"
+        (localizationRemove)="localizationRemove($event)">
       </app-localizations-component>
     </div>
     <div class="row">
@@ -13,7 +14,7 @@
           <app-plants-component
             [plants]="showPlants"
             (plantsChange)="selectPlant($event)"
-          (createPlant)="createPlant($event)">
+            (createPlant)="createPlant($event)">
           </app-plants-component>
         }
       </div>

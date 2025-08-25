@@ -81,6 +81,7 @@
       "editLocalization": "Edytuj wybraną lokalizację",
       "modal": {
         "name": "Nazwa",
+        "remove": "Usuń",
         "close": "Zamknij",
         "save": "Zapisz",
         "cancel": "Anuluj"
@@ -89,6 +90,8 @@
     "plants": {
       "addPlant": "Dodaj roślinę",
       "details": {
+        "true": "Tak",
+        "false": "Nie",
         "name": "Imię",
         "species": "Gatunek",
         "purchaseDate": "Data zakupu",

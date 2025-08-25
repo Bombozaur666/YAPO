@@ -94,13 +94,18 @@ export class PlantsCollectionComponent implements OnInit {
         next: (data: Plant) => {
           this.localizations = this.localizations.map(loc => {
             if (loc.id === this.selectedLocalization) {
-              const plantIndex = loc.plants.findIndex(p => p.id === data.id);
+              if (loc.plants) {
+                const plantIndex = loc.plants.findIndex(p => p.id === data.id);
 
-              const updatedPlants = plantIndex !== -1
-                ? loc.plants.map((p, i) => i === plantIndex ? data : p)
-                : [...loc.plants, data];
+                const updatedPlants = plantIndex !== -1
+                  ? loc.plants.map((p, i) => i === plantIndex ? data : p)
+                  : [...loc.plants, data];
 
-              return { ...loc, plants: updatedPlants };
+                return { ...loc, plants: updatedPlants };
+              } else {
+                return { ...loc, data}
+              }
+
             }
             return loc;
           });
@@ -108,5 +113,19 @@ export class PlantsCollectionComponent implements OnInit {
         },
       }
     )
+  }
+
+  localizationRemove(localization: LocalizationWithoutPlants) {
+    console.log("wykryło usuniecie - plants collection", localization);
+    this.plantsCollectionService.removeLocalization(localization).subscribe({
+      next: (response: boolean) => {
+        console.log(response);
+        this.localizations = this.localizations.filter(loc => loc.id !== localization.id);
+        this.localizationsWithoutPlants = this.localizationList();
+        this.selectedLocalization = null;
+        this.showPlants = [];
+      }
+    })
+
   }
 }

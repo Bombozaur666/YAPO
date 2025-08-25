@@ -22,4 +22,8 @@ export class PlantsCollectionService {
   createPlant(plant: Plant): Observable<Plant> {
     return this.httpClient.post<Plant>(`${this.baseUrl}plants/create-plant`, plant, {withCredentials: true});
   }
+
+  removeLocalization(localization: LocalizationWithoutPlants): Observable<boolean> {
+    return this.httpClient.delete<boolean>(`${this.baseUrl}localization/${localization.id}`);
+  }
 }

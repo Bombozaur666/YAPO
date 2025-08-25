@@ -5,6 +5,7 @@ import com.example.YAPO.models.UpdateField;
 import com.example.YAPO.models.plant.Localization;
 import com.example.YAPO.service.plant.LocalizationService;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +41,8 @@ public class LocalizationController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteLocalizationPage( @AuthenticationPrincipal MyUserDetails userDetails, @PathVariable long id) {
-        return localizationService.deleteByIdAndUsername(id, userDetails.getUsername());
+    public ResponseEntity<Boolean> deleteLocalizationPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable long id) {
+        boolean response = localizationService.deleteByIdAndUsername(id, userDetails.getUsername());
+        return ResponseEntity.ok(response);
     }
 }

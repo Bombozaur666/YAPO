@@ -1,7 +1,6 @@
 package com.example.YAPO.models.plant;
 
 import com.example.YAPO.models.User.User;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -20,11 +19,11 @@ public class Localization {
     @Column(nullable = false)
     private String name;
 
+    @ManyToOne
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.DETACH)
     private User user;
 
     @JsonManagedReference(value = "localization-plant")
-    @OneToMany(mappedBy = "localization", cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "localization", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Plant> plants;
 }

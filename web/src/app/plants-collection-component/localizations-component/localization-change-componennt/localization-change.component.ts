@@ -16,6 +16,9 @@ export class LocalizationChangeComponent {
   @Input() modalId: number | undefined = undefined;
   @Input() localization: LocalizationWithoutPlants = {"name": ""};
   @Output() save = new EventEmitter<LocalizationWithoutPlants>();
+  @Output() remove = new EventEmitter<LocalizationWithoutPlants>();
 
   onSubmit() {this.save.emit(this.localization!);}
+
+  onRemove() {console.log("wykryło usuniecie - localization change"); this.remove.emit(this.localization!);}
 }
