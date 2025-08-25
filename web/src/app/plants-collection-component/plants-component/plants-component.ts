@@ -16,8 +16,12 @@ import {AddPlantComponent} from './add-plant-component/add-plant-component';
 export class PlantsComponent {
   @Input() plants: Plant[] = [];
   @Output() plantsChange = new EventEmitter<number>();
+  @Output() createPlant = new EventEmitter<Plant>();
+
 
   selectLocalization(localization: LocalizationWithoutPlants): void {
     this.plantsChange.emit(localization.id);
   }
+
+  onUploadPlant(plant: Plant) {this.createPlant.emit(plant);}
 }

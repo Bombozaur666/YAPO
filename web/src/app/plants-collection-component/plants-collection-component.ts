@@ -53,7 +53,11 @@ export class PlantsCollectionComponent implements OnInit {
     this.selectedPlant = null;
     this.plant = {} as Plant;
     this.selectedLocalization = id;
-    this.showPlants = this.localizations.find(loc => loc.id === id)!.plants;
+    this.showPlants = this.preparePlants(id);
+  }
+
+  preparePlants(id : number): Plant[] {
+    return this.localizations.find(loc => loc.id === id)!.plants;
   }
 
   localizationList(): LocalizationWithoutPlants[] {
@@ -79,5 +83,30 @@ export class PlantsCollectionComponent implements OnInit {
         error: error => {console.log(error.message);}
       }
     );
+  }
+
+  createPlant(plant: Plant) {
+    plant.localization = {
+      ...plant.localization,
+      id: this.selectedLocalization!
+    };
+    this.plantsCollectionService.createPlant(plant).subscribe({
+        next: (data: Plant) => {
+          this.localizations = this.localizations.map(loc => {
+            if (loc.id === this.selectedLocalization) {
+              const plantIndex = loc.plants.findIndex(p => p.id === data.id);
+
+              const updatedPlants = plantIndex !== -1
+                ? loc.plants.map((p, i) => i === plantIndex ? data : p)
+                : [...loc.plants, data];
+
+              return { ...loc, plants: updatedPlants };
+            }
+            return loc;
+          });
+          this.showPlants = this.preparePlants(this.selectedLocalization!);
+        },
+      }
+    )
   }
 }

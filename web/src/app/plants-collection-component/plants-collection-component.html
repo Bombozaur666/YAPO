@@ -12,7 +12,8 @@
         @if (selectedLocalization) {
           <app-plants-component
             [plants]="showPlants"
-            (plantsChange)="selectPlant($event)">
+            (plantsChange)="selectPlant($event)"
+          (createPlant)="createPlant($event)">
           </app-plants-component>
         }
       </div>
