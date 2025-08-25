@@ -1,31 +1,122 @@
-<div class="card mb-3" style="max-width: 540px;">
+<div class="card">
+  <div class="card-body ">
   <div class="row g-0">
-    <div class="col-md-4">
-      <img ngSrc="plant.avatar" class="img-fluid rounded-start" alt="{{plant.name}}" fill>
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{ plant.name }}</h5>
-        <p class="card-text">{{ plant.species }}</p>
-        <p class="card-text">{{ plant.purchaseDate | date:'hh:mm:ss dd:MM:yyyy'}}</p>
-        <p class="card-text">{{ plant.purchaseLocalization }}</p>
-        <p class="card-text">{{ plant.localization }}</p>
-        <p class="card-text">{{ plant.fertilizationDate }}</p>
-        <p class="card-text">{{ plant.alive }}</p>
-        <p class="card-text">{{ plant.shared }}</p>
-        <p class="card-text">{{ plant.deathReason }}</p>
-        <p class="card-text">{{ plant.wateringDate }}</p>
-        <p class="card-text">{{ plant.creationDate | date:'hh:mm:ss dd:MM:yyyy'}}</p>
-        <p class="card-text">{{ plant.plantCondition }}</p>
-        <p class="card-text">{{ plant.plantSoil }}</p>
-        <p class="card-text">{{ plant.plantWatering }}</p>
-        <p class="card-text">{{ plant.plantBerth }}</p>
-        <p class="card-text">{{ plant.plantToxicity }}</p>
-        <p class="card-text">{{ plant.plantLifeExpectancy }}</p>
-        <p class="card-text">
-          <small class="text-muted">Created: {{ plant.creationDate | date:'dd.MM.yyyy HH:mm' }}</small>
-        </p>
-      </div>
+    <div class="col-md-12">
+        <h2 class="card-title">{{ plant.name }}</h2>
+
+        <div class="row">
+          <div class="col-4">{{"collections.plants.details.species" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.species }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.purchaseDate" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.purchaseDate }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.purchaseLocalization" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.purchaseLocalization }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.fertilizationDate" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.fertilizationDate }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.alive" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.alive }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.shared" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.shared }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.wateringDate" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.wateringDate}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.deathReason" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.deathReason }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.deathReason" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.deathReason }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.plantCondition" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.plantCondition }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.plantSoil" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.species }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.plantWatering" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.species }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.plantBerth" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.species }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.plantToxicity" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.species }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.plantLifeExpectancy" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.species }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">{{"collections.plants.details.plantConditionsValues" | translate}}</div>
+          <div class="col-5">
+            <p class="card-text">{{ plant.species }}</p>
+          </div>
+        </div>
+       </div>
+
     </div>
   </div>
 </div>

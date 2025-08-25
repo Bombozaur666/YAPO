@@ -1,12 +1,11 @@
 import {Component, Input} from '@angular/core';
 import {Plant} from '../../Interfaces/Plants/plant';
-import {DatePipe, NgOptimizedImage} from '@angular/common';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-plant-detail-component',
   imports: [
-    DatePipe,
-    NgOptimizedImage
+    TranslatePipe
   ],
   templateUrl: './plant-detail-component.html',
   styleUrl: './plant-detail-component.css'

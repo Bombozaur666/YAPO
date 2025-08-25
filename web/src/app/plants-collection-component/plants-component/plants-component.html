@@ -3,7 +3,7 @@
   <button type="button" class="btn btn-info" data-bs-toggle="modal"  data-bs-target="#addPlantModal">{{'collections.plants.addPlant' | translate}}</button>
 
   @for (plant of plants; track plant.id) {
-    <button class="btn btn-light" (click)="selectLocalization(plant)">{{plant.name}}</button>
+    <button class="btn btn-light w-100" (click)="selectLocalization(plant)">{{plant.name}}</button>
   }
 </div>
 

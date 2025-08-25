@@ -96,7 +96,7 @@
         "fertilizationDate": "Data nawożenia",
         "alive": "Czy żyje",
         "shared": "Czy udostępniona",
-        "wateringDay": "Data podlewania",
+        "wateringDate": "Data podlewania",
         "deathReason": "Powód śmierci",
         "plantCondition": "Stan rośliny",
         "plantSoil": "Gleba",
