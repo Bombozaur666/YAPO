@@ -2,7 +2,6 @@ package com.example.YAPO.service.user;
 
 import com.example.YAPO.models.User.User;
 import com.example.YAPO.repositories.user.UserRepo;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,8 +19,7 @@ public class AvatarService {
     private final UserRepo userRepo;
     private static final Set<String> ALLOWED_TYPES = Set.of("image/jpeg","image/png","image/webp");
 
-    @Value("${upload.path}")
-    private String uploadDir;
+    private final String uploadDir = "uploads/avatar/";
 
     private AvatarService(UserRepo userRepo) {
         this.userRepo = userRepo;

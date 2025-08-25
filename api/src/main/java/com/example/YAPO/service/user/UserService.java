@@ -15,7 +15,6 @@ import com.example.YAPO.service.UtilityService;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,8 +27,6 @@ import java.util.*;
 
 @Service
 public class UserService {
-    @Value("${upload.path}")
-    private String uploadPath;
     private final UserRepo userRepo;
     private final RefreshTokenService refreshTokenService;
     AuthenticationManager authenticationManager;
