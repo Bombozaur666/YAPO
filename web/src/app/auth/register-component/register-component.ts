@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {TranslatePipe} from "@ngx-translate/core";
-import {LoginRequest, RegisterRequest, User} from '../../Interfaces/Users/user';
+import {RegisterRequest, User} from '../../Interfaces/Users/user';
 import {AuthService} from '../auth-service';
 
 @Component({
@@ -16,8 +16,7 @@ import {AuthService} from '../auth-service';
 export class RegisterComponent {
   protected registerForm: RegisterRequest = {username: '', password: '', email: ''};
 
-  constructor(private authService: AuthService) {
-  }
+  constructor(private authService: AuthService) {}
 
   onSubmit() {
         this.authService.register(this.registerForm).subscribe(

@@ -1,7 +1,8 @@
 @if (initialized) {
   <app-localizations-component
     [localizations]="localizationsWithoutPlants"
-    (localizationsChange)="localizationChange($event)">
+    (localizationsChange)="localizationChange($event)"
+    (localizationUpdateOrCreate)="localizationUpdateOrCreate($event)">
   </app-localizations-component>
 
   @if (selectedLocalization) {

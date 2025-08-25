@@ -1,3 +1,14 @@
 @for (localization of localizations; track localization.id) {
-  <button class="btn btn-dark" (click)="selectLocalization(localization)">{{localization.name}}</button>
+  <button type="button" class="btn btn-dark" (click)="selectLocalization(localization);">{{localization.name}}</button>
 }
+
+@if (selectedLocalization.id) {
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal"  [attr.data-bs-target]="'#locationModal' + selectedLocalization.id">{{'collections.localizations.editLocalization' | translate}}</button>
+}
+<button type="button" class="btn btn-warning" data-bs-toggle="modal"  data-bs-target="#locationModal">{{'collections.localizations.addLocalization' | translate}}</button>
+
+<app-localization-change-component [localization]="selectedLocalization" [modalId]="selectedLocalization.id" (save)="onUpdateOrCreate($event)">
+</app-localization-change-component>
+
+<app-localization-change-component>
+</app-localization-change-component>

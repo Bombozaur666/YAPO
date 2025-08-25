@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Localization} from '../Interfaces/Plants/localization';
+import {Localization, LocalizationWithoutPlants} from '../Interfaces/Plants/localization';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -12,5 +12,9 @@ export class PlantsCollectionService {
 
   locationsFetch():  Observable<Localization[]> {
     return this.httpClient.get<Localization[]>(this.baseUrl + 'localization/');
+  }
+
+  localizationUpdateOrCreate(localization: LocalizationWithoutPlants): Observable<Localization>{
+    return this.httpClient.post<Localization>(this.baseUrl + "localization/create-localization", localization,{withCredentials: true});
   }
 }

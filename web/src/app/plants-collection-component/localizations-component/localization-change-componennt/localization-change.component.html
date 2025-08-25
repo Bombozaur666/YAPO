@@ -1,0 +1,34 @@
+<div class="modal fade" id="locationModal{{modalId}}" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-3 shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="locationModalLabel">
+          @if (localization) {{{'collections.localizations.editLocalization' | translate}}}
+          @else {{{'collections.localizations.addLocalization' | translate}}}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" [attr.aria-label]="'collections.localizations.editLocalization' | translate">
+          {{'collections.localizations.modal.close' | translate}}
+        </button>
+      </div>
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name" class="form-label">{{'collections.localizations.modal.name' | translate}}</label>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              name="name"
+              [(ngModel)]="localization.name">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{'collections.localizations.modal.cancel' | translate}}</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">{{'collections.localizations.modal.save' | translate}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

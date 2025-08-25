@@ -6,7 +6,6 @@ import {LocalizationsComponent} from './localizations-component/localizations-co
 import {PlantsComponent} from './plants-component/plants-component';
 import {PlantDetailComponent} from './plant-detail-component/plant-detail-component';
 
-
 @Component({
   selector: 'app-plants-collection-component',
   imports: [
@@ -57,5 +56,26 @@ export class PlantsCollectionComponent implements OnInit {
 
   localizationList(): LocalizationWithoutPlants[] {
     return this.localizations.map(({ plants, ...rest }) => rest);
+  }
+
+  localizationUpdateOrCreate(localization: LocalizationWithoutPlants): void {
+    this.plantsCollectionService.localizationUpdateOrCreate(localization).subscribe(
+      {
+        next: (data: Localization) => {
+          const index = this.localizations.findIndex(loc => loc.id === data.id);
+          if (index === -1) {
+            this.localizations = [...this.localizations, data];
+            this.localizationsWithoutPlants = this.localizationList();
+          }
+          else {
+            this.localizations = this.localizations.map((l, i) =>
+              i === index ? data : l
+            );
+            this.localizationsWithoutPlants = this.localizationList();
+          }
+        },
+        error: error => {console.log(error.message);}
+      }
+    );
   }
 }

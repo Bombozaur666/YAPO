@@ -128,5 +128,17 @@
       "cancel": "Anuluj",
       "upload": "Wgraj"
     }
+  },
+  "collections": {
+    "localizations": {
+      "addLocalization": "Dodaj lokalizację",
+      "editLocalization": "Edytuj wybraną lokalizację",
+      "modal": {
+        "name": "Nazwa",
+        "close": "Zamknij",
+        "save": "Zapisz",
+        "cancel": "Anuluj"
+      }
+    }
   }
 }
