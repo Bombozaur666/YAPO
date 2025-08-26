@@ -159,6 +159,9 @@
         "plantLifeExpectancyValues": {
           "ANNUAL": "Jednoroczna",
           "PERENNIAL": "Wieloletnia"
+        },
+        "avatarModal": {
+          "edit": "Edytuj Awatar"
         }
       },
       "modal": {

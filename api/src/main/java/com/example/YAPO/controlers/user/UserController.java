@@ -77,7 +77,9 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
     @PostMapping("/reset")
-    public ResponseEntity<?> resetUserPasswordPage(@RequestParam String token , @RequestBody @Valid PasswordField  passwordField){
+    public ResponseEntity<?> resetUserPasswordPage(
+            @RequestParam String token ,
+            @RequestBody @Valid PasswordField  passwordField){
         userService.resetUserPassword(token, passwordField);
         return ResponseEntity.ok().build();
     }
@@ -89,7 +91,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/avatar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<User> uploadAvatar(@AuthenticationPrincipal MyUserDetails userDetails, @RequestParam("file") MultipartFile file) throws Exception {
+    public ResponseEntity<User> uploadAvatar(
+            @AuthenticationPrincipal MyUserDetails userDetails,
+            @RequestParam("file") MultipartFile file) throws Exception {
         User user = avatarService.uploadAvatar(userDetails.getUser(), file);
         return ResponseEntity.ok(user);
     }

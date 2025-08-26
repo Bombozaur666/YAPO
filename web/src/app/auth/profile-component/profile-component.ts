@@ -25,16 +25,21 @@ export class ProfileComponent implements OnInit {
     this.authService.userProfile().subscribe({
         next: data => {
           this.user = data;
-          this.avatarUrl = this.authService.path + "/" + this.user.avatarPath;
+          this.avatarUrl = this.avatarPath;
           },
         error: err => {console.log(err.message);}
       }
     );
   }
+  get avatarPath(): string {
+    return this.authService.path + "/" + this.user.avatarPath;
+  }
 
   onAvatarUploaded(file: File) {
     this.authService.avatarUpload(file).subscribe({
-      next: data => {this.user = data;},
+      next: data => {
+        this.user = data;
+        this.avatarUrl = this.avatarPath;},
     })
   }
 }

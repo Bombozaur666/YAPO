@@ -73,7 +73,7 @@ public class Plant {
     private Date creationDate = new Date();
 
     @Column
-    private byte[] avatar;
+    private String avatar = "avatar_default.png";
 
     @Column
     @Enumerated(EnumType.STRING)

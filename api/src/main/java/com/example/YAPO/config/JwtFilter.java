@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
@@ -33,7 +34,7 @@ public class JwtFilter extends OncePerRequestFilter {
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
         String path = request.getServletPath();
-        if (path.startsWith("/user/login") || path.startsWith("/user/register") ||  path.startsWith("/user/avatar")) {
+        if (path.startsWith("/user/login") || path.startsWith("/user/register") ||  ( path.startsWith("/user/avatar") && Objects.equals(request.getMethod(), "GET"))) {
             filterChain.doFilter(request, response);
             return;
         }
