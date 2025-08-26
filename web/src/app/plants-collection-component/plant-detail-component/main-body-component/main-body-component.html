@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mt-5">
   <div class="card-header">
     <div class="row">
       <div class="card-title">
@@ -19,49 +19,49 @@
       <div class="col-8">
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.species" | translate}}</div>
+          <div class="col-5">{{"collections.plants.details.species" | translate}}</div>
           <div class="col-5">
             <p class="card-text">{{ plant.species }}</p>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.purchaseDate" | translate}}</div>
+          <div class="col-5">{{"collections.plants.details.purchaseDate" | translate}}</div>
           <div class="col-5">
             <p class="card-text">{{ plant.purchaseDate }}</p>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.purchaseLocalization" | translate}}</div>
+          <div class="col-5">{{"collections.plants.details.purchaseLocalization" | translate}}</div>
           <div class="col-5">
             <p class="card-text">{{ plant.purchaseLocalization }}</p>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.fertilizationDate" | translate}}</div>
+          <div class="col-5">{{"collections.plants.details.fertilizationDate" | translate}}</div>
           <div class="col-5">
             <p class="card-text">{{ plant.fertilizationDate }}</p>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.alive" | translate}}</div>
+          <div class="col-5">{{"collections.plants.details.alive" | translate}}</div>
           <div class="col-5">
             <p class="card-text">{{ `collections.plants.details.${plant.alive}` | translate  }}</p>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.shared" | translate}}</div>
+          <div class="col-5">{{"collections.plants.details.shared" | translate}}</div>
           <div class="col-5">
             <p class="card-text">{{ `collections.plants.details.${plant.shared}` | translate  }}</p>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.wateringDate" | translate }}</div>
+          <div class="col-5">{{"collections.plants.details.wateringDate" | translate }}</div>
           <div class="col-5">
             @if (plant.wateringDate) {
               <p class="card-text">{{ `collections.plants.details.wateringDateValues.${plant.wateringDate}` | translate}}</p>
@@ -70,7 +70,7 @@
         </div>
 
         <div class="row">
-          <div class="col-4">{{ "collections.plants.details.deathReason" | translate}}</div>
+          <div class="col-5">{{ "collections.plants.details.deathReason" | translate}}</div>
           <div class="col-5">
             @if ( plant.deathReason) {
               <p class="card-text">{{"collections.plants.details.deathReason" | translate }}</p>
@@ -79,7 +79,7 @@
         </div>
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.plantCondition" | translate}}</div>
+          <div class="col-5">{{"collections.plants.details.plantCondition" | translate}}</div>
           <div class="col-5">
             @if ( plant.plantCondition) {
               <p class="card-text">{{`collections.plants.details.plantConditionsValues.${plant.plantCondition}` | translate }}</p>
@@ -88,7 +88,7 @@
         </div>
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.plantSoil" | translate}}</div>
+          <div class="col-5">{{"collections.plants.details.plantSoil" | translate}}</div>
           <div class="col-5">
             @if ( plant.plantSoil) {
               <p class="card-text">{{`collections.plants.details.plantSoilValues.${plant.plantSoil}` | translate }}</p>
@@ -97,7 +97,7 @@
         </div>
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.plantWatering" | translate}}</div>
+          <div class="col-5">{{"collections.plants.details.plantWatering" | translate}}</div>
           <div class="col-5">
             @if ( plant.plantWatering) {
               <p class="card-text">{{`collections.plants.details.plantWateringValues.${plant.plantWatering}` | translate }}</p>
@@ -106,7 +106,7 @@
         </div>
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.plantBerth" | translate}}</div>
+          <div class="col-5">{{"collections.plants.details.plantBerth" | translate}}</div>
           <div class="col-5">
             @if ( plant.plantBerth) {
               <p class="card-text">{{`collections.plants.details.plantBerthValues.${plant.plantBerth}` | translate }}</p>
@@ -115,7 +115,7 @@
         </div>
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.plantToxicity" | translate}}</div>
+          <div class="col-5">{{"collections.plants.details.plantToxicity" | translate}}</div>
           <div class="col-5">
             @if ( plant.plantToxicity) {
               <p class="card-text">{{`collections.plants.details.plantToxicityValues.${plant.plantToxicity}` | translate }}</p>
@@ -124,7 +124,7 @@
         </div>
 
         <div class="row">
-          <div class="col-4">{{"collections.plants.details.plantLifeExpectancy" | translate}}</div>
+          <div class="col-5">{{"collections.plants.details.plantLifeExpectancy" | translate}}</div>
           <div class="col-5">
             @if ( plant.plantLifeExpectancy) {
               <p class="card-text">{{`collections.plants.details.plantLifeExpectancyValues.${plant.plantLifeExpectancy}` | translate }}</p>

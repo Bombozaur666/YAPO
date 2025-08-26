@@ -1,18 +1,17 @@
-<div>
-  <div class="row">
-    <div class="col">
-      @for (localization of localizations; track localization.id) {
-        <button type="button" class="btn btn-dark m-1" (click)="selectLocalization(localization);">{{localization.name}}</button>
-      }
-    </div>
-    <div class="col float-end">
-      @if (selectedLocalization.id) {
-        <button type="button" class="btn btn-warning m-2" data-bs-toggle="modal"  [attr.data-bs-target]="'#locationModal' + selectedLocalization.id">{{'collections.localizations.editLocalization' | translate}}</button>
-      }
-      <button type="button" class="btn btn-warning" data-bs-toggle="modal"  data-bs-target="#locationModal">{{'collections.localizations.addLocalization' | translate}}</button>
-    </div>
+<div class="row mt-2">
+  <div class="col">
+    @for (localization of localizations; track localization.id) {
+      <button type="button" class="btn btn-dark m-1" (click)="selectLocalization(localization);">{{localization.name}}</button>
+    }
+  </div>
+  <div class="col float-end">
+    @if (selectedLocalization.id) {
+      <button type="button" class="btn btn-warning" data-bs-toggle="modal"  [attr.data-bs-target]="'#locationModal' + selectedLocalization.id">{{'collections.localizations.editLocalization' | translate}}</button>
+    }
+    <button type="button" class="btn btn-warning" data-bs-toggle="modal"  data-bs-target="#locationModal">{{'collections.localizations.addLocalization' | translate}}</button>
   </div>
 </div>
+
 
 <app-localization-change-component
   [localization]="selectedLocalization"
