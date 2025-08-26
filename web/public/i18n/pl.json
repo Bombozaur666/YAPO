@@ -10,9 +10,7 @@
     "collection": "Kolekcja",
     "localizations": "Lokalizacje",
     "language": {
-      "general": "Języki",
-      "pl": "Polski",
-      "en": "Angielski"
+      "general": "Języki"
     },
     "user": {
       "login": "Zaloguj się",
