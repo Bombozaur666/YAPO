@@ -15,7 +15,7 @@
   <div class="row">
   @for (plant of plants; track plant.id) {
     <div class="col-6 mb-2">
-      <button class="btn btn-light w-100" (click)="selectLocalization(plant)">{{plant.name}}</button>
+      <button class="btn btn-light w-100" (click)="selectPlant(plant)">{{plant.name}}</button>
     </div>
   }
   </div>

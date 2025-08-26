@@ -11,11 +11,12 @@
     <div class="row">
       <div class="col-3">
         @if (selectedLocalization) {
-          <app-plants-component
+          <app-plants-list-component
             [plants]="showPlants"
             (plantsChange)="selectPlant($event)"
-            (createPlant)="createPlant($event)">
-          </app-plants-component>
+            (createPlant)="createPlant($event)"
+            [localizationId]="selectedLocalization">
+          </app-plants-list-component>
         }
       </div>
       <div class="col">

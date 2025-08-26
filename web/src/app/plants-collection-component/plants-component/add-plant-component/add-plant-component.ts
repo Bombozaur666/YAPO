@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TranslatePipe} from "@ngx-translate/core";
 import {Plant} from '../../../Interfaces/Plants/plant';
@@ -20,7 +20,7 @@ import {PlantLifeExpectancy} from '../../../Interfaces/Plants/enums/PlantLifeExp
   styleUrl: './add-plant-component.css'
 })
 export class AddPlantComponent {
-  protected plant: Plant = {"alive": true} as Plant;
+  @Input() plant: Plant = {"alive": true} as Plant;
   @Output() save = new EventEmitter<Plant>();
 
   onSubmit() {this.save.emit(this.plant)}

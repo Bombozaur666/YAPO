@@ -3,7 +3,7 @@ import {PlantsCollectionService} from './plants-collection-service';
 import {Localization, LocalizationWithoutPlants} from '../Interfaces/Plants/localization';
 import {Plant} from '../Interfaces/Plants/plant';
 import {LocalizationsComponent} from './localizations-component/localizations-component';
-import {PlantsComponent} from './plants-component/plants-component';
+import {PlantsListComponent} from './plants-component/plants-list.component';
 import {PlantDetailComponent} from './plant-detail-component/plant-detail-component';
 import {TranslatePipe} from '@ngx-translate/core';
 
@@ -11,7 +11,7 @@ import {TranslatePipe} from '@ngx-translate/core';
   selector: 'app-plants-collection-component',
   imports: [
     LocalizationsComponent,
-    PlantsComponent,
+    PlantsListComponent,
     PlantDetailComponent,
     TranslatePipe
   ],
@@ -85,34 +85,22 @@ export class PlantsCollectionComponent implements OnInit {
     );
   }
 
-  createPlant(plant: Plant) {
-    plant.localization = {
-      ...plant.localization,
-      id: this.selectedLocalization!
-    };
-    this.plantsCollectionService.createPlant(plant).subscribe({
-        next: (data: Plant) => {
-          this.localizations = this.localizations.map(loc => {
-            if (loc.id === this.selectedLocalization) {
-              if (loc.plants) {
-                const plantIndex = loc.plants.findIndex(p => p.id === data.id);
-
-                const updatedPlants = plantIndex !== -1
-                  ? loc.plants.map((p, i) => i === plantIndex ? data : p)
-                  : [...loc.plants, data];
-
-                return { ...loc, plants: updatedPlants };
-              } else {
-                return { ...loc, data}
-              }
-
-            }
-            return loc;
-          });
-          this.showPlants = this.preparePlants(this.selectedLocalization!);
-        },
+  createPlant(newPlant: Plant) {
+    this.localizations = this.localizations.map(loc => {
+      if (loc.id === this.selectedLocalization) {
+        if (loc.plants) {
+          const plantIndex = loc.plants.findIndex(p => p.id === newPlant.id);
+          const updatedPlants = plantIndex !== -1
+            ? loc.plants.map((p, i) => i === plantIndex ? newPlant : p)
+            : [...loc.plants, newPlant];
+          return { ...loc, plants: updatedPlants };
+        } else {
+          return { ...loc, newPlant}
+        }
       }
-    )
+      return loc;
+    });
+    this.showPlants = this.preparePlants(this.selectedLocalization!);
   }
 
   localizationRemove(localization: LocalizationWithoutPlants) {
