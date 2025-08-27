@@ -1,8 +1,12 @@
 <div class="card mt-5 mb-5">
   <div class="card-header">
-    {{'collections.plants.details.updates.title' | translate }}
+    <h3>
+      {{'collections.plants.details.updates.title' | translate }}
+    </h3>
   </div>
   <div class="card-body">
-
+    @for(update of updates; track update.id) {
+      {{update}}
+    }
   </div>
 </div>

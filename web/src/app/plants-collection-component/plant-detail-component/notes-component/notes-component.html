@@ -1,8 +1,17 @@
 <div class="card mt-5">
   <div class="card-header">
-    {{'collections.plants.details.notes.title' | translate }}
+    <h3>
+      {{'collections.plants.details.notes.title' | translate }}
+      <button
+        type="button"
+        class="btn btn-sm btn-info m-1 float-end">
+        {{'collections.plants.details.notes.addNote' | translate }}
+      </button>
+    </h3>
   </div>
   <div class="card-body">
-
+    @for (note of notes; track note.id) {
+      {{note}}
+    }
   </div>
 </div>

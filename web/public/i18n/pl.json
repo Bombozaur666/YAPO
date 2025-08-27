@@ -159,10 +159,12 @@
           "PERENNIAL": "Wieloletnia"
         },
         "notes": {
-          "title": "Notatki"
+          "title": "Notatki",
+          "addNote": "Dodaj notatkę"
         },
         "photoGallery": {
-          "title": "Galeria"
+          "title": "Galeria",
+          "addPhoto": "Dodaj zdjęcie"
         },
         "updates": {
           "title": "Historia zmian"

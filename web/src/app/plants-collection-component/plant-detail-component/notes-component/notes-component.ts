@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TranslatePipe} from "@ngx-translate/core";
+import {Note} from '../../../Interfaces/Plants/note';
 
 @Component({
   selector: 'app-notes-component',
@@ -10,5 +11,6 @@ import {TranslatePipe} from "@ngx-translate/core";
   styleUrl: './notes-component.css'
 })
 export class NotesComponent {
+  @Input() notes!: Note[];
 
 }

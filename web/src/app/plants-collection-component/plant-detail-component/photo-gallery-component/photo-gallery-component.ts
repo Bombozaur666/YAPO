@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TranslatePipe} from "@ngx-translate/core";
 
 @Component({
@@ -10,5 +10,6 @@ import {TranslatePipe} from "@ngx-translate/core";
   styleUrl: './photo-gallery-component.css'
 })
 export class PhotoGalleryComponent {
+  @Input() photo: any;
 
 }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TranslatePipe} from '@ngx-translate/core';
+import {PlantUpdate} from '../../../Interfaces/Plants/plant-update';
 
 @Component({
   selector: 'app-updates-component',
@@ -10,5 +11,6 @@ import {TranslatePipe} from '@ngx-translate/core';
   styleUrl: './updates-component.css'
 })
 export class UpdatesComponent {
+  @Input() updates!: PlantUpdate[];
 
 }
