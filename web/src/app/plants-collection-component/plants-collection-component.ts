@@ -3,9 +3,9 @@ import {PlantsCollectionService} from './plants-collection-service';
 import {Localization, LocalizationWithoutPlants} from '../Interfaces/Plants/localization';
 import {Plant} from '../Interfaces/Plants/plant';
 import {LocalizationsComponent} from './localizations-component/localizations-component';
-import {PlantsListComponent} from './plants-component/plants-list.component';
 import {PlantDetailComponent} from './plant-detail-component/plant-detail-component';
 import {TranslatePipe} from '@ngx-translate/core';
+import {PlantsListComponent} from './plants-list-component/plants-list-component';
 
 @Component({
   selector: 'app-plants-collection-component',
@@ -13,7 +13,8 @@ import {TranslatePipe} from '@ngx-translate/core';
     LocalizationsComponent,
     PlantsListComponent,
     PlantDetailComponent,
-    TranslatePipe
+    TranslatePipe,
+    PlantsListComponent
   ],
   templateUrl: './plants-collection-component.html',
   styleUrl: './plants-collection-component.css'
@@ -132,5 +133,16 @@ export class PlantsCollectionComponent implements OnInit {
   }
 
   onPlantAvatarChange(plant: Plant): void {
+    this.localizations = this.localizations.map((
+      _localization: Localization): Localization =>
+        _localization.id === this.selectedLocalization!
+          ? { ..._localization, plants: _localization.plants.map((_plant: Plant): Plant =>
+              _plant.id === plant.id
+                ? { ..._plant, avatarPath: plant.avatarPath }
+                : _plant),
+            }
+          : _localization
+    );
+    this.showPlants = this.preparePlants(this.selectedLocalization!);
   }
 }
