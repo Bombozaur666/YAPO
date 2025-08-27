@@ -1,0 +1,22 @@
+<div class="modal fade" id="editNoteModal" tabindex="-1" aria-labelledby="editNoteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-3 shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editNoteModalLabel">Edytuj notatkę</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+      </div>
+      <div class="modal-body">
+        <form id="noteForm">
+          <div class="mb-3">
+            <label for="noteInput" class="form-label">Treść notatki</label>
+            <textarea class="form-control" id="noteInput" rows="4"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-primary" id="saveNoteBtn">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>

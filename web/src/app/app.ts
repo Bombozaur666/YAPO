@@ -7,6 +7,7 @@ import {
 import {Title} from "@angular/platform-browser";
 import {CookieService} from 'ngx-cookie-service';
 import {MenuComponent} from './menu-component/menu-component';
+import { inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ import {MenuComponent} from './menu-component/menu-component';
 })
 export class App implements OnInit {
   protected readonly title = signal('Yapo');
-
+  private platformId = inject(PLATFORM_ID);
   constructor(private translate: TranslateService,
               private titleService:Title) {
     this.translate.addLangs(['pl', 'en']);

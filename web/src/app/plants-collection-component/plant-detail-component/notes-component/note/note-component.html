@@ -1,0 +1,12 @@
+<tr>
+  <td>{{ note.id }}</td>
+  <td>{{ note.note }}</td>
+  <td>{{ note.noteDate | date: 'short' }}</td>
+  <td>
+    @if (note.editDate) {
+      {{ note.editDate | date: 'short' }}
+    } @else {
+      noEdit
+    }
+  </td>
+</tr>
