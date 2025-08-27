@@ -15,20 +15,18 @@ import {LocalizationChangeComponent} from './localization-change-componennt/loca
 export class LocalizationsComponent {
   protected selectedLocalization: LocalizationWithoutPlants = {"name": ""};
   @Input() localizations: LocalizationWithoutPlants[] = [];
-  @Output() localizationsChange = new EventEmitter<number>();
-  @Output() localizationUpdateOrCreate = new EventEmitter<LocalizationWithoutPlants>();
-  @Output() localizationRemove = new EventEmitter<LocalizationWithoutPlants>();
+  @Output() localizationsChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() localizationUpdateOrCreate: EventEmitter<LocalizationWithoutPlants> = new EventEmitter<LocalizationWithoutPlants>();
+  @Output() localizationRemove: EventEmitter<LocalizationWithoutPlants> = new EventEmitter<LocalizationWithoutPlants>();
 
   selectLocalization(localization: LocalizationWithoutPlants): void {
     this.selectedLocalization = localization;
     this.localizationsChange.emit(localization.id);
   }
 
-  onUpdateOrCreate(localization: LocalizationWithoutPlants): void {
-    this.localizationUpdateOrCreate.emit(localization);
+  onUpdateOrCreate(localization: LocalizationWithoutPlants): void {this.localizationUpdateOrCreate.emit(localization);
   }
 
-  onRemoveLocalization(localization: LocalizationWithoutPlants) {
-    this.localizationRemove.emit(localization);
+  onRemoveLocalization(localization: LocalizationWithoutPlants):void {this.localizationRemove.emit(localization);
   }
 }

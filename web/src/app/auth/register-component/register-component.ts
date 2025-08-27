@@ -19,9 +19,9 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService, private  router: Router) {}
 
-  onSubmit() {
+  onSubmit(): void {
         this.authService.register(this.registerForm).subscribe(
-          {next: () => {this.router.navigate(['/']);}}
+          {next: (): void => {this.router.navigate(['/']);}}
         );
   }
 }

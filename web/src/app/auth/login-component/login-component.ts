@@ -18,7 +18,5 @@ export class LoginComponent {
 
   constructor(private authService: AuthService) {}
 
-  onSubmit() {
-    this.authService.login(this.loginRequest);
-  }
+  onSubmit(): void {this.authService.login(this.loginRequest);}
 }

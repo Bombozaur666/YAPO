@@ -17,11 +17,11 @@ export class MenuComponent {
   constructor(protected authService: AuthService,
               protected router: Router) {}
 
-  logout() {
+  logout(): void {
     this.authService.logout();
   }
 
-  changeLanguage(lang: string) {
+  changeLanguage(lang: string): void {
     this.newLang.emit(lang);
   }
 }

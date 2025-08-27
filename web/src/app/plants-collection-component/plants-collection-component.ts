@@ -35,7 +35,7 @@ export class PlantsCollectionComponent implements OnInit {
   ngOnInit(): void {
     this.plantsCollectionService.locationsFetch().subscribe(
       {
-        next: (data: Localization[]) => {
+        next: (data: Localization[]): void => {
           this.localizations = data;
           this.localizationsWithoutPlants = this.localizationList();
           this.initialized = true;
@@ -46,7 +46,7 @@ export class PlantsCollectionComponent implements OnInit {
 
   selectPlant(id: number): void {
     this.selectedPlant = id;
-    this.plant = this.showPlants.find(loc => loc.id === id)!;
+    this.plant = this.showPlants.find((_plant: Plant): boolean => _plant.id === id)!;
   }
 
   localizationChange(id: number): void {
@@ -57,56 +57,56 @@ export class PlantsCollectionComponent implements OnInit {
   }
 
   preparePlants(id : number): Plant[] {
-    return this.localizations.find(loc => loc.id === id)!.plants;
+    return this.localizations.find((_localization: Localization): boolean => _localization.id === id)!.plants;
   }
 
   localizationList(): LocalizationWithoutPlants[] {
-    return this.localizations.map(({ plants, ...rest }) => rest);
+    return this.localizations.map(({ plants, ...rest }: Localization) => rest);
   }
 
   localizationUpdateOrCreate(localization: LocalizationWithoutPlants): void {
     this.plantsCollectionService.localizationUpdateOrCreate(localization).subscribe(
       {
-        next: (data: Localization) => {
-          const index = this.localizations.findIndex(loc => loc.id === data.id);
+        next: (data: Localization): void => {
+          const index: number = this.localizations.findIndex((_localization: Localization): boolean => _localization.id === data.id);
           if (index === -1) {
             this.localizations = [...this.localizations, data];
             this.localizationsWithoutPlants = this.localizationList();
           }
           else {
-            this.localizations = this.localizations.map((l, i) =>
-              i === index ? data : l
+            this.localizations = this.localizations.map((_localization: Localization, _index: number): Localization =>
+              _index === index ? data : _localization
             );
             this.localizationsWithoutPlants = this.localizationList();
           }
         },
-        error: error => {console.log(error.message);}
+        error: (error: any): void => {console.log(error.message);}
       }
     );
   }
 
-  createPlant(newPlant: Plant) {
-    this.localizations = this.localizations.map(loc => {
-      if (loc.id === this.selectedLocalization) {
-        if (loc.plants) {
-          const plantIndex = loc.plants.findIndex(p => p.id === newPlant.id);
-          const updatedPlants = plantIndex !== -1
-            ? loc.plants.map((p, i) => i === plantIndex ? newPlant : p)
-            : [...loc.plants, newPlant];
-          return { ...loc, plants: updatedPlants };
+  createPlant(newPlant: Plant): void {
+    this.localizations = this.localizations.map((_localization: Localization) => {
+      if (_localization.id === this.selectedLocalization) {
+        if (_localization.plants) {
+          const plantIndex: number = _localization.plants.findIndex((_plant: Plant):boolean => _plant.id === newPlant.id);
+          const updatedPlants: Plant[] = plantIndex !== -1
+            ? _localization.plants.map((_plant: Plant, _index: number): Plant => _index === plantIndex ? newPlant : _plant)
+            : [..._localization.plants, newPlant];
+          return { ..._localization, plants: updatedPlants };
         } else {
-          return { ...loc, newPlant}
+          return { ..._localization, newPlant}
         }
       }
-      return loc;
+      return _localization;
     });
     this.showPlants = this.preparePlants(this.selectedLocalization!);
   }
 
-  localizationRemove(localization: LocalizationWithoutPlants) {
+  localizationRemove(localization: LocalizationWithoutPlants): void {
     this.plantsCollectionService.removeLocalization(localization).subscribe({
-      next: () => {
-        this.localizations = this.localizations.filter(loc => loc.id !== localization.id);
+      next: (): void => {
+        this.localizations = this.localizations.filter((_localization: Localization): boolean => _localization.id !== localization.id);
         this.localizationsWithoutPlants = this.localizationList();
         this.selectedLocalization = null;
         this.showPlants = [];
@@ -115,23 +115,22 @@ export class PlantsCollectionComponent implements OnInit {
 
   }
 
-  onRemovePlant(plant: Plant) {
+  onRemovePlant(plant: Plant): void {
     this.plantsCollectionService.removePlant(plant.id).subscribe({
-      next: () => {
-        this.localizations = this.localizations.map(localization =>
-          localization.id === this.selectedLocalization!
-            ? { ...localization, plants: localization.plants.filter(_plant => _plant.id !== plant.id) }
-            : localization
+      next: ():void => {
+        this.localizations = this.localizations.map((_localization: Localization): Localization =>
+          _localization.id === this.selectedLocalization!
+            ? { ..._localization, plants: _localization.plants.filter((_plant: Plant): boolean => _plant.id !== plant.id) }
+            : _localization
         );
         this.localizationsWithoutPlants = this.localizationList();
-        console.log("plant", plant);
-        console.log("localizations", this.localizations);
-        console.log("showPlants before", this.showPlants);
         this.showPlants =  this.preparePlants(this.selectedLocalization!);
-        console.log("showPlants after", this.showPlants);
         this.selectedPlant = null;
       },
-      error: error => {console.log(error.message);}
+      error: (error: any): void => {console.log(error.message);}
     })
+  }
+
+  onPlantAvatarChange(plant: Plant): void {
   }
 }

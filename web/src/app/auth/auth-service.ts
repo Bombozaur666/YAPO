@@ -40,13 +40,13 @@ export class AuthService {
       withCredentials: true
     }
     ).subscribe({
-      next: (data) => {
+      next: (data: TokenResponse): void => {
         this.cookieService.set(JWT_TOKEN ,data.accessToken);
         this.cookieService.set(REFRESH_TOKEN ,data.refreshToken);
         this.authenticated = true;
         this.router.navigate(['/']);
       },
-      error: (err) => {
+      error: (err: any): void => {
         alert(`Błąd logowania: ${err.status} - ${err.error}`);
       }
     });
@@ -70,24 +70,24 @@ export class AuthService {
   }
 
   refresh():  Observable<TokenResponse | null>  {
-    const refreshToken = this.cookieService.get(REFRESH_TOKEN);
+    const refreshToken: string = this.cookieService.get(REFRESH_TOKEN);
     if (!refreshToken) return of(null);
 
     return this.httpClient
       .post<TokenResponse>(this.baseUrl + "refresh", { refreshToken })
       .pipe(
-        tap((data) => {
+        tap((data: TokenResponse): void => {
           this.cookieService.set(JWT_TOKEN, data.accessToken, { path: '/' });
           this.cookieService.set(REFRESH_TOKEN, data.refreshToken, { path: '/' });
         }),
-        map((data) => data),
-        catchError( () => {
+        map((data: TokenResponse): TokenResponse => data),
+        catchError( (): Observable<null> => {
           return of(null);
         }
       ));
   }
 
-  avatarUpload(file: File) {
+  avatarUpload(file: File): Observable<User> {
     const form = new FormData();
     form.append('file', file);
     return this.httpClient.post<User>(this.path, form);

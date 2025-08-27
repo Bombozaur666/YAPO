@@ -23,7 +23,7 @@
         @if (selectedPlant) {
           <app-plant-detail-component
             [plant]="plant"
-            (plantAvatarChange)="plant"
+            (plantAvatarChange)="onPlantAvatarChange($event)"
             (removePlant)="onRemovePlant($event)">
           </app-plant-detail-component>
         }

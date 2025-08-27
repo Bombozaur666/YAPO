@@ -22,14 +22,14 @@ export class MainBodyComponent {
 
   get avatarPath(): string {return this.plantsCollectionService.avatarPath(this.plant);}
 
-  onPlantAvatarChange(plantAvatar: File) {
+  onPlantAvatarChange(plantAvatar: File): void {
     this.plantsCollectionService.updatePlantAvatar(plantAvatar, this.plant.id).subscribe({
-      next: (data: Plant) => {
+      next: (data: Plant): void => {
         this.plant = data;
         return this.plantAvatarChange.emit(data);
       }
     });
   };
 
-  onRemovePlant() {this.removePlant.emit(this.plant);}
+  onRemovePlant(): void {this.removePlant.emit(this.plant);}
 }

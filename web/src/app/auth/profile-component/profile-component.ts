@@ -23,11 +23,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.userProfile().subscribe({
-        next: data => {
+        next: (data: User): void => {
           this.user = data;
           this.avatarUrl = this.avatarPath;
           },
-        error: err => {console.log(err.message);}
+        error: (err: any): void => {console.log(err.message);}
       }
     );
   }
@@ -36,9 +36,9 @@ export class ProfileComponent implements OnInit {
     return this.authService.path + "/" + this.user.avatarPath;
   }
 
-  onAvatarUploaded(file: File) {
+  onAvatarUploaded(file: File): void {
     this.authService.avatarUpload(file).subscribe({
-      next: data => {
+      next: (data: User): void => {
         this.user = data;
         this.avatarUrl = this.avatarPath;},
     })

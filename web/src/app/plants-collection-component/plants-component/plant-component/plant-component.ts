@@ -11,11 +11,11 @@ import {PlantsCollectionService} from '../../plants-collection-service';
 })
 export class PlantComponent {
   @Input() plant!: Plant;
-  @Output() plantsChange = new EventEmitter<number>();
+  @Output() plantsChange: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private plantCollectionService: PlantsCollectionService) {
   }
-  selectPlant() {this.plantsChange.emit(this.plant.id)}
+  selectPlant():void {this.plantsChange.emit(this.plant.id)}
 
   get avatarPath(): string {return this.plantCollectionService.avatarPath(this.plant);}
 }

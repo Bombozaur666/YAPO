@@ -17,22 +17,22 @@ import {PlantComponent} from './plant-component/plant-component';
 })
 export class PlantsListComponent {
   @Input() plants: Plant[] = [];
-  @Output() plantsChange = new EventEmitter<number>();
-  @Output() createPlant = new EventEmitter<Plant>();
+  @Output() plantsChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() createPlant: EventEmitter<Plant>= new EventEmitter<Plant>();
   @Input() localizationId: number | undefined = undefined;
 
   constructor(private plantCollectionService: PlantsCollectionService) {}
 
   selectPlant(plantId: number): void {this.plantsChange.emit(plantId);}
 
-  onUploadPlant(plant: Plant) {
+  onUploadPlant(plant: Plant): void {
     plant.localization = {
       ...plant.localization,
       id: this.localizationId!
     };
     console.log(plant);
     this.plantCollectionService.createPlant(plant).subscribe(
-      {next: (newPlant: Plant) => {this.createPlant.emit(newPlant);}}
+      {next: (_plant: Plant):void => {this.createPlant.emit(_plant);}}
     )
   }
 }

@@ -21,7 +21,7 @@ export class PlantDetailComponent {
   @Output() plantAvatarChange: EventEmitter<Plant> = new EventEmitter<Plant>();
   @Output() removePlant: EventEmitter<Plant> = new EventEmitter();
 
-  onPlantAvatarChange(plant: Plant) {this.plantAvatarChange.emit(plant)}
+  onPlantAvatarChange(plant: Plant): void {this.plantAvatarChange.emit(plant)}
 
-  onRemove(plant: Plant) {this.removePlant.emit(plant);}
+  onRemove(plant: Plant):void {this.removePlant.emit(plant);}
 }

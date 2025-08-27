@@ -21,14 +21,14 @@ import {PlantLifeExpectancy} from '../../../Interfaces/Plants/enums/PlantLifeExp
 })
 export class AddPlantComponent {
   @Input() plant: Plant = {"alive": true} as Plant;
-  @Output() save = new EventEmitter<Plant>();
+  @Output() save: EventEmitter<Plant> = new EventEmitter<Plant>();
 
-  onSubmit() {this.save.emit(this.plant)}
+  onSubmit():void {this.save.emit(this.plant)}
 
-  protected readonly plantConditions = Object.values(PlantCondition);
-  protected readonly plantSoil = Object.values(PlantSoil);
-  protected readonly plantWatering = Object.values(PlantWatering);
-  protected readonly plantBerth = Object.values(PlantBerth);
-  protected readonly plantToxicity = Object.values(PlantToxicity);
-  protected readonly plantLifeExpectancy = Object.values(PlantLifeExpectancy);
+  protected readonly plantConditions: PlantCondition[] = Object.values(PlantCondition);
+  protected readonly plantSoil: PlantSoil[] = Object.values(PlantSoil);
+  protected readonly plantWatering: PlantWatering[] = Object.values(PlantWatering);
+  protected readonly plantBerth: PlantBerth[] = Object.values(PlantBerth);
+  protected readonly plantToxicity: PlantToxicity[] = Object.values(PlantToxicity);
+  protected readonly plantLifeExpectancy: PlantLifeExpectancy[] = Object.values(PlantLifeExpectancy);
 }
