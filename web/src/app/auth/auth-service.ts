@@ -12,7 +12,6 @@ import {JWT_TOKEN, REFRESH_TOKEN, TokenResponse} from '../Interfaces/Users/token
 })
 export class AuthService {
   private authenticated: boolean = false;
-  protected user!: User;
   protected baseUrl: string = 'http://localhost:8080/user/';
 
   constructor(private httpClient: HttpClient,
@@ -58,7 +57,6 @@ export class AuthService {
     this.cookieService.delete(REFRESH_TOKEN);
     this.authenticated = false;
 
-    this.user = {} as User;
     this.router.navigate(['/login']);
   }
 

@@ -64,7 +64,7 @@ public class User {
     private boolean enabled = false;
 
     @Column()
-    private String avatarPath = "avatar_default.png";
+    private String avatarPath = "avatar_user_default.png";
 
     @Column()
     private String avatarContentType = "application/octet-stream";

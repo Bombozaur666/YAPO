@@ -73,7 +73,7 @@ public class Plant {
     private Date creationDate = new Date();
 
     @Column
-    private String avatar = "avatar_default.png";
+    private String avatarPath = "avatar_plant_default.png";
 
     @Column
     @Enumerated(EnumType.STRING)

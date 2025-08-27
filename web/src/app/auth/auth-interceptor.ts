@@ -14,11 +14,19 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: 
     return next(req);
   }
 
-
   const token = authService.token;
-  const authReq = token
-    ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
-    : req;
+
+  let headers = req.headers;
+  if (token) {
+    headers = headers.set('Authorization', `Bearer ${token}`);
+  }
+
+  // 🚨 kluczowa poprawka → jeśli body jest FormData → usuwamy Content-Type
+  if (req.body instanceof FormData) {
+    headers = headers.delete('Content-Type');
+  }
+
+  const authReq = req.clone({ headers });
 
   return next(authReq).pipe(
     catchError((err: HttpErrorResponse) => {
@@ -26,7 +34,9 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: 
         return from(authService.refresh()).pipe(
           switchMap((newToken) => {
             if (!newToken) return throwError(() => err);
-            const retried = req.clone({ setHeaders: { Authorization: `Bearer ${newToken}` } });
+            const retried = req.clone({
+              setHeaders: { Authorization: `Bearer ${newToken}` }
+            });
             return next(retried);
           })
         );

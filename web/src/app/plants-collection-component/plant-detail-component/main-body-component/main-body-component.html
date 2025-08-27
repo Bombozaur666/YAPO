@@ -135,9 +135,8 @@
       <div class="col-4">
         <div class="col-4 text-center">
           <div class="position-relative d-inline-block">
-
             <img
-              [src]="`${url}/plant.avatar`"
+              [src]="avatarPath"
               class="img-fluid border"
               alt="{{'' | translate }}"
               style="width: 150px; height: 150px; object-fit: cover;"
@@ -148,3 +147,9 @@
     </div>
   </div>
 </div>
+
+<app-upload-image-dialog-component
+  (imageUploaded)="onPlantAvatarChange($event)"
+  [circled]="false"
+  [modalTitle]="'profile.settings.editAvatarTitle' | translate">
+</app-upload-image-dialog-component>

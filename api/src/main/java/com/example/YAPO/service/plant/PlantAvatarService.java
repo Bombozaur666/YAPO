@@ -1,7 +1,8 @@
-package com.example.YAPO.service.user;
+package com.example.YAPO.service.plant;
 
-import com.example.YAPO.models.User.User;
-import com.example.YAPO.repositories.user.UserRepo;
+import com.example.YAPO.models.plant.Plant;
+import com.example.YAPO.repositories.plant.PlantRepo;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,17 +16,21 @@ import java.util.Set;
 import java.util.UUID;
 
 @Service
-public class AvatarService {
-    private final UserRepo userRepo;
+public class PlantAvatarService {
+    private final PlantRepo plantRepo;
     private static final Set<String> ALLOWED_TYPES = Set.of("image/jpeg","image/png","image/webp");
 
-    private final String uploadDir = "uploads/user/avatar/";
+    private final String uploadDir = "uploads/plant/avatar/";
 
-    private AvatarService(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    private PlantAvatarService(PlantRepo plantRepo) {
+        this.plantRepo = plantRepo;
     }
 
-    public User uploadAvatar(User user, MultipartFile file) throws IOException {
+    public Plant uploadAvatar(long plantId, MultipartFile file) throws IOException {
+        Plant plant = plantRepo.findById(plantId)
+                .orElseThrow(() -> new EntityNotFoundException("Plant not found with id " + plantId));
+
+
         if (file == null || file.isEmpty()) {
             throw new IllegalArgumentException("Empty file");
         }
@@ -43,18 +48,17 @@ public class AvatarService {
 
         Path destination = Paths.get(uploadDir).resolve(fileName).normalize();
 
-        if (user.getAvatarPath() != null &&
-                !user.getAvatarPath().equals("avatar_user_default.png")) {
+        if (plant.getAvatarPath() != null &&
+            !plant.getAvatarPath().equals("avatar_plant_default.png")) {
             try {
-                Files.deleteIfExists(Paths.get(uploadDir).resolve(user.getAvatarPath()));
+                Files.deleteIfExists(Paths.get(uploadDir).resolve(plant.getAvatarPath()));
             } catch (Exception ignored) {}
         }
 
         Files.copy(file.getInputStream(), destination, StandardCopyOption.REPLACE_EXISTING);
 
-        user.setAvatarPath(fileName);
-        user.setAvatarContentType(file.getContentType());
-        return userRepo.save(user);
+        plant.setAvatarPath(fileName);
+        return plantRepo.save(plant);
     }
 
     public Path getAvatarPath(String path) {

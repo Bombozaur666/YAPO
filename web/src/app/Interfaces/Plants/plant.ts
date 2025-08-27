@@ -23,7 +23,7 @@ export interface Plant {
   deathReason: string;
   wateringDate: Date;
   creationDate: Date;
-  avatar: string;
+  avatarPath: string;
   plantCondition: string;
   plantSoil: string;
   plantWatering: string;

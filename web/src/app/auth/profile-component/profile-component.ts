@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
   get avatarPath(): string {
     return this.authService.path + "/" + this.user.avatarPath;
   }

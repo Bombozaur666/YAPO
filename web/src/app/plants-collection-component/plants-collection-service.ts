@@ -26,4 +26,14 @@ export class PlantsCollectionService {
   removeLocalization(localization: LocalizationWithoutPlants): Observable<boolean> {
     return this.httpClient.delete<boolean>(`${this.baseUrl}localization/${localization.id}`);
   }
+
+  updatePlantAvatar(file: File, plantID: number): Observable<Plant> {
+    const form = new FormData();
+    form.append('file', file);
+    return this.httpClient.post<Plant>(this.baseUrl + "plants/avatar/" + plantID, form);
+  }
+
+  avatarPath(plant: Plant): string {
+    return "http://localhost:8080/plants/avatar/" + plant.avatarPath;
+  }
 }

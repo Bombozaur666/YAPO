@@ -45,9 +45,9 @@ public class SecurityConfig {
                                 "/user/reactivate-user",
                                 "/user/enable",
                                 "/user/reset",
-                                "/plants/shared/**")
-                            .permitAll()
-                        .requestMatchers("/user/avatar/**")
+                                "/plants/shared/**",
+                                "/user/avatar/**",
+                                "/plants/avatar/**")
                             .permitAll()
                         .requestMatchers("/admin")
                             .hasAnyRole("ADMIN")

@@ -21,7 +21,9 @@
       </div>
       <div class="col">
         @if (selectedPlant) {
-          <app-plant-detail-component [plant]="plant">
+          <app-plant-detail-component
+            [plant]="plant"
+            (plantAvatarChange)="plant">
           </app-plant-detail-component>
         }
       </div>

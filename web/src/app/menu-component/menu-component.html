@@ -14,15 +14,15 @@
       </ul>
 
       @if (authService.isAuthenticated) {
-        <button type="button" class="btn btn-outline-info" (click)="router.navigate(['/profile'])"><i class="bi bi-person-circle"></i> {{ 'menu.user.profile' | translate }}</button>
-        <button type="button" class="btn btn-outline-danger" (click)="logout()">{{ 'menu.user.logout' | translate }}</button>
+        <button type="button" class="btn btn-outline-info me-1" (click)="router.navigate(['/profile'])"><i class="bi bi-person-circle"></i> {{ 'menu.user.profile' | translate }}</button>
+        <button type="button" class="btn btn-outline-danger me-1" (click)="logout()">{{ 'menu.user.logout' | translate }}</button>
       } @else {
-        <button type="button" class="btn btn-outline-success" (click)="router.navigate(['/login'])">{{ 'menu.user.login' | translate }}</button>
-        <button type="button" class="btn btn-outline-warning" (click)="router.navigate(['/register'])">{{ 'menu.user.register' | translate }}</button>
+        <button type="button" class="btn btn-outline-success me-1" (click)="router.navigate(['/login'])">{{ 'menu.user.login' | translate }}</button>
+        <button type="button" class="btn btn-outline-warning me-1" (click)="router.navigate(['/register'])">{{ 'menu.user.register' | translate }}</button>
       }
 
       <div class="btn-group dropstart">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn btn-secondary dropdown-toggle me-1" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="bi bi-globe"></i>
         </button>
         <ul class="dropdown-menu">

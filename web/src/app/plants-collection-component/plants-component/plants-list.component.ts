@@ -1,15 +1,16 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {LocalizationWithoutPlants} from '../../Interfaces/Plants/localization';
 import {Plant} from '../../Interfaces/Plants/plant';
 import {TranslatePipe} from "@ngx-translate/core";
 import {AddPlantComponent} from './add-plant-component/add-plant-component';
 import {PlantsCollectionService} from '../plants-collection-service';
+import {PlantComponent} from './plant-component/plant-component';
 
 @Component({
   selector: 'app-plants-list-component',
   imports: [
     TranslatePipe,
-    AddPlantComponent
+    AddPlantComponent,
+    PlantComponent
   ],
   templateUrl: './plants-list.component.html',
   styleUrl: './plants-list.component.css'
@@ -20,12 +21,9 @@ export class PlantsListComponent {
   @Output() createPlant = new EventEmitter<Plant>();
   @Input() localizationId: number | undefined = undefined;
 
-  constructor(private plantCollectionService: PlantsCollectionService) {
-  }
+  constructor(private plantCollectionService: PlantsCollectionService) {}
 
-  selectPlant(plant: Plant): void {
-    this.plantsChange.emit(plant.id);
-  }
+  selectPlant(plantId: number): void {this.plantsChange.emit(plantId);}
 
   onUploadPlant(plant: Plant) {
     plant.localization = {
