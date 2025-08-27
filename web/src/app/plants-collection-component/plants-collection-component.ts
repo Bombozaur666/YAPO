@@ -114,4 +114,24 @@ export class PlantsCollectionComponent implements OnInit {
     })
 
   }
+
+  onRemovePlant(plant: Plant) {
+    this.plantsCollectionService.removePlant(plant.id).subscribe({
+      next: () => {
+        this.localizations = this.localizations.map(localization =>
+          localization.id === this.selectedLocalization!
+            ? { ...localization, plants: localization.plants.filter(_plant => _plant.id !== plant.id) }
+            : localization
+        );
+        this.localizationsWithoutPlants = this.localizationList();
+        console.log("plant", plant);
+        console.log("localizations", this.localizations);
+        console.log("showPlants before", this.showPlants);
+        this.showPlants =  this.preparePlants(this.selectedLocalization!);
+        console.log("showPlants after", this.showPlants);
+        this.selectedPlant = null;
+      },
+      error: error => {console.log(error.message);}
+    })
+  }
 }

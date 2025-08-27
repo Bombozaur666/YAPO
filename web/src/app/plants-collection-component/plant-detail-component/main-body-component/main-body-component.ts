@@ -16,6 +16,7 @@ import {PlantsCollectionService} from '../../plants-collection-service';
 export class MainBodyComponent {
   @Input() plant: Plant = {} as Plant;
   @Output() plantAvatarChange: EventEmitter<Plant> = new EventEmitter();
+  @Output() removePlant: EventEmitter<Plant> = new EventEmitter();
 
   constructor(private plantsCollectionService: PlantsCollectionService) {}
 
@@ -29,4 +30,6 @@ export class MainBodyComponent {
       }
     });
   };
+
+  onRemovePlant() {this.removePlant.emit(this.plant);}
 }

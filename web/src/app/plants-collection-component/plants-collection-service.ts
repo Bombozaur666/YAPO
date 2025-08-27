@@ -36,4 +36,8 @@ export class PlantsCollectionService {
   avatarPath(plant: Plant): string {
     return "http://localhost:8080/plants/avatar/" + plant.avatarPath;
   }
+
+  removePlant(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.baseUrl}plants/${id}`);
+  }
 }

@@ -1,4 +1,7 @@
-<app-main-body-component [plant]="plant" (plantAvatarChange)="onPlantAvatarChange($event)">
+<app-main-body-component
+  [plant]="plant"
+  (plantAvatarChange)="onPlantAvatarChange($event)"
+  (removePlant)="onRemove($event)">
 </app-main-body-component>
 <app-notes-component></app-notes-component>
 <app-photo-gallery-component></app-photo-gallery-component>

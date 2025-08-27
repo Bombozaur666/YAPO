@@ -6,9 +6,15 @@
           {{ plant.name }}
           <button
             type="button"
+            class="btn btn-sm btn-danger m-1 float-end"
+            (click)="onRemovePlant()">
+            {{'collections.plants.details.deletePlant' | translate }}
+          </button>
+          <button
+            type="button"
             class="btn btn-sm btn-primary m-1 float-end"
             data-bs-toggle="modal" data-bs-target="#uploadImageModal">
-            {{'collections.plants.details.avatarModal.edit' | translate }}
+            {{'collections.plants.details.avatarModal.editAvatar' | translate }}
           </button>
         </h2>
       </div>

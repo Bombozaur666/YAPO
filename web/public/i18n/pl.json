@@ -159,8 +159,9 @@
           "PERENNIAL": "Wieloletnia"
         },
         "avatarModal": {
-          "edit": "Edytuj Awatar"
-        }
+          "editAvatar": "Edytuj Awatar"
+        },
+        "deletePlant": "Usuń roślinę"
       },
       "modal": {
         "close": "Zamknij",

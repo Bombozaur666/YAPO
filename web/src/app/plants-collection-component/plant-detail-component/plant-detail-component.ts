@@ -19,6 +19,9 @@ import {MainBodyComponent} from './main-body-component/main-body-component';
 export class PlantDetailComponent {
   @Input() plant: Plant = {} as Plant;
   @Output() plantAvatarChange: EventEmitter<Plant> = new EventEmitter<Plant>();
+  @Output() removePlant: EventEmitter<Plant> = new EventEmitter();
 
   onPlantAvatarChange(plant: Plant) {this.plantAvatarChange.emit(plant)}
+
+  onRemove(plant: Plant) {this.removePlant.emit(plant);}
 }
