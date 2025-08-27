@@ -158,6 +158,15 @@
           "ANNUAL": "Jednoroczna",
           "PERENNIAL": "Wieloletnia"
         },
+        "notes": {
+          "title": "Notatki"
+        },
+        "photoGallery": {
+          "title": "Galeria"
+        },
+        "updates": {
+          "title": "Historia zmian"
+        },
         "avatarModal": {
           "editAvatar": "Edytuj Awatar"
         },
