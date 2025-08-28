@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NoteRepo extends JpaRepository<Note, Long> {
 
-    void deleteByIdAndPlant_idAndPlant_User_Id(Long plantId, Long idNote, Long id);
+    void deleteByIdAndPlant_idAndPlant_User_Id(Long idNote, Long plantId, Long id);
 
-    Note findByPlant_IdAndPlantUser_IdAndId(Long plantId, Long plantId1, long id);
+    Note findByPlant_IdAndPlant_User_IdAndId(Long plantId, Long userId, long id);
 }

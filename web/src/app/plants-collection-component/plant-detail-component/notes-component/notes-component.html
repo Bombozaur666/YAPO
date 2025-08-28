@@ -14,23 +14,23 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th>ID</th>
-        <th>Treść</th>
-        <th>Data utworzenia</th>
-        <th>Data edycji</th>
+        <th class="col-1">{{'collections.plants.details.notes.note.id' | translate}}</th>
+        <th class="col-2">{{'collections.plants.details.notes.note.noteDate' | translate}}</th>
+        <th class="col-2">{{'collections.plants.details.notes.note.editDate' | translate}}</th>
+        <th class="col-6">{{'collections.plants.details.notes.note.body' | translate}}</th>
+        <th class="col-1">{{'collections.plants.details.notes.note.utility.title' | translate}}</th>
       </tr>
       </thead>
       <tbody>
         @for (note of notes; track note.id) {
-          <app-note-component
+          <tr
+            app-note-component
             [note]="note"
-            (editNote)="onEdit($event)">
-          </app-note-component>
+            (noteChanged)="onNoteChange($event)"
+            (noteDelete)="onNoteDelete($event)">
+          </tr>
         }
       </tbody>
     </table>
   </div>
 </div>
-
-<app-add-note-component [note]="selectedNote">
-</app-add-note-component>

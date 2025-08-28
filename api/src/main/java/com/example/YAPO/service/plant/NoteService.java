@@ -1,13 +1,11 @@
 package com.example.YAPO.service.plant;
 
-import com.example.YAPO.models.UpdateField;
 import com.example.YAPO.models.User.User;
 import com.example.YAPO.models.enums.ErrorList;
 import com.example.YAPO.models.plant.Note;
 import com.example.YAPO.models.plant.Plant;
 import com.example.YAPO.repositories.plant.NoteRepo;
 import com.example.YAPO.repositories.plant.PlantRepo;
-import com.example.YAPO.utility.ValueConverter;
 import jakarta.validation.Valid;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -15,9 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Field;
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class NoteService {
@@ -30,37 +26,27 @@ public class NoteService {
     }
 
     @Transactional
-    public boolean deleteNoteById(Long plantId, Long noteId, User user) {
-        noteRepo.deleteByIdAndPlant_idAndPlant_User_Id(plantId, noteId, user.getId());
-        return !checkIfNoteExist(noteId);
+    public boolean deleteNoteById(Long plantId, Long noteId, Long userId) {
+        noteRepo.deleteByIdAndPlant_idAndPlant_User_Id(noteId, plantId, userId);
+        return !checkIExist(noteId);
     }
 
-    private boolean checkIfNoteExist(long id) {
-        return noteRepo.existsById(id);
-    }
+    private boolean checkIExist(long noteId) {return noteRepo.existsById(noteId);}
 
     @Transactional
-    public Note updateNote(Long plantId, Long noteId, User user, @Valid UpdateField updateField) {
-        List<String> allowedFields = List.of("name");
-        if (!allowedFields.contains(updateField.getFieldName())) {
-            throw new RuntimeException(ErrorList.WRONG_FIELD_TO_UPDATE.toString());
-        }
-        Note _note = noteRepo.findByPlant_IdAndPlantUser_IdAndId(plantId, user.getId(), noteId);
+    public Note updateNote(Long plantId, Long userId, @Valid Note note) {
+        Note _note = noteRepo.findByPlant_IdAndPlant_User_IdAndId(plantId, userId, note.getId());
+
+        _note.setNote(note.getNote());
+        _note.setEditDate(new Date());
 
         try {
-            Field field = Note.class.getDeclaredField(updateField.getFieldName());
-            field.setAccessible(true);
-
-            Object convertedValue = ValueConverter.convert(field.getType(), updateField.getFieldValue());
-            field.set(_note, convertedValue);
-
-            _note.setEditDate(new Date());
-
             _note = noteRepo.save(_note);
-        } catch (NoSuchFieldException | IllegalAccessException | DataIntegrityViolationException |
+        } catch (DataIntegrityViolationException |
                  ConstraintViolationException | TransactionSystemException e) {
             throw new RuntimeException(ErrorList.ERROR_DURING_DATABASE_SAVING.toString());
         }
+
         return _note;
     }
 

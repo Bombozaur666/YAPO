@@ -69,7 +69,8 @@
     "uploadPhoto": {
       "close": "Zamknij",
       "cancel": "Anuluj",
-      "upload": "Wgraj"
+      "upload": "Wgraj",
+      "alt": "Podgląd wgranego zdjęcia"
     }
   },
   "collections": {
@@ -87,6 +88,7 @@
     },
     "plants": {
       "addPlant": "Dodaj roślinę",
+      "alt": "Miniaturka rośliny ",
       "details": {
         "true": "Tak",
         "false": "Nie",
@@ -159,8 +161,27 @@
           "PERENNIAL": "Wieloletnia"
         },
         "notes": {
+          "note": {
+            "id": "NP",
+            "body": "Treść",
+            "noteDate": "Data utworzenia",
+            "editDate": "Data edycji",
+            "utility": {
+              "title": "Opcje",
+              "delete": "Usuń",
+              "edit": "Edytuj"
+            }
+          },
           "title": "Notatki",
-          "addNote": "Dodaj notatkę"
+          "addNote": "Dodaj notatkę",
+          "noteModal": {
+            "addNote": "Dodaj notatke",
+            "editNote": "Edytuj notatke",
+            "body": "Treść",
+            "close": "Zamknij",
+            "save": "Zapisz",
+            "cancel": "Anuluj"
+          }
         },
         "photoGallery": {
           "title": "Galeria",

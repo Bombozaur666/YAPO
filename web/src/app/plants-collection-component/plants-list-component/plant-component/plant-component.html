@@ -1,6 +1,10 @@
 <div class="card text-center" (click)="selectPlant()">
   <div>
-    <img class="plant-card" [src]="avatarPath">
+    <img
+      class="plant-card"
+      [src]="avatarPath"
+      alt="{{'collections.plants.alt' | translate}} {{plant.name}}"
+      fill>
   </div>
   <div class="card-title">
     {{plant.name}}

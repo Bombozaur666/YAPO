@@ -1,22 +1,29 @@
-<div class="modal fade" id="editNoteModal" tabindex="-1" aria-labelledby="editNoteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content rounded-3 shadow">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editNoteModalLabel">Edytuj notatkę</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+<div class="modal-content rounded-3 shadow">
+  <div class="modal-header">
+    <h5 class="modal-title" id="editNoteModalLabel">{{'collections.plants.details.notes.noteModal.editNote' | translate}}</h5>
+    <button
+      type="button"
+      class="btn-close"
+      [attr.aria-label]="'collections.plants.details.notes.noteModal.close' | translate"
+      (click)="close()">
+    </button>
+  </div>
+  <div class="modal-body">
+    <form id="noteForm">
+      <div class="mb-3">
+        <label for="noteInput" class="form-label">{{'collections.plants.details.notes.noteModal.body' | translate}}</label>
+        <textarea
+          class="form-control"
+          id="noteInput"
+          rows="4"
+          name="noteBody"
+          [(ngModel)]="note.note">
+        </textarea>
       </div>
-      <div class="modal-body">
-        <form id="noteForm">
-          <div class="mb-3">
-            <label for="noteInput" class="form-label">Treść notatki</label>
-            <textarea class="form-control" id="noteInput" rows="4"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-        <button type="button" class="btn btn-primary" id="saveNoteBtn">Zapisz</button>
-      </div>
-    </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">{{'collections.plants.details.notes.noteModal.cancel' | translate}}</button>
+    <button type="button" class="btn btn-primary" (click)="save()">{{'collections.plants.details.notes.noteModal.save' | translate}}</button>
   </div>
 </div>

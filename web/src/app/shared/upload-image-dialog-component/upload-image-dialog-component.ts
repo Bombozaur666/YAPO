@@ -1,10 +1,15 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {TranslatePipe} from '@ngx-translate/core';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-upload-image-dialog-component',
-  imports: [CommonModule, TranslatePipe],
+  imports: [CommonModule,
+    TranslatePipe,
+    FormsModule,
+  ],
   templateUrl: './upload-image-dialog-component.html',
   styleUrl: './upload-image-dialog-component.css'
 })
@@ -15,7 +20,8 @@ export class UploadImageDialogComponent {
   @Input() circled: boolean = false;
   @Input() modalTitle: string = '' ;
 
-  @Output() imageUploaded = new EventEmitter<File>();
+  constructor(public activeModal: NgbActiveModal) {}
+
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -23,13 +29,12 @@ export class UploadImageDialogComponent {
       this.selectedFile = input.files[0];
 
       const reader = new FileReader();
-      reader.onload = e => this.previewUrl = reader.result;
+      reader.onload = () => this.previewUrl = reader.result;
       reader.readAsDataURL(this.selectedFile);
     }
   }
 
-  uploadImage(): void {
-    if (!this.selectedFile) return;
-    this.imageUploaded.emit(this.selectedFile);
-  }
+  close(): void { this.activeModal.dismiss('user-cancel');}
+
+  save(): void {this.activeModal.close(this.selectedFile);}
 }

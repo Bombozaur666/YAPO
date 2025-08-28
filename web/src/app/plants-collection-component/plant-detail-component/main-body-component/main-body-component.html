@@ -13,7 +13,7 @@
           <button
             type="button"
             class="btn btn-sm btn-primary m-1 float-end"
-            data-bs-toggle="modal" data-bs-target="#uploadImageModal">
+            (click)="onAvatarEdit()">
             {{'collections.plants.details.avatarModal.editAvatar' | translate }}
           </button>
         </h2>
@@ -152,9 +152,3 @@
     </div>
   </div>
 </div>
-
-<app-upload-image-dialog-component
-  (imageUploaded)="onPlantAvatarChange($event)"
-  [circled]="false"
-  [modalTitle]="'profile.settings.editAvatarTitle' | translate">
-</app-upload-image-dialog-component>

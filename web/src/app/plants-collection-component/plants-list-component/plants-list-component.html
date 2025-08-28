@@ -4,8 +4,7 @@
       <button
         type="button"
         class="btn btn-info w-100"
-        data-bs-toggle="modal"
-        data-bs-target="#addPlantModal">
+        (click)="addPlant()">
           {{'collections.plants.addPlant' | translate}}
       </button>
     </div>
@@ -14,10 +13,11 @@
   <div class="row">
   @for (plant of plants; track plant.id) {
     <div class="col-6 mb-2">
-      <app-plant-component [plant]="plant" (plantsChange)="selectPlant($event)"></app-plant-component>
+      <app-plant-component
+        [plant]="plant"
+        (plantsChange)="selectPlant($event)">
+      </app-plant-component>
     </div>
   }
   </div>
 </div>
-
-<app-add-plant-component (save)="onUploadPlant($event)"></app-add-plant-component>

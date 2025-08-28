@@ -9,7 +9,4 @@ import {TranslatePipe} from "@ngx-translate/core";
   templateUrl: './photo-gallery-component.html',
   styleUrl: './photo-gallery-component.css'
 })
-export class PhotoGalleryComponent {
-  @Input() photo: any;
-
-}
+export class PhotoGalleryComponent {}

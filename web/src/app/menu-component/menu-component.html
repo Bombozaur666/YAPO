@@ -1,9 +1,12 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <button type="button" class="btn navbar-brand" (click)="router.navigate(['/'])" >{{'app.title.short' | translate}}</button>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button
+      type="button"
+      class="btn navbar-brand"
+      (click)="router.navigate(['/'])">
+        {{'app.title.short' | translate}}
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         @if (authService.isAuthenticated) {
@@ -21,14 +24,34 @@
         <button type="button" class="btn btn-outline-warning me-1" (click)="router.navigate(['/register'])">{{ 'menu.user.register' | translate }}</button>
       }
 
-      <div class="btn-group dropstart">
-        <button type="button" class="btn btn-secondary dropdown-toggle me-1" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-globe"></i>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" (click)="changeLanguage('pl')"><span class="fi fi-pl"></span> Polski</a></li>
-          <li><a class="dropdown-item" (click)="changeLanguage('en')"><span class="fi fi-us"></span> English</a></li>
-        </ul>
+      <div
+        ngbDropdown
+        class="btn-group"
+        display="dynamic"
+        placement="bottom-end">
+          <button
+            type="button"
+            class="btn btn-secondary dropdown-toggle me-1"
+            id="languageDropdown"
+            ngbDropdownToggle
+            placement="start">
+            <i class="bi bi-globe"></i>
+          </button>
+
+          <div
+            ngbDropdownMenu
+            aria-labelledby="languageDropdown">
+            <button
+              ngbDropdownItem
+              (click)="changeLanguage('pl')">
+                <span class="fi fi-pl"></span> Polski
+            </button>
+            <button
+              ngbDropdownItem
+              (click)="changeLanguage('en')">
+                <span class="fi fi-us"></span> English
+            </button>
+          </div>
       </div>
     </div>
   </div>

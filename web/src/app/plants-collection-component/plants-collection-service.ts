@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Localization, LocalizationWithoutPlants} from '../Interfaces/Plants/localization';
 import {Observable} from 'rxjs';
 import {Plant} from '../Interfaces/Plants/plant';
+import {Note} from '../Interfaces/Plants/note';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,17 @@ export class PlantsCollectionService {
 
   removePlant(id: number): Observable<any> {
     return this.httpClient.delete<any>(`${this.baseUrl}plants/${id}`);
+  }
+
+  addNote(plantId: number, note: Note): Observable<Note> {
+    return this.httpClient.post<Note>(`${this.baseUrl}plants/${plantId}/note`, note);
+  }
+
+  editNote(plantId: number, note: Note): Observable<Note> {
+    return this.httpClient.patch<Note>(`${this.baseUrl}plants/${plantId}/note`, note);
+  }
+
+  deleteNote(plantId: number, note: Note): Observable<any>{
+    return this.httpClient.delete(`${this.baseUrl}plants/${plantId}/note/${note.id}`);
   }
 }

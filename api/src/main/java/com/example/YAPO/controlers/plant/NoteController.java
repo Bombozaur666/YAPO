@@ -1,16 +1,16 @@
 package com.example.YAPO.controlers.plant;
 
 import com.example.YAPO.models.User.MyUserDetails;
-import com.example.YAPO.models.UpdateField;
 import com.example.YAPO.models.plant.Note;
 import com.example.YAPO.service.plant.NoteService;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/plants/{id}/note")
+@RequestMapping("/plants/{plantId}/note")
 public class NoteController {
     private final NoteService noteService;
 
@@ -19,17 +19,20 @@ public class NoteController {
     }
 
     @PostMapping("")
-    public Note createNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid Note note) {
-        return noteService.createNote(id, note, userDetails.getUser());
+    public ResponseEntity<Note> createNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long plantId, @RequestBody @Valid Note note) {
+        Note _note = noteService.createNote(plantId, note, userDetails.getUser());
+        return ResponseEntity.ok(_note);
     }
 
     @DeleteMapping("/{idNote}")
-    public boolean deleteNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @PathVariable Long idNote) {
-        return noteService.deleteNoteById(id, idNote, userDetails.getUser());
+    public ResponseEntity<?> deleteNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long plantId, @PathVariable Long idNote) {
+        boolean isDeleted = noteService.deleteNoteById(plantId, idNote, userDetails.getUser().getId());
+        return isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
 
-    @PatchMapping("/{idNote}")
-    public Note updateNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @PathVariable Long idNote, @RequestBody @Valid UpdateField updateField) {
-        return noteService.updateNote(id, idNote, userDetails.getUser(), updateField);
+    @PatchMapping("")
+    public ResponseEntity<Note> updateNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long plantId, @RequestBody @Valid Note note) {
+        Note _note = noteService.updateNote(plantId, userDetails.getUser().getId(), note);
+        return ResponseEntity.ok(_note);
     }
 }

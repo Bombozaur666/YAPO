@@ -1,12 +1,31 @@
-<tr>
-  <td>{{ note.id }}</td>
-  <td>{{ note.note }}</td>
-  <td>{{ note.noteDate | date: 'short' }}</td>
-  <td>
-    @if (note.editDate) {
-      {{ note.editDate | date: 'short' }}
-    } @else {
-      noEdit
-    }
-  </td>
-</tr>
+<td>{{ note.id }}</td>
+<td>{{ note.noteDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
+<td>
+  @if (note.editDate) {
+    {{ note.editDate | date:'dd.MM.yyyy HH:mm:ss'}}
+  } @else {
+    --
+  }
+</td>
+<td>{{ note.note }}</td>
+<td>
+  <button
+    type="button"
+    class="btn btn-sm btn-outline-primary float-end"
+    ngbTooltip="{{'collections.plants.details.notes.note.utility.edit' | translate}}"
+    placement="top"
+    (click)="editNote()">
+    <i class="bi bi-wrench"></i>
+  </button>
+</td>
+<td>
+  <button
+    type="button"
+    class="btn btn-sm btn-outline-danger"
+    ngbTooltip="{{'collections.plants.details.notes.note.utility.delete' | translate}}"
+    placement="top"
+    (click)="deleteNote()">
+    <i class="bi bi-trash"></i>
+  </button>
+</td>
+

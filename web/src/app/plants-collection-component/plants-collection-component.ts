@@ -6,6 +6,7 @@ import {LocalizationsComponent} from './localizations-component/localizations-co
 import {PlantDetailComponent} from './plant-detail-component/plant-detail-component';
 import {TranslatePipe} from '@ngx-translate/core';
 import {PlantsListComponent} from './plants-list-component/plants-list-component';
+import {Note} from '../Interfaces/Plants/note';
 
 @Component({
   selector: 'app-plants-collection-component',
@@ -133,8 +134,8 @@ export class PlantsCollectionComponent implements OnInit {
   }
 
   onPlantAvatarChange(plant: Plant): void {
-    this.localizations = this.localizations.map((
-      _localization: Localization): Localization =>
+    this.localizations = this.localizations.map(
+      (_localization: Localization): Localization =>
         _localization.id === this.selectedLocalization!
           ? { ..._localization, plants: _localization.plants.map((_plant: Plant): Plant =>
               _plant.id === plant.id
@@ -144,5 +145,23 @@ export class PlantsCollectionComponent implements OnInit {
           : _localization
     );
     this.showPlants = this.preparePlants(this.selectedLocalization!);
+  }
+
+  onNoteChange(notes: Note[]): void {
+    this. localizations = this.localizations.map((_localization: Localization): Localization => {
+      if (_localization.id === this.selectedLocalization) {
+        return {
+          ..._localization,
+          plants: _localization.plants.map((_plant: Plant): Plant =>
+            _plant.id === this.selectedPlant
+              ? { ..._plant, notes: [...notes] }
+              : _plant
+          )
+        };
+      }
+      return _localization;
+    });
+    this.showPlants = this.preparePlants(this.selectedLocalization!);
+    this.localizationsWithoutPlants = this.localizationList();
   }
 }

@@ -5,6 +5,7 @@ import {catchError, map, Observable, of, tap} from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
 import {Router} from '@angular/router';
 import {JWT_TOKEN, REFRESH_TOKEN, TokenResponse} from '../Interfaces/Users/token';
+import {Note} from '../Interfaces/Plants/note';
 
 
 @Injectable({

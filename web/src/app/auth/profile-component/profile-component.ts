@@ -4,22 +4,24 @@ import {AuthService} from '../auth-service';
 import {DatePipe} from '@angular/common';
 import {TranslatePipe} from '@ngx-translate/core';
 import {UploadImageDialogComponent} from '../../shared/upload-image-dialog-component/upload-image-dialog-component';
+import {NgbModal, NgbModalModule, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-profile-component',
   imports: [
     DatePipe,
     TranslatePipe,
-    UploadImageDialogComponent
+    NgbModalModule
   ],
   templateUrl: './profile-component.html',
-  styleUrl: './profile-component.css'
+  styleUrls: ['./profile-component.css']
 })
 export class ProfileComponent implements OnInit {
   protected user!: User;
   protected avatarUrl!: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+              private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.authService.userProfile().subscribe({
@@ -42,5 +44,17 @@ export class ProfileComponent implements OnInit {
         this.user = data;
         this.avatarUrl = this.avatarPath;},
     })
+  }
+
+  onAvatarEdit(): void {
+    const modalRef: NgbModalRef = this.modalService.open(UploadImageDialogComponent);
+    modalRef.componentInstance.circled = true;
+    modalRef.componentInstance.modalTitle = 'profile.settings.editAvatarTitle';
+
+    modalRef.result.then(
+      (result:File): void => {
+        this.onAvatarUploaded(result);
+      }
+    );
   }
 }

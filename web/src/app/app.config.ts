@@ -1,4 +1,7 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, inject, provideAppInitializer} from '@angular/core';
+import {
+  ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, inject, provideAppInitializer,
+  importProvidersFrom
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
@@ -7,6 +10,7 @@ import {provideHttpClient, withFetch, withInterceptors} from "@angular/common/ht
 import {provideTranslateService, TranslateService} from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import {authInterceptor} from './auth/auth-interceptor';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,6 +33,7 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => {
       const  translate = inject(TranslateService);
       translate.use(translate.getBrowserLang() || "en");
-    })
+    }),
+    importProvidersFrom(NgbModule)
   ]
 };

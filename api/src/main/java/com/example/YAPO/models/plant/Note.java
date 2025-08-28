@@ -15,7 +15,7 @@ public class Note {
     private long id;
 
     @JsonBackReference(value = "plant-note")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Plant plant;
 
     @Column()
