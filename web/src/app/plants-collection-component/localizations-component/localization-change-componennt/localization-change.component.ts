@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TranslatePipe} from "@ngx-translate/core";
 import {LocalizationWithoutPlants} from '../../../Interfaces/Plants/localization';
 import {FormsModule} from '@angular/forms';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-localization-change-component',
@@ -13,12 +14,14 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './localization-change.component.css'
 })
 export class LocalizationChangeComponent {
-  @Input() modalId: number | undefined = undefined;
   @Input() localization: LocalizationWithoutPlants = {"name": ""};
-  @Output() save = new EventEmitter<LocalizationWithoutPlants>();
-  @Output() remove = new EventEmitter<LocalizationWithoutPlants>();
+  @Input() title: string = "";
 
-  onSubmit() {this.save.emit(this.localization!);}
+  constructor(public activeModal: NgbActiveModal) {}
 
-  onRemove() {this.remove.emit(this.localization!);}
+  close(): void { this.activeModal.dismiss('user-cancel');}
+
+  save(): void {this.activeModal.close({"mode": "add", "localization": this.localization});}
+
+  delete(): void {this.activeModal.close({"mode": "delete", "localization": this.localization});}
 }

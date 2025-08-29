@@ -18,11 +18,12 @@ public class Note {
     @ManyToOne
     private Plant plant;
 
-    @Column()
+    @Column(length = 1000)
     private String note;
 
     @Column
     private Date noteDate = new Date();
+    
     @Column
     private Date editDate;
 }

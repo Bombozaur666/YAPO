@@ -21,8 +21,8 @@ public class LocalizationController {
     }
 
     @GetMapping("/")
-    public List<Localization> localizationsPagePage(@AuthenticationPrincipal MyUserDetails userDetails) {
-        return  localizationService.getAllLocalizationsByUsername(userDetails.getUsername());
+    public List<Localization> localizationsPage(@AuthenticationPrincipal MyUserDetails userDetails) {
+        return localizationService.getAllLocalizationsByUsername(userDetails.getUsername());
     }
 
     @PostMapping("/create-localization")

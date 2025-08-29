@@ -1,33 +1,35 @@
-<div class="modal fade" id="locationModal{{modalId}}" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content rounded-3 shadow">
-      <div class="modal-header">
-        <h5 class="modal-title" id="locationModalLabel">
-          @if (localization) {{{'collections.localizations.editLocalization' | translate}}}
-          @else {{{'collections.localizations.addLocalization' | translate}}}
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" [attr.aria-label]="'collections.localizations.editLocalization' | translate">        </button>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content rounded-3 shadow">
+    <div class="modal-header">
+      <h5 class="modal-title" id="locationModalLabel">
+        {{title | translate}}
+      </h5>
+      <button
+        type="button"
+        class="btn-close"
+        [attr.aria-label]="'collections.localizations.editLocalization' | translate"
+        (click)="close()">
+      </button>
+    </div>
+
+    <form>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="name" class="form-label">{{'collections.localizations.modal.name' | translate}}</label>
+          <input
+            id="name"
+            type="text"
+            class="form-control"
+            name="name"
+            [(ngModel)]="localization.name">
+        </div>
       </div>
 
-      <form (ngSubmit)="onSubmit()">
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="name" class="form-label">{{'collections.localizations.modal.name' | translate}}</label>
-            <input
-              id="name"
-              type="text"
-              class="form-control"
-              name="name"
-              [(ngModel)]="localization.name">
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="onRemove()">{{'collections.localizations.modal.remove' | translate}}</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{'collections.localizations.modal.cancel' | translate}}</button>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">{{'collections.localizations.modal.save' | translate}}</button>
-        </div>
-      </form>
-    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="delete()">{{'collections.localizations.modal.remove' | translate}}</button>
+        <button type="button" class="btn btn-secondary" (click)="close()">{{'collections.localizations.modal.cancel' | translate}}</button>
+        <button type="submit" class="btn btn-primary" (click)="save()">{{'collections.localizations.modal.save' | translate}}</button>
+      </div>
+    </form>
   </div>
 </div>

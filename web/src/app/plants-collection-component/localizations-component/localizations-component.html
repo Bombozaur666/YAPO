@@ -15,29 +15,16 @@
         <button
           type="button"
           class="btn btn-warning me-1"
-          data-bs-toggle="modal"
-          [attr.data-bs-target]="'#locationModal' + selectedLocalization.id">
+          (click)="editOrCreateLocalization(true)">
           {{'collections.localizations.editLocalization' | translate}}
         </button>
       }
       <button
         type="button"
         class="btn btn-warning"
-        data-bs-toggle="modal"
-        data-bs-target="#locationModal">
+        (click)="editOrCreateLocalization(false)">
         {{'collections.localizations.addLocalization' | translate}}
       </button>
     </div>
   </div>
 </div>
-
-
-<app-localization-change-component
-  [localization]="selectedLocalization"
-  [modalId]="selectedLocalization.id"
-  (save)="onUpdateOrCreate($event)"
-  (remove)="onRemoveLocalization($event)">
-</app-localization-change-component>
-
-<app-localization-change-component>
-</app-localization-change-component>
