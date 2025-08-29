@@ -74,7 +74,7 @@
             <label for="plantCondition" class="form-label">{{ "collections.plants.details.plantCondition" | translate}}</label>
             <select id="plantCondition" [(ngModel)]="plant.plantCondition" name="plantCondition" class="form-select">
               @for (condition of plantConditions; track condition) {
-                <option [value]="condition">{{`collections.plants.details.plantConditionsValues.${condition}` | translate}}</option>
+                <option [value]="condition">{{`collections.plants.details.plantConditionValues.${condition}` | translate}}</option>
               }
             </select>
           </div>

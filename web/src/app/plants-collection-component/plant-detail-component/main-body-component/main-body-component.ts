@@ -4,12 +4,22 @@ import {Plant} from '../../../Interfaces/Plants/plant';
 import {UploadImageDialogComponent} from '../../../shared/upload-image-dialog-component/upload-image-dialog-component';
 import {PlantsCollectionService} from '../../plants-collection-service';
 import {NgbModal, NgbModalModule, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {UpdateFieldComponent} from './update-field-component/update-field-component';
+import {UpdateField} from '../../../Interfaces/update-field';
+import {DatePipe} from '@angular/common';
+import {PlantCondition} from '../../../Interfaces/Plants/enums/plantCondition';
+import {PlantSoil} from '../../../Interfaces/Plants/enums/PlantSoil';
+import {PlantWatering} from '../../../Interfaces/Plants/enums/PlantWatering';
+import {PlantBerth} from '../../../Interfaces/Plants/enums/PlantBerth';
+import {PlantToxicity} from '../../../Interfaces/Plants/enums/PlantToxicity';
+import {PlantLifeExpectancy} from '../../../Interfaces/Plants/enums/PlantLifeExpectancy';
 
 @Component({
   selector: 'app-main-body-component',
   imports: [
     TranslatePipe,
-    NgbModalModule
+    NgbModalModule,
+    DatePipe
   ],
   templateUrl: './main-body-component.html',
   styleUrl: './main-body-component.css'
@@ -43,4 +53,32 @@ export class MainBodyComponent {
   }
 
   onRemovePlant(): void {this.removePlant.emit(this.plant);}
+
+
+  updateField(name: string, value: any, typeData: string, options?: PlantLifeExpectancy[] | PlantCondition[] | PlantSoil[] | PlantWatering[] | PlantBerth[] | PlantToxicity[]): void {
+    const modalRef: NgbModalRef = this.modalService.open(UpdateFieldComponent);
+
+    modalRef.componentInstance.title = "collections.plants.details." + name;
+    modalRef.componentInstance.typeData = typeData;
+    modalRef.componentInstance.updateField = {fieldName: name, fieldValue: value};
+    options
+      ? modalRef.componentInstance.options = options
+      : null;
+
+    modalRef.result.then(
+      (result: UpdateField): void => {
+        this.plantsCollectionService.updatePlantField(result, this.plant.id).subscribe({
+          next: (data: Plant): void => {
+            console.log(data)
+          }
+        })
+      });
+  }
+
+  protected readonly plantConditions: PlantCondition[] = Object.values(PlantCondition);
+  protected readonly plantSoil: PlantSoil[] = Object.values(PlantSoil);
+  protected readonly plantWatering: PlantWatering[] = Object.values(PlantWatering);
+  protected readonly plantBerth: PlantBerth[] = Object.values(PlantBerth);
+  protected readonly plantToxicity: PlantToxicity[] = Object.values(PlantToxicity);
+  protected readonly plantLifeExpectancy: PlantLifeExpectancy[] = Object.values(PlantLifeExpectancy);
 }

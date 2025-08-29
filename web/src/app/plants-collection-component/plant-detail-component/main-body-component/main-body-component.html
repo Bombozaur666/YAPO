@@ -5,6 +5,11 @@
         <h2>
           {{ plant.name }}
           <button
+            class="btn btn-sm btn-edit"
+            (click)="updateField('name', plant.name, 'text')">
+            <i class="bi bi-wrench-adjustable-circle"></i>
+          </button>
+          <button
             type="button"
             class="btn btn-sm btn-danger m-1 float-end"
             (click)="onRemovePlant()">
@@ -21,130 +26,244 @@
     </div>
   </div>
   <div class="card-body">
+
     <div class="row g-1">
       <div class="col-8">
-
         <div class="row">
-          <div class="col-5">{{"collections.plants.details.species" | translate}}</div>
-          <div class="col-5">
-            <p class="card-text">{{ plant.species }}</p>
+          <div class="col-4">{{"collections.plants.details.species" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{ plant.species }}
+            </p>
+          </div>
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('species', plant.species, 'text')">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-5">{{"collections.plants.details.purchaseDate" | translate}}</div>
-          <div class="col-5">
-            <p class="card-text">{{ plant.purchaseDate }}</p>
+          <div class="col-4">{{"collections.plants.details.purchaseDate" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{ plant.purchaseDate | date:'dd.MM.yyyy' }}
+            </p>
+          </div>
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('purchaseDate', plant.purchaseDate, 'date')">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-5">{{"collections.plants.details.purchaseLocalization" | translate}}</div>
-          <div class="col-5">
-            <p class="card-text">{{ plant.purchaseLocalization }}</p>
+          <div class="col-4">{{"collections.plants.details.purchaseLocalization" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{ plant.purchaseLocalization }}
+            </p>
+          </div>
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('purchaseLocalization', plant.purchaseLocalization, 'text')">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-5">{{"collections.plants.details.fertilizationDate" | translate}}</div>
-          <div class="col-5">
-            <p class="card-text">{{ plant.fertilizationDate }}</p>
+          <div class="col-4">{{"collections.plants.details.fertilizationDate" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{ plant.fertilizationDate | date:'dd.MM.yyyy'}}
+            </p>
+          </div>
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('fertilizationDate', plant.fertilizationDate, 'date')">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-5">{{"collections.plants.details.alive" | translate}}</div>
-          <div class="col-5">
-            <p class="card-text">{{ `collections.plants.details.${plant.alive}` | translate  }}</p>
+          <div class="col-4">{{"collections.plants.details.plantWatering" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{plant.wateringDate | date:'dd.MM.yyyy'}}
+            </p>
+          </div>
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('plantWatering', plant.plantWatering, 'date')">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-5">{{"collections.plants.details.shared" | translate}}</div>
-          <div class="col-5">
-            <p class="card-text">{{ `collections.plants.details.${plant.shared}` | translate  }}</p>
+          <div class="col-4">{{"collections.plants.details.alive" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{ `collections.plants.details.${plant.alive}` | translate  }}
+            </p>
+          </div>
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('alive', plant.alive, 'checkbox')">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-5">{{"collections.plants.details.wateringDate" | translate }}</div>
-          <div class="col-5">
-            @if (plant.wateringDate) {
-              <p class="card-text">{{ `collections.plants.details.wateringDateValues.${plant.wateringDate}` | translate}}</p>
-            }
+          <div class="col-4">{{"collections.plants.details.shared" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{ `collections.plants.details.${plant.shared}` | translate  }}
+            </p>
+          </div>
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('shared', plant.shared, 'checkbox')">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-5">{{ "collections.plants.details.deathReason" | translate}}</div>
-          <div class="col-5">
-            @if ( plant.deathReason) {
-              <p class="card-text">{{"collections.plants.details.deathReason" | translate }}</p>
-            }
+          <div class="col-4">{{"collections.plants.details.plantWatering" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{ `collections.plants.details.plantWateringValues.${plant.plantWatering}` | translate}}
+            </p>
+          </div>
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('plantWatering', plant.plantWatering, 'select', plantWatering)">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-5">{{"collections.plants.details.plantCondition" | translate}}</div>
-          <div class="col-5">
-            @if ( plant.plantCondition) {
-              <p class="card-text">{{`collections.plants.details.plantConditionsValues.${plant.plantCondition}` | translate }}</p>
-            }
+          <div class="col-4">{{"collections.plants.details.plantSoil" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{ `collections.plants.details.plantSoilValues.${plant.plantSoil}` | translate}}
+            </p>
+          </div>
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('plantSoil', plant.plantSoil, 'select', plantSoil)">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
+          </div>
+        </div>
+
+        @if(!plant.alive) {
+          <div class="row">
+            <div class="col-4">{{"collections.plants.details.deathReason" | translate}}</div>
+            <div class="col">
+              <p class="card-text">
+                {{ plant.deathReason }}
+              </p>
+            </div>
+            <div class="col-1 float-end">
+              <button
+                class="btn btn-sm btn-edit"
+                (click)="updateField('deathReason', plant.deathReason, 'text')">
+                <i class="bi bi-wrench-adjustable-circle"></i>
+              </button>
+            </div>
+          </div>
+        }
+
+        <div class="row">
+          <div class="col-4">{{"collections.plants.details.plantCondition" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{ `collections.plants.details.plantConditionValues.${plant.plantCondition}` | translate}}
+            </p>
+          </div>
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('plantCondition', plant.plantCondition, 'select', plantConditions)">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-5">{{"collections.plants.details.plantSoil" | translate}}</div>
-          <div class="col-5">
-            @if ( plant.plantSoil) {
-              <p class="card-text">{{`collections.plants.details.plantSoilValues.${plant.plantSoil}` | translate }}</p>
-            }
+          <div class="col-4">{{"collections.plants.details.plantBerth" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{ `collections.plants.details.plantBerthValues.${plant.plantBerth}` | translate}}
+            </p>
+          </div>
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('plantBerth', plant.plantBerth, 'select', plantBerth)">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-5">{{"collections.plants.details.plantWatering" | translate}}</div>
-          <div class="col-5">
-            @if ( plant.plantWatering) {
-              <p class="card-text">{{`collections.plants.details.plantWateringValues.${plant.plantWatering}` | translate }}</p>
-            }
+          <div class="col-4">{{"collections.plants.details.plantToxicity" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{ `collections.plants.details.plantToxicityValues.${plant.plantToxicity}` | translate}}
+            </p>
+          </div>
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('plantToxicity', plant.plantToxicity, 'select', plantToxicity)">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-5">{{"collections.plants.details.plantBerth" | translate}}</div>
-          <div class="col-5">
-            @if ( plant.plantBerth) {
-              <p class="card-text">{{`collections.plants.details.plantBerthValues.${plant.plantBerth}` | translate }}</p>
-            }
-          </div>
-        </div>
 
         <div class="row">
-          <div class="col-5">{{"collections.plants.details.plantToxicity" | translate}}</div>
-          <div class="col-5">
-            @if ( plant.plantToxicity) {
-              <p class="card-text">{{`collections.plants.details.plantToxicityValues.${plant.plantToxicity}` | translate }}</p>
-            }
+          <div class="col-4">{{"collections.plants.details.plantLifeExpectancy" | translate}}</div>
+          <div class="col">
+            <p class="card-text">
+              {{`collections.plants.details.plantLifeExpectancyValues.${plant.plantLifeExpectancy}` | translate }}
+            </p>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-5">{{"collections.plants.details.plantLifeExpectancy" | translate}}</div>
-          <div class="col-5">
-            @if ( plant.plantLifeExpectancy) {
-              <p class="card-text">{{`collections.plants.details.plantLifeExpectancyValues.${plant.plantLifeExpectancy}` | translate }}</p>
-            }
+          <div class="col-1 float-end">
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('plantLifeExpectancy', plant.plantLifeExpectancy, 'select', plantLifeExpectancy)">
+              <i class="bi bi-wrench-adjustable-circle"></i>
+            </button>
           </div>
         </div>
       </div>
+
       <div class="col-4">
         <div class="text-center">
           <div class="position-relative d-inline-block">
             <img
               [src]="avatarPath"
               class="img-fluid border avatarPlant"
-              alt="{{'' | translate }}"
+              alt="{{'collections.plants.details.avatarPath' | translate }}"
             />
           </div>
         </div>

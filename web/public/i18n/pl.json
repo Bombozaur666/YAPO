@@ -99,6 +99,7 @@
         "fertilizationDate": "Data nawożenia",
         "alive": "Czy żyje",
         "shared": "Czy udostępniona",
+        "avatarPath": "Awatar rośliny",
         "wateringDate": "Data podlewania",
         "deathReason": "Powód śmierci",
         "plantCondition": "Stan rośliny",
@@ -107,7 +108,7 @@
         "plantBerth": "Stanowisko",
         "plantToxicity": "Stopień zagrożenia",
         "plantLifeExpectancy": "Spodziewana długość życia",
-        "plantConditionsValues": {
+        "plantConditionValues": {
           "HEALTHY": "Zdrowa",
           "NEEDS_WATER": "Potrzebuje wody",
           "NEEDS_SUNLIGHT": "Potrzebuje światła",
@@ -116,7 +117,8 @@
           "INFESTED": "Zaatakowana przez szkodniki",
           "DISEASED": "Zainfekowana",
           "STRESSED": "Zestresowana",
-          "FUCK_THIS_SHIT_IM_OUT": "Roślina postanowała umrzeć"
+          "FUCK_THIS_SHIT_IM_OUT": "Roślina postanowała umrzeć",
+          "null": ""
         },
         "plantSoilValues": {
           "POTTING_SOIL": "Ziemia doniczkowa",
@@ -134,7 +136,8 @@
           "NEUTRAL_SOIL": "Gleba obojętna",
           "PERLITE_MIX": "Mieszanka z perlitem",
           "COCONUT_SUBSTRATE": "Włókno kokosowe",
-          "ORCHID_SOIL": "Ziemia do storczyków"
+          "ORCHID_SOIL": "Ziemia do storczyków",
+          "null": ""
         },
         "plantWateringValues": {
           "DAILY": "Codziennie",
@@ -142,23 +145,32 @@
           "TWO_TIMES_A_WEEK": "Dwa razy w tygodniu",
           "WEEKLY": "Co tydzień",
           "MONTHLY": "Co miesiąc",
-          "WHEN_NEEDED": "Kiedy potrzeba"
+          "WHEN_NEEDED": "Kiedy potrzeba",
+          "null": ""
         },
         "plantBerthValues": {
           "FULL_SUN": "Pełne słońce",
           "PARTIAL_SUN": "Częściowe słońce",
           "SHADE": "Cień",
-          "INDIRECT_SUNLIGHT": "Pośrednie światło"
+          "INDIRECT_SUNLIGHT": "Pośrednie światło",
+          "null": ""
         },
         "plantToxicityValues": {
           "NON_TOXIC": "Nietoksyczna",
           "TOXIC_TO_HUMANS": "Toksyczna dla ludzi",
           "TOXIC_TO_ANIMALS": "Toksyczna dla zwierząt",
-          "TOXIC_TO_HUMANS_AND_ANIMALS": "Toksyczna dla ludzi i zwierząt"
+          "TOXIC_TO_HUMANS_AND_ANIMALS": "Toksyczna dla ludzi i zwierząt",
+          "null": ""
         },
         "plantLifeExpectancyValues": {
           "ANNUAL": "Jednoroczna",
-          "PERENNIAL": "Wieloletnia"
+          "PERENNIAL": "Wieloletnia",
+          "null": ""
+        },
+        "updateField": {
+          "close": "Zamknij",
+          "save": "Zaktualizuj",
+          "cancel": "Anuluj"
         },
         "notes": {
           "note": {

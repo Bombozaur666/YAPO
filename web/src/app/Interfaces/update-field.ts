@@ -1,4 +1,4 @@
 export interface UpdateField {
   fieldName: string;
-  fieldValue: string;
+  fieldValue: any;
 }

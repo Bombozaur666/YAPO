@@ -4,6 +4,7 @@ import {Localization, LocalizationWithoutPlants} from '../Interfaces/Plants/loca
 import {Observable} from 'rxjs';
 import {Plant} from '../Interfaces/Plants/plant';
 import {Note} from '../Interfaces/Plants/note';
+import {UpdateField} from '../Interfaces/update-field';
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +53,9 @@ export class PlantsCollectionService {
 
   deleteNote(plantId: number, note: Note): Observable<any>{
     return this.httpClient.delete(`${this.baseUrl}plants/${plantId}/note/${note.id}`);
+  }
+
+  updatePlantField(result: UpdateField, plantId: number): Observable<Plant> {
+    return this.httpClient.patch<Plant>(`${this.baseUrl}plants/${plantId}/update`, result)
   }
 }

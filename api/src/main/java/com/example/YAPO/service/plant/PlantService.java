@@ -84,7 +84,7 @@ public class PlantService {
             field.setAccessible(true);
 
             Object convertedValue = ValueConverter.convert(field.getType(), updateField.getFieldValue());
-            String oldValue =  (String) field.get(plant);
+            String oldValue =  String.valueOf(field.get(plant));
             field.set(plant, convertedValue);
 
             PlantUpdate plantUpdate = new PlantUpdate();
