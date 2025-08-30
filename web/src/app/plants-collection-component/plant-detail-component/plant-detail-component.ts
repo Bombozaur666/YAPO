@@ -15,7 +15,7 @@ import {Note} from '../../Interfaces/Plants/note';
     MainBodyComponent
   ],
   templateUrl: './plant-detail-component.html',
-  styleUrl: './plant-detail-component.css'
+  styleUrl: './plant-detail-component.css',
 })
 export class PlantDetailComponent {
   @Input() plant: Plant = {} as Plant;

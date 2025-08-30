@@ -90,6 +90,9 @@ public class PlantService {
             PlantUpdate plantUpdate = new PlantUpdate();
             plantUpdate.setOldValue(oldValue);
             plantUpdate.setNewValue(updateField.getFieldValue());
+            plantUpdate.setPlant(plant);
+            plantUpdate.setFieldName(updateField.getFieldName());
+
             plant.getPlantHistory().add(plantUpdate);
 
             plant = plantRepo.save(plant);

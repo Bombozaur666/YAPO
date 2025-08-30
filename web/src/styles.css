@@ -1,1 +1,31 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+.body {
+  background-color: #183D3D;
+}
+
+.btn-settings {
+  background-color: green !important;
+  outline: green;
+}
+
+.btn-delete {
+  background-color: #112022 !important;
+  color: white !important;
+  outline: white;
+}
+
+.btn-add {
+  background-color: #814ba0 !important;
+  outline: #814ba0;
+}
+
+.btn-cancel {
+  background-color: #d6c1e2 !important;
+  outline: #d6c1e2;
+}
+
+.btn-edit {
+  color: #a0dc7f !important;
+  outline: #a0dc7f;
+}

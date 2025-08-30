@@ -13,7 +13,7 @@ import {PlantsCollectionService} from '../../plants-collection-service';
     NoteComponent
   ],
   templateUrl: './notes-component.html',
-  styleUrl: './notes-component.css'
+  styleUrls: ['./notes-component.css', '../Card.css']
 })
 export class NotesComponent {
   @Input() plantId!: number;

@@ -22,12 +22,13 @@ import {PlantLifeExpectancy} from '../../../Interfaces/Plants/enums/PlantLifeExp
     DatePipe
   ],
   templateUrl: './main-body-component.html',
-  styleUrl: './main-body-component.css'
+  styleUrls: ['./main-body-component.css', '../Card.css']
 })
 export class MainBodyComponent {
   @Input() plant: Plant = {} as Plant;
   @Output() plantAvatarChange: EventEmitter<Plant> = new EventEmitter();
   @Output() removePlant: EventEmitter<Plant> = new EventEmitter();
+  @Output() plantUpdate: EventEmitter<Plant> = new EventEmitter();
 
   constructor(private plantsCollectionService: PlantsCollectionService,
               private modalService: NgbModal) {}
@@ -69,7 +70,8 @@ export class MainBodyComponent {
       (result: UpdateField): void => {
         this.plantsCollectionService.updatePlantField(result, this.plant.id).subscribe({
           next: (data: Plant): void => {
-            console.log(data)
+            this.plant = {...data};
+            this.plantUpdate.emit(data);
           }
         })
       });

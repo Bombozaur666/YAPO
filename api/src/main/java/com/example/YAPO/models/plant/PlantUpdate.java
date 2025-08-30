@@ -21,6 +21,9 @@ public class PlantUpdate {
     private Plant plant;
 
     @Column
+    private String fieldName;
+
+    @Column
     private String oldValue;
 
     @Column
