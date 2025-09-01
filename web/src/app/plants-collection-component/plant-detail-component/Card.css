@@ -5,3 +5,24 @@
 .card-header{
   background-color: #008170;
 }
+td .btn {
+  transition: all 0.2s ease;
+}
+td .btn-outline-primary:hover {
+  background-color: #0D6EFD26;
+}
+td .btn-outline-danger:hover {
+  background-color: #DC354526;
+}
+
+tr { /* header row*/
+  --bs-table-accent-bg: rgba(168, 255, 168, 0.3) !important;
+}
+
+tr:nth-of-type(odd) {/* odd rows */
+  --bs-table-striped-bg: #0080004D !important;
+}
+
+tr:nth-of-type(even) {/* even rows */
+  --bs-table-accent-bg: #FF69B44D  !important;
+}
