@@ -200,7 +200,11 @@
           "addPhoto": "Dodaj zdjęcie"
         },
         "updates": {
-          "title": "Historia zmian"
+          "title": "Historia zmian",
+          "id": "id",
+          "fieldName": "Pole",
+          "oldValue": "Stara wartość",
+          "newValue": "Nowa wartość"
         },
         "avatarModal": {
           "editAvatar": "Edytuj Awatar"

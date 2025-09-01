@@ -152,4 +152,19 @@ export class PlantsCollectionComponent implements OnInit {
     this.showPlants = this.preparePlants(this.selectedLocalization!);
     this.localizationsWithoutPlants = this.localizationList();
   }
+
+  onPlantUpdate(plant: Plant): void {
+    this.localizations = this.localizations.map((_localization: Localization): Localization => {
+      if (_localization.id !== this.selectedLocalization) {return _localization;}
+
+      return {
+        ..._localization,
+        plants: _localization.plants.map((_plant: Plant): Plant =>
+          _plant.id === this.selectedPlant ? { ...plant } : _plant
+        )
+      };
+    });
+    this.plant = plant;
+    this.showPlants =  this.preparePlants(this.selectedLocalization!);
+  }
 }

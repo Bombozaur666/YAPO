@@ -24,6 +24,7 @@
           <app-plant-detail-component
             [plant]="plant"
             (plantAvatarChange)="onPlantAvatarChange($event)"
+            (plantUpdate)="onPlantUpdate($event)"
             (removePlant)="onRemovePlant($event)"
             (notesChange)="onNoteChange($event)">
           </app-plant-detail-component>

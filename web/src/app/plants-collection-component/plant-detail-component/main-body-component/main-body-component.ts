@@ -70,7 +70,6 @@ export class MainBodyComponent {
       (result: UpdateField): void => {
         this.plantsCollectionService.updatePlantField(result, this.plant.id).subscribe({
           next: (data: Plant): void => {
-            this.plant = {...data};
             this.plantUpdate.emit(data);
           }
         })

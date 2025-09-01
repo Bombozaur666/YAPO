@@ -2,7 +2,8 @@
   <app-main-body-component
     [plant]="plant"
     (plantAvatarChange)="onPlantAvatarChange($event)"
-    (removePlant)="onRemovePlant($event)">
+    (removePlant)="onRemovePlant($event)"
+    (plantUpdate)="onPlantUpdate($event)">
   </app-main-body-component>
 
   <app-notes-component
