@@ -28,4 +28,10 @@
 .btn-edit {
   color: #a0dc7f !important;
   outline: #a0dc7f;
+  border-radius: 50%;
+}
+
+.btn-edit:hover {
+  background-color: #a0dc7f26 !important;
+  border-radius: 50%;
 }
