@@ -1,5 +1,5 @@
-<div class="row mt-2">
-  <div class="col-7">
+<div class="row mt-2 w-100">
+  <div class="col-7 d-flex flex-wrap align-items-start">
     @for (localization of localizations; track localization.id) {
       <button
         type="button"
@@ -9,19 +9,19 @@
       </button>
     }
   </div>
-  <div class="col-5">
-    <div class="float-end">
+  <div class="col-5 d-flex justify-content-end align-items-start">
+    <div class="float-end m-1">
       @if (selectedLocalization.id) {
         <button
           type="button"
-          class="btn btn-warning me-1"
+          class="btn btn-warning"
           (click)="editOrCreateLocalization(true)">
           {{'collections.localizations.editLocalization' | translate}}
         </button>
       }
       <button
         type="button"
-        class="btn btn-warning"
+        class="btn btn-warning ms-1"
         (click)="editOrCreateLocalization(false)">
         {{'collections.localizations.addLocalization' | translate}}
       </button>

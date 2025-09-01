@@ -77,7 +77,7 @@
     "loading": "Pobieranie danych...",
     "localizations": {
       "addLocalization": "Dodaj lokalizację",
-      "editLocalization": "Edytuj wybraną lokalizację",
+      "editLocalization": "Edytuj lokalizację",
       "modal": {
         "name": "Nazwa",
         "remove": "Usuń",
