@@ -22,7 +22,7 @@ import {PlantLifeExpectancy} from '../../../Interfaces/Plants/enums/PlantLifeExp
     DatePipe
   ],
   templateUrl: './main-body-component.html',
-  styleUrls: ['./main-body-component.css', '../Card.css']
+  styleUrls: ['./main-body-component.css', '../../../shared/Card.css']
 })
 export class MainBodyComponent {
   @Input() plant: Plant = {} as Plant;

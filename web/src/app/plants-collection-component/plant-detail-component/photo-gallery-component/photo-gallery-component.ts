@@ -10,7 +10,7 @@ import {PhotoComponent} from './photo-component/photo-component';
     PhotoComponent
   ],
   templateUrl: './photo-gallery-component.html',
-  styleUrls: ['./photo-gallery-component.css', '../Card.css']
+  styleUrls: ['./photo-gallery-component.css', '../../../shared/Card.css']
 })
 export class PhotoGalleryComponent {
   @Input() photoGallery: PhotoGallery[] = [] as PhotoGallery[];

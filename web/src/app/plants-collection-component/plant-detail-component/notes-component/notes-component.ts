@@ -18,7 +18,7 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ],
   templateUrl: './notes-component.html',
-  styleUrls: ['./notes-component.css', '../Card.css']
+  styleUrls: ['./notes-component.css', '../../../shared/Card.css']
 })
 export class NotesComponent {
   protected page: number = 1;

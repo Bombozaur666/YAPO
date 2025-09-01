@@ -10,7 +10,7 @@ import {DatePipe} from '@angular/common';
     DatePipe
   ],
   templateUrl: './update-component.html',
-  styleUrls: ['./update-component.css', '../../Card.css']
+  styleUrls: ['./update-component.css', '../../../../shared/Card.css']
 })
 export class UpdateComponent {
   @Input() update!: PlantUpdate;

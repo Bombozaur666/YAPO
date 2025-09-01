@@ -9,7 +9,7 @@ import {AddNotesComponent} from '../add-note-component/add-note-component';
   selector: 'tr[app-note-component]',
   imports: [DatePipe, CommonModule, NgbTooltip, TranslatePipe],
   templateUrl: './note-component.html',
-  styleUrls: ['./note-component.css', '../../Card.css'],
+  styleUrls: ['./note-component.css', '../../../../shared/Card.css'],
   host: { class: 'table-row' },
   hostDirectives: [],
 })

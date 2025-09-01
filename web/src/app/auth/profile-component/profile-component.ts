@@ -14,7 +14,7 @@ import {NgbModal, NgbModalModule, NgbModalRef} from '@ng-bootstrap/ng-bootstrap'
     NgbModalModule
   ],
   templateUrl: './profile-component.html',
-  styleUrls: ['./profile-component.css']
+  styleUrls: ['./profile-component.css', '../../shared/Card.css']
 })
 export class ProfileComponent implements OnInit {
   protected user!: User;

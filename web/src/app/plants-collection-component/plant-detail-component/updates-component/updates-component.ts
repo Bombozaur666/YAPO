@@ -16,7 +16,7 @@ import {SlicePipe} from '@angular/common';
     SlicePipe
   ],
   templateUrl: './updates-component.html',
-  styleUrls: ['./updates-component.css', '../Card.css']
+  styleUrls: ['./updates-component.css', '../../../shared/Card.css']
 })
 export class UpdatesComponent {
   protected page: number = 1;
