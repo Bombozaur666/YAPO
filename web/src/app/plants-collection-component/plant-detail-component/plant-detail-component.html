@@ -1,20 +1,20 @@
-<app-main-body-component
-  [plant]="plant"
-  (plantAvatarChange)="onPlantAvatarChange($event)"
-  (removePlant)="onRemovePlant($event)">
-</app-main-body-component>
+<div class="ml-1">
+  <app-main-body-component
+    [plant]="plant"
+    (plantAvatarChange)="onPlantAvatarChange($event)"
+    (removePlant)="onRemovePlant($event)">
+  </app-main-body-component>
 
-<app-notes-component
-  [notes]="plant.notes"
-  (notesChanged)="onNotesChange($event)"
-  [plantId]="plant.id">
-</app-notes-component>
+  <app-notes-component
+    [notes]="plant.notes"
+    (notesChanged)="onNotesChange($event)"
+    [plantId]="plant.id">
+  </app-notes-component>
 
-<app-photo-gallery-component>
-</app-photo-gallery-component>
+  <app-photo-gallery-component>
+  </app-photo-gallery-component>
 
-<app-updates-component
-  [updates]="plant.plantHistory">
-</app-updates-component>
-
-
+  <app-updates-component
+    [updates]="plant.plantHistory">
+  </app-updates-component>
+</div>

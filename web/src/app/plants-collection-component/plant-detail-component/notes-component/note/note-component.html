@@ -1,24 +1,22 @@
-<td>{{ note.id }}</td>
-<td>{{ note.noteDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
-<td>
+<td class="col-1">{{ note.id }}</td>
+<td class="col-2">{{ note.noteDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
+<td  class="col-2">
   @if (note.editDate) {
     {{ note.editDate | date:'dd.MM.yyyy HH:mm:ss'}}
   } @else {
     --
   }
 </td>
-<td>{{ note.note }}</td>
-<td>
+<td class="col-5">{{ note.note }}</td>
+<td class="col-2 text-end">
   <button
     type="button"
-    class="btn btn-sm btn-outline-primary float-end"
+    class="btn btn-sm btn-outline-primary me-1"
     ngbTooltip="{{'collections.plants.details.notes.note.utility.edit' | translate}}"
     placement="top"
     (click)="editNote()">
     <i class="bi bi-wrench"></i>
   </button>
-</td>
-<td>
   <button
     type="button"
     class="btn btn-sm btn-outline-danger"
