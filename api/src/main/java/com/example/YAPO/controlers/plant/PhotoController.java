@@ -4,6 +4,7 @@ import com.example.YAPO.models.User.MyUserDetails;
 import com.example.YAPO.models.plant.PhotoGallery;
 import com.example.YAPO.service.plant.PhotoService;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,18 +20,20 @@ public class PhotoController {
     }
 
     @PostMapping("")
-    public PhotoGallery addPhotoPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid PhotoGallery photoGallery) {
-        return photoService.createPhoto(id, userDetails.getUser(), photoGallery);
+    public ResponseEntity<PhotoGallery> addPhotoPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid PhotoGallery photoGallery) {
+        PhotoGallery photo = photoService.createPhoto(id, userDetails.getUser(), photoGallery);
+        return ResponseEntity.ok(photo);
     }
 
     @GetMapping("")
-    public List<PhotoGallery> getAllPhotosPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
-        return photoService.getPhotos(id, userDetails.getUser());
+    public ResponseEntity<List<PhotoGallery>> getAllPhotosPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
+        List<PhotoGallery> photoGallery = photoService.getPhotos(id, userDetails.getUser());
+        return ResponseEntity.ok(photoGallery);
     }
 
     @PatchMapping("/{photoId}")
-    public PhotoGallery updatePhotoPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long photoId, @RequestBody PhotoGallery photoGallery) {
-        return photoService.updatePhoto(userDetails.getUser(), photoId, photoGallery);
+    public ResponseEntity<PhotoGallery> updatePhotoPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long photoId, @RequestBody PhotoGallery photoGallery) {
+        PhotoGallery photo = photoService.updatePhoto(userDetails.getUser(), photoId, photoGallery);
+        return ResponseEntity.ok(photo);
     }
-
 }

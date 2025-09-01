@@ -10,6 +10,10 @@
     </h3>
   </div>
   <div class="card-body">
-
+    @for (photo of photoGallery; track photo.id) {
+      <app-photo-component
+        [photo]="photo">
+      </app-photo-component>
+    }
   </div>
 </div>

@@ -19,6 +19,10 @@
 
 @else {
   <td>{{ `collections.plants.details.${update.fieldName}` | translate}}</td>
-  <td>{{update.oldValue}}</td>
+  @if (update.oldValue == 'null') {
+    <td></td>
+  } @else {
+    <td>{{update.oldValue}}</td>
+  }
   <td>{{update.newValue}}</td>
 }

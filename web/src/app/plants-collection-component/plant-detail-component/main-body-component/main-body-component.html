@@ -3,13 +3,15 @@
     <div class="row">
       <div class="card-title">
         <h2 class="d-flex align-items-center justify-content-between">
-          <span>{{ plant.name }}</span>
           <span>
-             <button
-               class="btn btn-sm btn-edit"
-               (click)="updateField('name', plant.name, 'text')">
+            {{ plant.name }}
+            <button
+              class="btn btn-sm btn-edit"
+              (click)="updateField('name', plant.name, 'text')">
             <i class="bi bi-pencil"></i>
             </button>
+          </span>
+          <span>
             <button
               type="button"
               class="btn btn-sm btn-delete m-1"

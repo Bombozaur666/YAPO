@@ -217,5 +217,11 @@
         "cancel": "Anuluj"
       }
     }
+  },
+  "pagination": {
+    "5": "5 pozycji na stronę.",
+    "10": "10 pozycji na stronę.",
+    "20": "20 pozycji na stronę.",
+    "all": "Wszystkie"
   }
 }

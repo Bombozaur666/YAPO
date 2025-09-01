@@ -2,20 +2,27 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {TranslatePipe} from "@ngx-translate/core";
 import {Note} from '../../../Interfaces/Plants/note';
 import {NoteComponent} from './note/note-component';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalRef, NgbPagination} from '@ng-bootstrap/ng-bootstrap';
 import {AddNotesComponent} from './add-note-component/add-note-component';
 import {PlantsCollectionService} from '../../plants-collection-service';
+import {SlicePipe} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-notes-component',
   imports: [
     TranslatePipe,
-    NoteComponent
+    NoteComponent,
+    NgbPagination,
+    SlicePipe,
+    FormsModule
   ],
   templateUrl: './notes-component.html',
   styleUrls: ['./notes-component.css', '../Card.css']
 })
 export class NotesComponent {
+  protected page: number = 1;
+  protected pageSize: number = 5;
   @Input() plantId!: number;
   @Input() notes!: Note[];
   @Output() notesChanged: EventEmitter<Note[]> = new EventEmitter<Note[]>();
