@@ -63,9 +63,10 @@ public class PlantController {
 
     @PostMapping(value = "/avatar/{plantId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Plant> uploadAvatar(
+            @AuthenticationPrincipal MyUserDetails userDetails,
             @RequestParam("file") MultipartFile file,
             @PathVariable long plantId) throws Exception {
-        Plant _plant = plantAvatarService.uploadAvatar(plantId, file);
+        Plant _plant = plantAvatarService.uploadAvatar(plantId, file, userDetails.getUser());
         return ResponseEntity.ok(_plant);
     }
 

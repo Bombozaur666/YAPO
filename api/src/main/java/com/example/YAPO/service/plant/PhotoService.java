@@ -3,22 +3,38 @@ package com.example.YAPO.service.plant;
 import com.example.YAPO.models.User.User;
 import com.example.YAPO.models.enums.ErrorList;
 import com.example.YAPO.models.plant.PhotoGallery;
+import com.example.YAPO.models.plant.PhotoGalleryRequest;
 import com.example.YAPO.models.plant.Plant;
 import com.example.YAPO.repositories.plant.PhotoRepo;
 import com.example.YAPO.repositories.plant.PlantRepo;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.core.io.Resource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionSystemException;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class PhotoService {
     private final PlantRepo plantRepo;
     private final PhotoRepo photoRepo;
+    private static final Set<String> ALLOWED_TYPES = Set.of("image/jpeg","image/png","image/webp");
+
+    private final String uploadDir = "uploads/plant/photoGallery/";
 
     public PhotoService(PlantRepo plantRepo, PhotoRepo photoRepo) {
         this.plantRepo = plantRepo;
@@ -26,28 +42,48 @@ public class PhotoService {
     }
 
     @Transactional
-    public PhotoGallery createPhoto(Long id, User user, @Valid PhotoGallery photoGallery) {
-        Plant _plant = plantRepo.findByIdAndUser_Username(id,user.getUsername());
-        if (_plant != null) {
-            photoGallery.setPlant(_plant);
-            try {
-                photoGallery = photoRepo.save(photoGallery);
-            } catch (DataIntegrityViolationException |
-                     ConstraintViolationException | TransactionSystemException e) {
-                throw new RuntimeException(ErrorList.ERROR_DURING_DATABASE_SAVING.toString());
-            }
-        } else {
-            throw new RuntimeException(ErrorList.PLANT_NOT_FOUND.toString());
+    public Plant createPhoto(Long plantId, User user, Date date, String title, String description , MultipartFile image) throws IOException {
+
+        Plant _plant = plantRepo.findByIdAndUser_Username(plantId, user.getUsername());
+        PhotoGallery _photoGallery = new PhotoGallery();
+
+        _photoGallery.setPlant(_plant);
+
+        if (description != null) {_photoGallery.setDescription(description);}
+        if (date != null) {_photoGallery.setDate(date);}
+        if (title != null) {_photoGallery.setTitle(title);}
+
+
+        if (image == null || image.isEmpty()) {throw new IllegalArgumentException("Empty file");}
+
+        if (!ALLOWED_TYPES.contains(image.getContentType())) {
+            throw new IllegalArgumentException("Unsupported file type");
         }
-        return photoGallery;
+
+        File dir = new File(uploadDir);
+        if (!dir.exists()) dir.mkdirs();
+
+        String original = image.getOriginalFilename() != null ? image.getOriginalFilename() : "avatar";
+        String ext = original.contains(".") ? original.substring(original.lastIndexOf(".")) : ".jpg";
+        String fileName = UUID.randomUUID() + "_" + original.replaceAll("\\s+","_");
+        if (!fileName.endsWith(ext)) fileName += ext;
+
+        Path destination = Paths.get(uploadDir).resolve(fileName).normalize();
+
+        Files.copy(image.getInputStream(), destination, StandardCopyOption.REPLACE_EXISTING);
+
+        _photoGallery.setImagePath(fileName);
+
+        _plant.getPhotoGallery().add(_photoGallery);
+        return plantRepo.save(_plant);
     }
 
     @Transactional
-    public PhotoGallery updatePhoto(User user, Long photoId, PhotoGallery photoGallery) {
+    public PhotoGallery updatePhoto(Long photoId, User user, PhotoGalleryRequest photoGalleryRequest) {
         PhotoGallery _photo = photoRepo.findByIdAndPlant_User_Id(photoId, user.getId());
         if (_photo != null) {
-            _photo.setDescription(photoGallery.getDescription());
-            _photo.setTitle(photoGallery.getTitle());
+            _photo.setDescription(photoGalleryRequest.getDescription());
+            _photo.setTitle(photoGalleryRequest.getTitle());
             try {
                 _photo = photoRepo.save(_photo);
             } catch (DataIntegrityViolationException |
@@ -60,7 +96,19 @@ public class PhotoService {
         return _photo;
     }
 
-    public List<PhotoGallery> getPhotos(Long plantId, User user) {
-        return photoRepo.findAllByPlant_IdAndPlant_User_Id(plantId, user.getId());
+    private Path getPhotoPath(String path) {return Paths.get(uploadDir).resolve(path).normalize();}
+
+    public Path getPhoto(Long plantId, User user, String fileName) throws IOException {
+        PhotoGallery _photoGallery = photoRepo
+                .findByPlant_IdAndImagePathAndPlant_User_UsernameOrPlant_Shared(
+                        plantId,
+                        fileName,
+                        user.getUsername(),
+                        true);
+
+        if (_photoGallery == null) { throw new RuntimeException(ErrorList.PHOTO_NOT_FOUND.toString()); }
+
+        return getPhotoPath(_photoGallery.getImagePath());
     }
+
 }

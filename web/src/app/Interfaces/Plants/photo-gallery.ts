@@ -6,7 +6,7 @@ export interface PhotoGallery {
   visible: boolean;
   createdAt: Date;
   date?: Date;
-  image: string;
+  imagePath: string;
   title?: string;
   description?: string;
 }

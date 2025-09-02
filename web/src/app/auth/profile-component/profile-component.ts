@@ -52,7 +52,7 @@ export class ProfileComponent implements OnInit {
     modalRef.componentInstance.modalTitle = 'profile.settings.editAvatarTitle';
 
     modalRef.result.then(
-      (result:File): void => {this.onAvatarUploaded(result);}
+      (result: File): void => {this.onAvatarUploaded(result);}
     );
   }
 }

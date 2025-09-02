@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Plant} from '../Interfaces/Plants/plant';
 import {Note} from '../Interfaces/Plants/note';
 import {UpdateField} from '../Interfaces/update-field';
+import {PhotoGalleryRequest} from '../Interfaces/Plants/PhotoGalleryRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,11 @@ export class PlantsCollectionService {
   }
 
   avatarPath(plant: Plant): string {
-    return "http://localhost:8080/plants/avatar/" + plant.avatarPath;
+    return `http://localhost:8080/plants/avatar/${plant.avatarPath}`;
+  }
+
+  photoPath(plantId: number, photoName: string): string{
+    return `http://localhost:8080/plants/${plantId}/photo/${photoName}`
   }
 
   removePlant(id: number): Observable<any> {
@@ -57,5 +62,20 @@ export class PlantsCollectionService {
 
   updatePlantField(result: UpdateField, plantId: number): Observable<Plant> {
     return this.httpClient.patch<Plant>(`${this.baseUrl}plants/${plantId}/update`, result)
+  }
+
+  addPhoto(photo: PhotoGalleryRequest, plantId: number): Observable<Plant> {
+    const form = new FormData();
+
+    form.append('image', photo.image!);
+    if (photo.title) {form.append('title', photo.title);}
+    if (photo.date) {form.append('date', new Date(photo.date).toISOString());}
+    if (photo.description) {form.append('description', photo.description);}
+
+    return this.httpClient.post<Plant>(`${this.baseUrl}plants/${plantId}/photo`, form)
+  }
+
+  getPhoto(photoPath: string): Observable<Blob> {
+    return this.httpClient.get(photoPath, {responseType: 'blob'});
   }
 }

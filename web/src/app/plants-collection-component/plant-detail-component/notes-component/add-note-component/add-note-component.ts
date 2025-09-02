@@ -11,7 +11,7 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ],
   templateUrl: './add-note-component.html',
-  styleUrl: './add-note-component.css'
+  styleUrls: ['./add-note-component.css', '../../../../shared/Card.css']
 })
 export class AddNotesComponent {
   @Output() addNote: EventEmitter<Note> = new EventEmitter();

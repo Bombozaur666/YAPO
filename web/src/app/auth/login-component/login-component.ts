@@ -11,7 +11,7 @@ import {AuthService} from '../auth-service';
     TranslatePipe
   ],
   templateUrl: './login-component.html',
-  styleUrl: './login-component.css'
+  styleUrls: ['./login-component.css', '../../shared/Card.css']
 })
 export class LoginComponent {
   protected loginRequest: LoginRequest = {username: '', password: ''};

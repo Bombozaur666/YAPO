@@ -19,7 +19,7 @@ import {PlantToxicity} from '../../../../Interfaces/Plants/enums/PlantToxicity';
     FormsModule
   ],
   templateUrl: './update-field-component.html',
-  styleUrl: './update-field-component.css'
+  styleUrls: ['./update-field-component.css', '../../../../shared/Card.css']
 })
 export class UpdateFieldComponent {
   @Input() title!: string ;

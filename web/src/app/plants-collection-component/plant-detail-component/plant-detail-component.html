@@ -13,6 +13,8 @@
   </app-notes-component>
 
   <app-photo-gallery-component
+    [plantId]="plant.id"
+    (plantUpdate)="onPlantUpdate($event)"
     [photoGallery]="plant.photoGallery">
   </app-photo-gallery-component>
 

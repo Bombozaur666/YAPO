@@ -34,7 +34,7 @@ public class PhotoGallery {
 
     @Column
     @NotNull
-    private byte[] image;
+    private String imagePath;
 
     @Column
     private String title;

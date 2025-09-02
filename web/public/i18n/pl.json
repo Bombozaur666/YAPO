@@ -59,7 +59,7 @@
     "email": "Email: ",
     "registrationDate": "Data rejestracji: ",
     "settings": {
-      "editAvatar": "Edytuj Awatar.",
+      "editAvatar": "Edytuj Awatar",
       "editAvatarTitle": "Wybierz zdjęcie",
       "avatarAlt": "Awatar użytkownika"
     }
@@ -197,7 +197,14 @@
         },
         "photoGallery": {
           "title": "Galeria",
-          "addPhoto": "Dodaj zdjęcie"
+          "addPhoto": "Dodaj zdjęcie",
+          "modal": {
+            "title": "Dodaj zdjęcie",
+            "titlePhoto": "Tytuł",
+            "datePhoto": "Data",
+            "descriptionPhoto": "Opis",
+            "filePhoto": "Plik"
+          }
         },
         "updates": {
           "title": "Historia zmian",

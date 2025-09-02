@@ -1,3 +1,9 @@
-<div class="card">
-  name
+<div class="card m-1" style="width: 150px; max-width: 150px">
+  @if (photoUrl) {
+    <img
+      [src]="photoUrl"
+      class="card-img-top img-thumbnail"
+      [alt]="photo.title"
+      fill>
+  }
 </div>

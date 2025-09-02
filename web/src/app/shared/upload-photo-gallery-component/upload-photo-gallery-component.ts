@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {TranslatePipe} from '@ngx-translate/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
+import {PhotoGalleryRequest} from '../../Interfaces/Plants/PhotoGalleryRequest';
 
 @Component({
   selector: 'app-upload-image-dialog-component',
@@ -10,15 +11,16 @@ import {FormsModule} from '@angular/forms';
     TranslatePipe,
     FormsModule,
   ],
-  templateUrl: './upload-image-dialog-component.html',
-  styleUrls: ['./upload-image-dialog-component.css', '../Card.css']
+  templateUrl: './upload-photo-gallery-component.html',
+  styleUrls: ['./upload-photo-gallery-component.css', '../Card.css']
 })
-export class UploadImageDialogComponent {
+export class UploadPhotoGalleryComponent {
   selectedFile: File | null = null;
   previewUrl: string | ArrayBuffer | null = null;
 
   @Input() circled: boolean = false;
   @Input() modalTitle: string = '' ;
+  @Input() photoGalleryRequest: PhotoGalleryRequest = {} as PhotoGalleryRequest;
 
   constructor(public activeModal: NgbActiveModal) {}
 
@@ -31,10 +33,11 @@ export class UploadImageDialogComponent {
       const reader = new FileReader();
       reader.onload = () => this.previewUrl = reader.result;
       reader.readAsDataURL(this.selectedFile);
+      this.photoGalleryRequest.image = input.files[0];
     }
   }
 
   close(): void { this.activeModal.dismiss('user-cancel');}
 
-  save(): void {this.activeModal.close(this.selectedFile);}
+  save(): void {this.activeModal.close(this.photoGalleryRequest);}
 }

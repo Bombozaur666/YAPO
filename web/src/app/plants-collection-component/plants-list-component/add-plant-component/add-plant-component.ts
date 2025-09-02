@@ -18,7 +18,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
         TranslatePipe
     ],
   templateUrl: './add-plant-component.html',
-  styleUrl: './add-plant-component.css'
+  styleUrls: ['./add-plant-component.css', '../../../shared/Card.css']
 })
 export class AddPlantComponent {
   @Input() plant: Plant = {"alive": true} as Plant;

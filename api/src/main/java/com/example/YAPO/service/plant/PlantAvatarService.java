@@ -1,5 +1,7 @@
 package com.example.YAPO.service.plant;
 
+import com.example.YAPO.models.User.User;
+import com.example.YAPO.models.enums.ErrorList;
 import com.example.YAPO.models.plant.Plant;
 import com.example.YAPO.repositories.plant.PlantRepo;
 import jakarta.persistence.EntityNotFoundException;
@@ -26,10 +28,10 @@ public class PlantAvatarService {
         this.plantRepo = plantRepo;
     }
 
-    public Plant uploadAvatar(long plantId, MultipartFile file) throws IOException {
-        Plant plant = plantRepo.findById(plantId)
-                .orElseThrow(() -> new EntityNotFoundException("Plant not found with id " + plantId));
+    public Plant uploadAvatar(long plantId, MultipartFile file, User user) throws IOException {
+        Plant plant = plantRepo.findByIdAndUser_Username(plantId, user.getUsername());
 
+        if (plant == null) {throw new EntityNotFoundException(ErrorList.PLANT_NOT_FOUND.toString());}
 
         if (file == null || file.isEmpty()) {
             throw new IllegalArgumentException("Empty file");

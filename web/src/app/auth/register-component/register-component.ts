@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
         TranslatePipe
     ],
   templateUrl: './register-component.html',
-  styleUrl: './register-component.css'
+  styleUrls: ['./register-component.css', '../../shared/Card.css']
 })
 export class RegisterComponent {
   protected registerForm: RegisterRequest = {username: '', password: '', email: ''};

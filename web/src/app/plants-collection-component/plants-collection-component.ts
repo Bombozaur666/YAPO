@@ -48,7 +48,7 @@ export class PlantsCollectionComponent implements OnInit {
 
   selectPlant(id: number): void {
     this.selectedPlant = id;
-    this.plant = this.showPlants.find((_plant: Plant): boolean => _plant.id === id)!;
+    this.plant = {...this.showPlants.find((_plant: Plant): boolean => _plant.id === id)!};
   }
 
   localizationChange(id: number): void {
@@ -155,8 +155,7 @@ export class PlantsCollectionComponent implements OnInit {
 
   onPlantUpdate(plant: Plant): void {
     this.localizations = this.localizations.map((_localization: Localization): Localization => {
-      if (_localization.id !== this.selectedLocalization) {return _localization;}
-
+      if (_localization.id !== this.selectedLocalization) return _localization;
       return {
         ..._localization,
         plants: _localization.plants.map((_plant: Plant): Plant =>
@@ -164,7 +163,7 @@ export class PlantsCollectionComponent implements OnInit {
         )
       };
     });
-    this.plant = plant;
     this.showPlants =  this.preparePlants(this.selectedLocalization!);
+    this.plant = {...plant};
   }
 }

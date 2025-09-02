@@ -1,8 +1,8 @@
-.card {
+.card, .modal-content {
   background-color: #93B1A6
 }
 
-.card-header{
+.card-header, .modal-header{
   background-color: #008170;
 }
 td .btn {

@@ -4,15 +4,17 @@
       {{'collections.plants.details.photoGallery.title' | translate }}
       <button
         type="button"
-        class="btn btn-sm btn-add m-1 float-end">
+        class="btn btn-sm btn-add m-1 float-end"
+        (click)="uploadPhoto()">
         {{'collections.plants.details.photoGallery.addPhoto' | translate }}
       </button>
     </h3>
   </div>
-  <div class="card-body">
+  <div class="card-body d-flex flex-wrap">
     @for (photo of photoGallery; track photo.id) {
       <app-photo-component
-        [photo]="photo">
+        [photo]="photo"
+        [plantId]="plantId">
       </app-photo-component>
     }
   </div>

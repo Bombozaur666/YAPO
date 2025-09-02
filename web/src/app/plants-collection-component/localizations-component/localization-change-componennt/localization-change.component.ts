@@ -11,7 +11,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
     FormsModule
   ],
   templateUrl: './localization-change.component.html',
-  styleUrl: './localization-change.component.css'
+  styleUrls: ['./localization-change.component.css', '../../../shared/Card.css']
 })
 export class LocalizationChangeComponent {
   @Input() localization: LocalizationWithoutPlants = {"name": ""};
