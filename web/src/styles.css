@@ -16,8 +16,9 @@
 }
 
 .btn-add {
-  background-color: #934dbc !important;
-  outline: #934dbc;
+  background-color: #BD18DAFF !important;
+  outline: #BD18DAFF;
+  color: white !important;
 }
 
 .btn-cancel {
