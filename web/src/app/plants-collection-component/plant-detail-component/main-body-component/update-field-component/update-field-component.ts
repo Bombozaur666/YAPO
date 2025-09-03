@@ -30,5 +30,13 @@ export class UpdateFieldComponent {
 
   close(): void { this.activeModal.dismiss('user-cancel');}
 
-  save(): void { this.activeModal.close(this.updateField);}
+  save(): void {
+    if (this.updateField.fieldName === 'purchaseDate' ||
+        this.updateField.fieldName === 'fertilizationDate'||
+        this.updateField.fieldName === 'wateringDate'||
+        this.updateField.fieldName === 'creationDate')  {
+      this.updateField.fieldValue = new Date(this.updateField.fieldValue).toISOString()
+    }
+    this.activeModal.close(this.updateField);
+  }
 }

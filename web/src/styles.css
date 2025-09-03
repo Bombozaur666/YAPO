@@ -36,3 +36,25 @@
   background-color: #a0dc7f26 !important;
   border-radius: 50%;
 }
+
+.btn-outline-add {
+  color: white !important;
+  border: 1px solid #BD18DA !important;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-outline-add:hover {
+  color: #fff;
+  background-color: #BD18DA;
+  border-color: #BD18DA;
+}
+
+.btn-outline-add:focus,
+.btn-outline-add:active,
+.btn-outline-add.active {
+  color: #fff !important;
+  background-color: #BD18DA !important;
+  border-color: #BD18DA !important;
+  box-shadow: 0 0 0 0.25rem #BD18DA40;
+}

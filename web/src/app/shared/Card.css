@@ -1,5 +1,5 @@
 .card, .modal-content, .modal-body {
-  background-color: #93B1A6
+  background-color: #93B1A6;
 }
 
 .card-header, .modal-header{
@@ -16,13 +16,13 @@ td .btn-outline-danger:hover {
 }
 
 tr { /* header row*/
-  --bs-table-accent-bg: rgba(168, 255, 168, 0.3) !important;
+  --bs-table-accent-bg: #008170CB !important;
 }
 
 tr:nth-of-type(odd) {/* odd rows */
-  --bs-table-striped-bg: #0080004D !important;
+  --bs-table-striped-bg: #93B1A6 !important;
 }
 
 tr:nth-of-type(even) {/* even rows */
-  --bs-table-accent-bg: #FF69B44D  !important;
+  --bs-table-accent-bg: #008170  !important;
 }
