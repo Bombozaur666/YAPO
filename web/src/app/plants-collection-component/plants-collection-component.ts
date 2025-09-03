@@ -7,7 +7,6 @@ import {PlantDetailComponent} from './plant-detail-component/plant-detail-compon
 import {TranslatePipe} from '@ngx-translate/core';
 import {PlantsListComponent} from './plants-list-component/plants-list-component';
 import {Note} from '../Interfaces/Plants/note';
-import {PhotoGallery} from '../Interfaces/Plants/photo-gallery';
 
 @Component({
   selector: 'app-plants-collection-component',
