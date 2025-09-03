@@ -204,6 +204,17 @@
             "datePhoto": "Data",
             "descriptionPhoto": "Opis",
             "filePhoto": "Plik"
+          },
+          "fullPhoto": {
+            "title": "Tytuł: ",
+            "date": "Data: ",
+            "creationDate": "Data dodania: ",
+            "description": "Opis: ",
+            "close": "Zamknij",
+            "deletePhoto": "Usuń zdjęcie",
+            "downloadPhoto": "Pobierz zdjęcie",
+            "nextPhoto": "Nastepne zdjęcie",
+            "prevPhoto": "Poprzednie zdjęcie"
           }
         },
         "updates": {

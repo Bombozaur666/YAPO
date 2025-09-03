@@ -1,12 +1,20 @@
 <div class="modal-content">
-  <div class="modal-header">
+  <div class="modal-header d-flex align-items-center">
     <h5 class="modal-title" id="uploadImageModalLabel">{{'collections.plants.details.photoGallery.modal.title' | translate}}</h5>
-    <button
-      type="button"
-      class="btn-close"
-      [attr.aria-label]="'shared.uploadPhoto.close' | translate"
-      (click)="close()">
-    </button>
+    <div class="ms-auto d-flex gap-2">
+      <button
+        type="button"
+        class="btn btn-add"
+        (click)="save()">
+        {{'shared.uploadPhoto.upload' | translate}}
+      </button>
+      <button
+        type="button"
+        class="btn-close"
+        [attr.aria-label]="'shared.uploadPhoto.close' | translate"
+        (click)="close()">
+      </button>
+    </div>
   </div>
 
   <div class="modal-body">
@@ -51,10 +59,5 @@
              fill>
       </div>
     }
-  </div>
-
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="close()">{{'shared.uploadPhoto.cancel' | translate}}</button>
-    <button type="button" class="btn btn-add" (click)="save()">{{'shared.uploadPhoto.upload' | translate}}</button>
   </div>
 </div>

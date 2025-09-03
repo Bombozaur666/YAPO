@@ -14,7 +14,9 @@
     @for (photo of photoGallery; track photo.id) {
       <app-photo-component
         [photo]="photo"
-        [plantId]="plantId">
+        [plantId]="plantId"
+        (photoSlide)="onPhotoSlide($event)"
+        (photoRemove)="onPhotoRemove($event)">
       </app-photo-component>
     }
   </div>

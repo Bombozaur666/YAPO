@@ -5,8 +5,6 @@ import com.example.YAPO.models.plant.PhotoGallery;
 import com.example.YAPO.models.plant.PhotoGalleryRequest;
 import com.example.YAPO.models.plant.Plant;
 import com.example.YAPO.service.plant.PhotoService;
-import jakarta.validation.Valid;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,7 +18,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Date;
-import java.util.List;
 
 @RestController
 @RequestMapping("/plants/{id}/photo")
@@ -63,5 +60,11 @@ public class PhotoController {
     public ResponseEntity<PhotoGallery> updatePhotoPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long photoId, @RequestBody PhotoGalleryRequest photoGalleryRequest) {
         PhotoGallery photoGallery = photoService.updatePhoto(photoId, userDetails.getUser(), photoGalleryRequest);
         return ResponseEntity.ok(photoGallery);
+    }
+
+    @DeleteMapping("/{photoId}")
+    public ResponseEntity<?> deletePhotoPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long photoId) {
+        photoService.removePhoto(userDetails.getUser(), photoId);
+        return ResponseEntity.ok().build();
     }
 }

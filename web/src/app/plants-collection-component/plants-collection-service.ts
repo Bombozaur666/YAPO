@@ -6,6 +6,7 @@ import {Plant} from '../Interfaces/Plants/plant';
 import {Note} from '../Interfaces/Plants/note';
 import {UpdateField} from '../Interfaces/update-field';
 import {PhotoGalleryRequest} from '../Interfaces/Plants/PhotoGalleryRequest';
+import {PhotoGallery} from '../Interfaces/Plants/photo-gallery';
 
 @Injectable({
   providedIn: 'root'
@@ -77,5 +78,9 @@ export class PlantsCollectionService {
 
   getPhoto(photoPath: string): Observable<Blob> {
     return this.httpClient.get(photoPath, {responseType: 'blob'});
+  }
+
+  removePhoto(photo: PhotoGallery, plantId: number): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}plants/${plantId}/photo/${photo.id}`);
   }
 }

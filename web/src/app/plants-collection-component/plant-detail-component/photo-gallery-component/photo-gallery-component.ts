@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, QueryList, ViewChildren} from '@angular/core';
 import {TranslatePipe} from "@ngx-translate/core";
 import {PhotoGallery} from '../../../Interfaces/Plants/photo-gallery';
 import {PhotoComponent} from './photo-component/photo-component';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {PlantsCollectionService} from '../../plants-collection-service';
-import {UploadPhotoGalleryComponent} from '../../../shared/upload-photo-gallery-component/upload-photo-gallery-component';
+import {UploadPhotoGalleryComponent} from './upload-photo-gallery-component/upload-photo-gallery-component';
 import {PhotoGalleryRequest} from '../../../Interfaces/Plants/PhotoGalleryRequest';
 import {Plant} from '../../../Interfaces/Plants/plant';
 
@@ -21,6 +21,9 @@ export class PhotoGalleryComponent {
   @Input() photoGallery: PhotoGallery[] = [] as PhotoGallery[];
   @Input() plantId!: number;
   @Output() plantUpdate: EventEmitter<Plant> = new EventEmitter();
+  @Output() photoRemove: EventEmitter<PhotoGallery> = new EventEmitter();
+
+  @ViewChildren(PhotoComponent) photoComponents!: QueryList<PhotoComponent>;
 
   constructor(private modalService: NgbModal,
               private plantsCollectionService: PlantsCollectionService) {}
@@ -40,4 +43,22 @@ export class PhotoGalleryComponent {
     );
   }
 
+  navigatePhoto(photo: PhotoGallery, direction: 'next' | 'prev'): PhotoGallery{
+    const index: number = this.photoGallery.findIndex((_photoGallery: PhotoGallery): boolean => _photoGallery === photo);
+
+    if (index === -1) {return photo;}
+
+    if (direction === 'next') {return (index === this.photoGallery.length - 1) ? photo : this.photoGallery[index + 1];}
+    else {return (index === 0) ? photo : this.photoGallery[index - 1];}
+  }
+
+  onPhotoSlide(change: {photo: PhotoGallery; direction: 'next' | 'prev'}): void {
+    let newPhoto: PhotoGallery = this.navigatePhoto(change.photo, change.direction);
+
+    const component: PhotoComponent = this.photoComponents.find((_photoComponent: PhotoComponent): boolean => _photoComponent.photo.id === newPhoto.id)!;
+
+    component.onClick();
+  }
+
+  onPhotoRemove(photo: PhotoGallery): void {this.photoRemove.emit(photo);}
 }

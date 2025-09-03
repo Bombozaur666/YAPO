@@ -7,11 +7,8 @@ import com.example.YAPO.models.plant.PhotoGalleryRequest;
 import com.example.YAPO.models.plant.Plant;
 import com.example.YAPO.repositories.plant.PhotoRepo;
 import com.example.YAPO.repositories.plant.PlantRepo;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.core.io.Resource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionSystemException;
@@ -24,7 +21,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -111,4 +107,15 @@ public class PhotoService {
         return getPhotoPath(_photoGallery.getImagePath());
     }
 
+    @Transactional
+    public void removePhoto(User user, Long photoId) {
+        PhotoGallery _photo = photoRepo.findByIdAndPlant_User_Id(photoId, user.getId());
+        if(_photo == null) {throw new RuntimeException(ErrorList.PHOTO_NOT_FOUND.toString());}
+        photoRepo.delete(_photo);
+        Path _path = Path.of(uploadDir).resolve(_photo.getImagePath()).normalize();
+        File file = new File(_path.toUri());
+        if (file.exists()) {
+            file.delete();
+        }
+    }
 }

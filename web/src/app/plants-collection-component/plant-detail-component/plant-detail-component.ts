@@ -5,6 +5,7 @@ import {NotesComponent} from './notes-component/notes-component';
 import {UpdatesComponent} from './updates-component/updates-component';
 import {MainBodyComponent} from './main-body-component/main-body-component';
 import {Note} from '../../Interfaces/Plants/note';
+import {PhotoGallery} from '../../Interfaces/Plants/photo-gallery';
 
 @Component({
   selector: 'app-plant-detail-component',
@@ -31,4 +32,11 @@ export class PlantDetailComponent {
   onNotesChange(notes: Note[]):void {this.notesChange.emit(notes);}
 
   onPlantUpdate(plant: Plant):void {this.plantUpdate.emit(plant)}
+
+  onPhotoRemove(photo: PhotoGallery):void {
+    this.plant.photoGallery = this.plant.photoGallery.filter(
+      (_photo: PhotoGallery): boolean => _photo.id !== photo.id
+    );
+    this.plantUpdate.emit(this.plant);
+  }
 }

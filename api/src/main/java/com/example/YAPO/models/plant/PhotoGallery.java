@@ -20,7 +20,7 @@ public class PhotoGallery {
     private Long id;
 
     @JsonBackReference(value = "plant-photogallery")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     private Plant plant;
 
     @Column

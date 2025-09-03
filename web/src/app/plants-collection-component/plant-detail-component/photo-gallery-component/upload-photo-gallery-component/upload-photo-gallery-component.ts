@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {TranslatePipe} from '@ngx-translate/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
-import {PhotoGalleryRequest} from '../../Interfaces/Plants/PhotoGalleryRequest';
+import {PhotoGalleryRequest} from '../../../../Interfaces/Plants/PhotoGalleryRequest';
 
 @Component({
   selector: 'app-upload-image-dialog-component',
@@ -12,7 +12,7 @@ import {PhotoGalleryRequest} from '../../Interfaces/Plants/PhotoGalleryRequest';
     FormsModule,
   ],
   templateUrl: './upload-photo-gallery-component.html',
-  styleUrls: ['./upload-photo-gallery-component.css', '../Card.css']
+  styleUrls: ['./upload-photo-gallery-component.css', '../../../../shared/Card.css']
 })
 export class UploadPhotoGalleryComponent {
   selectedFile: File | null = null;

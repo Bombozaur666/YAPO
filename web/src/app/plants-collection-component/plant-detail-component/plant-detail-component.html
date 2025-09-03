@@ -15,7 +15,8 @@
   <app-photo-gallery-component
     [plantId]="plant.id"
     (plantUpdate)="onPlantUpdate($event)"
-    [photoGallery]="plant.photoGallery">
+    [photoGallery]="plant.photoGallery"
+    (photoRemove)="onPhotoRemove($event)">
   </app-photo-gallery-component>
 
   <app-updates-component
