@@ -167,8 +167,4 @@ export class PlantsCollectionComponent implements OnInit {
     this.showPlants =  this.preparePlants(this.selectedLocalization!);
     this.plant = {...plant};
   }
-
-  onPhotoRemove($event: PhotoGallery): void {
-
-  }
 }

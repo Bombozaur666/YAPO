@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input } from '@angular/core';
 import {PhotoGallery} from '../../../../../Interfaces/Plants/photo-gallery';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {DatePipe} from '@angular/common';
