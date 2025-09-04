@@ -56,5 +56,11 @@
   color: #fff !important;
   background-color: #BD18DA !important;
   border-color: #BD18DA !important;
-  box-shadow: 0 0 0 0.25rem #BD18DA40;
+  box-shadow: 0 0 0 0.25rem #BD18DA40 !important;
+}
+
+.btn-outline-warning:focus,
+.btn-outline-warning:active,
+.btn-outline-warning.active {
+  color: black !important;
 }

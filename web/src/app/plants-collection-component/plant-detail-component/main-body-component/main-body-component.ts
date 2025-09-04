@@ -25,6 +25,7 @@ import {PlantLifeExpectancy} from '../../../Interfaces/Plants/enums/PlantLifeExp
   styleUrls: ['./main-body-component.css', '../../../shared/Card.css']
 })
 export class MainBodyComponent {
+  protected selectedRow: string = '';
   @Input() plant: Plant = {} as Plant;
   @Output() plantAvatarChange: EventEmitter<Plant> = new EventEmitter();
   @Output() removePlant: EventEmitter<Plant> = new EventEmitter();

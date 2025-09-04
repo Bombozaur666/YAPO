@@ -6,3 +6,8 @@
   display: block;
   padding-left: 10px;
 }
+
+.active {
+  background: #008170 !important;
+  border-radius: 0.5rem !important;
+}

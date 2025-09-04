@@ -33,7 +33,10 @@
   <div class="card-body">
     <div class="row g-1">
       <div class="col-8">
-        <div class="row">
+        <div class="row"
+             [class.active]="selectedRow === 'species'"
+             (mouseenter)="selectedRow='species'"
+             (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.species" | translate}}</div>
           <div class="col-1">
             <button
@@ -49,7 +52,10 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row"
+             [class.active]="selectedRow === 'purchaseDate'"
+             (mouseenter)="selectedRow='purchaseDate'"
+             (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.purchaseDate" | translate}}</div>
           <div class="col-1">
             <button
@@ -65,7 +71,10 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row"
+             [class.active]="selectedRow === 'purchaseLocalization'"
+             (mouseenter)="selectedRow='purchaseLocalization'"
+             (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.purchaseLocalization" | translate}}</div>
           <div class="col-1">
             <button
@@ -81,7 +90,10 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row"
+             [class.active]="selectedRow === 'fertilizationDate'"
+             (mouseenter)="selectedRow='fertilizationDate'"
+             (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.fertilizationDate" | translate}}</div>
           <div class="col-1">
             <button
@@ -97,12 +109,15 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-4">{{"collections.plants.details.plantWatering" | translate}}</div>
+        <div class="row"
+             [class.active]="selectedRow === 'wateringDate'"
+             (mouseenter)="selectedRow='wateringDate'"
+             (mouseleave)="selectedRow = ''">
+          <div class="col-4">{{"collections.plants.details.wateringDate" | translate}}</div>
           <div class="col-1">
             <button
               class="btn btn-sm btn-edit"
-              (click)="updateField('plantWatering', plant.plantWatering, 'date')">
+              (click)="updateField('wateringDate', plant.wateringDate, 'date')">
               <i class="bi bi-pencil"></i>
             </button>
           </div>
@@ -113,7 +128,10 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row"
+             [class.active]="selectedRow === 'alive'"
+             (mouseenter)="selectedRow='alive'"
+             (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.alive" | translate}}</div>
           <div class="col-1">
             <button
@@ -130,7 +148,10 @@
         </div>
 
         @if(!plant.alive) {
-          <div class="row">
+          <div class="row"
+               [class.active]="selectedRow === 'deathReason'"
+               (mouseenter)="selectedRow='deathReason'"
+               (mouseleave)="selectedRow = ''">
             <div class="col-4">{{"collections.plants.details.deathReason" | translate}}</div>
             <div class="col-1">
               <button
@@ -147,7 +168,10 @@
           </div>
         }
 
-        <div class="row">
+        <div class="row"
+             [class.active]="selectedRow === 'shared'"
+             (mouseenter)="selectedRow='shared'"
+             (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.shared" | translate}}</div>
           <div class="col-1">
             <button
@@ -163,7 +187,10 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row"
+             [class.active]="selectedRow === 'plantWatering'"
+             (mouseenter)="selectedRow='plantWatering'"
+             (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.plantWatering" | translate}}</div>
           <div class="col-1">
             <button
@@ -179,7 +206,10 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row"
+             [class.active]="selectedRow === 'plantSoil'"
+             (mouseenter)="selectedRow='plantSoil'"
+             (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.plantSoil" | translate}}</div>
           <div class="col-1">
             <button
@@ -195,7 +225,10 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row"
+             [class.active]="selectedRow === 'plantCondition'"
+             (mouseenter)="selectedRow='plantCondition'"
+             (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.plantCondition" | translate}}</div>
           <div class="col-1">
             <button
@@ -211,7 +244,10 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row"
+             [class.active]="selectedRow === 'plantBerth'"
+             (mouseenter)="selectedRow='plantBerth'"
+             (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.plantBerth" | translate}}</div>
           <div class="col-1">
             <button
@@ -227,7 +263,10 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row"
+             [class.active]="selectedRow === 'plantToxicity'"
+             (mouseenter)="selectedRow='plantToxicity'"
+             (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.plantToxicity" | translate}}</div>
           <div class="col-1">
             <button
@@ -244,7 +283,10 @@
         </div>
 
 
-        <div class="row">
+        <div class="row"
+             [class.active]="selectedRow === 'plantLifeExpectancy'"
+             (mouseenter)="selectedRow='plantLifeExpectancy'"
+             (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.plantLifeExpectancy" | translate}}</div>
           <div class="col-1">
             <button

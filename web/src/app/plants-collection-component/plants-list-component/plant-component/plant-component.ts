@@ -14,6 +14,7 @@ import {TranslatePipe} from '@ngx-translate/core';
 })
 export class PlantComponent {
   @Input() plant!: Plant;
+  @Input() selectedPlant: number = 0;
   @Output() plantsChange: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private plantCollectionService: PlantsCollectionService) {

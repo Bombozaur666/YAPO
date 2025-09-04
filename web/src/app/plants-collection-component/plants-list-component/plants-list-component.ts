@@ -17,6 +17,7 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 })
 export class PlantsListComponent {
   @Input() plants: Plant[] = [];
+  selectedPlant: number = -1;
   @Output() plantsChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() createPlant: EventEmitter<Plant>= new EventEmitter<Plant>();
   @Input() localizationId: number | undefined = undefined;
@@ -24,7 +25,7 @@ export class PlantsListComponent {
   constructor(private plantCollectionService: PlantsCollectionService,
               private modalService: NgbModal) {}
 
-  selectPlant(plantId: number): void {this.plantsChange.emit(plantId);}
+  selectPlant(plantId: number): void {this.plantsChange.emit(plantId); this.selectedPlant= plantId;}
 
   onUploadPlant(plant: Plant): void {
     plant.localization = {

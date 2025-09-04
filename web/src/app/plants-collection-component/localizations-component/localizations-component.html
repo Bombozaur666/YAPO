@@ -4,6 +4,7 @@
       <button
         type="button"
         class="btn btn-dark m-1 btn-anim"
+        [class.active]="selectedLocalization.name === localization.name"
         (click)="selectLocalization(localization);">
         {{localization.name}}
       </button>

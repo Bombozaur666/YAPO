@@ -1,4 +1,7 @@
-<div class="card text-center" (click)="selectPlant()">
+<div
+  class="card text-center"
+  [class.active]="selectedPlant === plant.id"
+  (click)="selectPlant()">
   <div>
     <img
       class="plant-img"
