@@ -1,15 +1,20 @@
 package com.example.YAPO.utility;
 
+import com.example.YAPO.models.enums.ErrorList;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class ValueConverter {
 
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ISO_LOCAL_DATE;
     private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
-    public static Object convert(Class<?> targetType, String value) {
+    public static Object convert(Class<?> targetType, String value){
         if (targetType == String.class) return value;
         if (targetType == Integer.class || targetType == int.class) return Integer.parseInt(value);
         if (targetType == Long.class || targetType == long.class) return Long.parseLong(value);
@@ -17,6 +22,13 @@ public class ValueConverter {
         if (targetType == Double.class || targetType == double.class) return Double.parseDouble(value);
         if (targetType == LocalDate.class) return LocalDate.parse(value, DATE_FORMAT);
         if (targetType == LocalDateTime.class) return LocalDateTime.parse(value, DATETIME_FORMAT);
+        if (targetType == Date.class) {
+            try {
+                return new SimpleDateFormat("yyyy-MM-dd").parse(value);
+            } catch (ParseException e) {
+                throw new IllegalArgumentException(ErrorList.INVALID_TOKEN.toString());
+            }
+        }
         if (targetType.isEnum()) {
                 @SuppressWarnings("unchecked")
                 Class<? extends Enum> enumType = (Class<? extends Enum>) targetType;

@@ -15,7 +15,7 @@ import {AuthService} from '../auth/auth-service';
   styleUrl: './menu-component.css'
 })
 export class MenuComponent {
-  protected selected: string = '';
+  protected selected: string = 'login';
 
   @Output() newLang: EventEmitter<string> = new EventEmitter<string>();
 
