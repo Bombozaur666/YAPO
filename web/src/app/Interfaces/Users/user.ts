@@ -17,4 +17,8 @@ export interface RegisterRequest {
   password: string;
 }
 
+export interface UsernameRequest {
+  username: string;
+}
+
 

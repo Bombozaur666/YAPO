@@ -3,12 +3,14 @@ import {FormsModule} from '@angular/forms';
 import {LoginRequest} from '../../Interfaces/Users/user';
 import {TranslatePipe} from '@ngx-translate/core';
 import {AuthService} from '../auth-service';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-login-component',
   imports: [
     FormsModule,
-    TranslatePipe
+    TranslatePipe,
+    RouterLink
   ],
   templateUrl: './login-component.html',
   styleUrls: ['./login-component.css', '../../shared/Card.css']

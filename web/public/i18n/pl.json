@@ -51,6 +51,10 @@
     "username": {
       "username": "Nazwa użytkownika",
       "isRequired": "Nazwa użytkownika nie może być pusta!"
+    },
+    "forgotPassword": {
+      "title": "Zapomniałem hasła",
+      "reset": "Zresetuj hasło"
     }
   },
   "profile": {

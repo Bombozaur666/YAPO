@@ -38,12 +38,22 @@
         }
       </div>
 
+
       <button
         type="submit"
         class="btn btn-add w-100"
         [disabled]="loginForm.invalid">
         {{ 'loginPage.login' | translate }}
       </button>
+
+      <div class="text-end mt-3 me-3">
+        <button
+          type="button"
+          class="btn btn-link"
+          routerLink="/forgot-password">
+          {{ 'loginPage.forgotPassword.title' | translate }}
+        </button>
+      </div>
     </form>
   </div>
 </div>

@@ -1,12 +1,10 @@
 import {Injectable} from '@angular/core';
-import {LoginRequest,  RegisterRequest,  User} from '../Interfaces/Users/user';
+import {LoginRequest, RegisterRequest, User, UsernameRequest} from '../Interfaces/Users/user';
 import {HttpClient} from '@angular/common/http';
 import {catchError, map, Observable, of, tap} from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
 import {Router} from '@angular/router';
 import {JWT_TOKEN, REFRESH_TOKEN, TokenResponse} from '../Interfaces/Users/token';
-import {Note} from '../Interfaces/Plants/note';
-
 
 @Injectable({
   providedIn: 'root'
@@ -92,6 +90,10 @@ export class AuthService {
     const form = new FormData();
     form.append('file', file);
     return this.httpClient.post<User>(this.path, form);
+  }
+
+  forgotPassword(forgotRequest: UsernameRequest): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}forgot-password`, forgotRequest);
   }
 }
 
