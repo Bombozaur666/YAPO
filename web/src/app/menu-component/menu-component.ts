@@ -23,6 +23,7 @@ export class MenuComponent {
 
   logout(): void {
     this.authService.logout();
+    this.selected = 'login';
   }
 
   changeLanguage(lang: string): void {
