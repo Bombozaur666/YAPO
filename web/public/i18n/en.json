@@ -13,16 +13,16 @@
       "general": "Languages"
     },
     "user": {
-      "login": "Log in",
+      "login": "Login",
       "register": "Register",
-      "logout": "Log out",
+      "logout": "Logout",
       "profile": "Profile"
     }
   },
   "errors": {
     "ErrorList": {
       "WRONG_FIELD_TO_UPDATE": "Invalid field to update",
-      "ERROR_DURING_DATABASE_SAVING": "Error while saving to database",
+      "ERROR_DURING_DATABASE_SAVING": "Error while saving to the database",
       "LOCALIZATION_NOT_FOUND": "Localization not found",
       "USER_NOT_FOUND": "User not found",
       "PLANT_NOT_FOUND": "Plant not found",
@@ -39,7 +39,7 @@
   },
   "loginPage": {
     "register": "Register",
-    "login": "Log in",
+    "login": "Login",
     "password": {
       "password": "Password",
       "isRequired": "Password cannot be empty!"
@@ -54,7 +54,7 @@
     }
   },
   "profile": {
-    "profile": "User profile",
+    "profile": "User Profile",
     "username": "Username: ",
     "email": "Email: ",
     "registrationDate": "Registration date: ",
@@ -69,14 +69,15 @@
     "uploadPhoto": {
       "close": "Close",
       "cancel": "Cancel",
-      "upload": "Upload"
+      "upload": "Upload",
+      "alt": "Preview of uploaded photo"
     }
   },
   "collections": {
     "loading": "Loading data...",
     "localizations": {
       "addLocalization": "Add localization",
-      "editLocalization": "Edit selected localization",
+      "editLocalization": "Edit localization",
       "modal": {
         "name": "Name",
         "remove": "Remove",
@@ -87,6 +88,7 @@
     },
     "plants": {
       "addPlant": "Add plant",
+      "alt": "Plant thumbnail",
       "details": {
         "true": "Yes",
         "false": "No",
@@ -95,26 +97,28 @@
         "purchaseDate": "Purchase date",
         "purchaseLocalization": "Purchase location",
         "fertilizationDate": "Fertilization date",
-        "alive": "Is alive",
-        "shared": "Is shared",
+        "alive": "Alive",
+        "shared": "Shared",
+        "avatarPath": "Plant avatar",
         "wateringDate": "Watering date",
-        "deathReason": "Cause of death",
+        "deathReason": "Death reason",
         "plantCondition": "Plant condition",
         "plantSoil": "Soil",
         "plantWatering": "Watering",
-        "plantBerth": "Position",
+        "plantBerth": "Location",
         "plantToxicity": "Toxicity level",
-        "plantLifeExpectancy": "Life expectancy",
-        "plantConditionsValues": {
+        "plantLifeExpectancy": "Expected lifespan",
+        "plantConditionValues": {
           "HEALTHY": "Healthy",
           "NEEDS_WATER": "Needs water",
           "NEEDS_SUNLIGHT": "Needs sunlight",
           "NEEDS_FERTILIZER": "Needs fertilizer",
-          "DIEBACK": "Dying back",
-          "INFESTED": "Infested with pests",
+          "DIEBACK": "Dying",
+          "INFESTED": "Infested by pests",
           "DISEASED": "Diseased",
           "STRESSED": "Stressed",
-          "FUCK_THIS_SHIT_IM_OUT": "The plant decided to die"
+          "FUCK_THIS_SHIT_IM_OUT": "Plant decided to die",
+          "null": ""
         },
         "plantSoilValues": {
           "POTTING_SOIL": "Potting soil",
@@ -131,8 +135,9 @@
           "ALKALINE_SOIL": "Alkaline soil",
           "NEUTRAL_SOIL": "Neutral soil",
           "PERLITE_MIX": "Perlite mix",
-          "COCONUT_SUBSTRATE": "Coconut substrate",
-          "ORCHID_SOIL": "Orchid soil"
+          "COCONUT_SUBSTRATE": "Coconut fiber",
+          "ORCHID_SOIL": "Orchid soil",
+          "null": ""
         },
         "plantWateringValues": {
           "DAILY": "Daily",
@@ -140,27 +145,89 @@
           "TWO_TIMES_A_WEEK": "Twice a week",
           "WEEKLY": "Weekly",
           "MONTHLY": "Monthly",
-          "WHEN_NEEDED": "When needed"
+          "WHEN_NEEDED": "As needed",
+          "null": ""
         },
         "plantBerthValues": {
           "FULL_SUN": "Full sun",
           "PARTIAL_SUN": "Partial sun",
           "SHADE": "Shade",
-          "INDIRECT_SUNLIGHT": "Indirect sunlight"
+          "INDIRECT_SUNLIGHT": "Indirect sunlight",
+          "null": ""
         },
         "plantToxicityValues": {
           "NON_TOXIC": "Non-toxic",
           "TOXIC_TO_HUMANS": "Toxic to humans",
           "TOXIC_TO_ANIMALS": "Toxic to animals",
-          "TOXIC_TO_HUMANS_AND_ANIMALS": "Toxic to humans and animals"
+          "TOXIC_TO_HUMANS_AND_ANIMALS": "Toxic to humans and animals",
+          "null": ""
         },
         "plantLifeExpectancyValues": {
           "ANNUAL": "Annual",
-          "PERENNIAL": "Perennial"
+          "PERENNIAL": "Perennial",
+          "null": ""
+        },
+        "updateField": {
+          "close": "Close",
+          "save": "Update",
+          "cancel": "Cancel"
+        },
+        "notes": {
+          "note": {
+            "id": "NP",
+            "body": "Content",
+            "noteDate": "Creation date",
+            "editDate": "Edit date",
+            "utility": {
+              "title": "Options",
+              "delete": "Delete",
+              "edit": "Edit"
+            }
+          },
+          "title": "Notes",
+          "addNote": "Add note",
+          "noteModal": {
+            "addNote": "Add note",
+            "editNote": "Edit note",
+            "body": "Content",
+            "close": "Close",
+            "save": "Save",
+            "cancel": "Cancel"
+          }
+        },
+        "photoGallery": {
+          "title": "Gallery",
+          "addPhoto": "Add photo",
+          "modal": {
+            "title": "Add photo",
+            "titlePhoto": "Title",
+            "datePhoto": "Date",
+            "descriptionPhoto": "Description",
+            "filePhoto": "File"
+          },
+          "fullPhoto": {
+            "title": "Title: ",
+            "date": "Date: ",
+            "creationDate": "Creation date: ",
+            "description": "Description: ",
+            "close": "Close",
+            "deletePhoto": "Delete photo",
+            "downloadPhoto": "Download photo",
+            "nextPhoto": "Next photo",
+            "prevPhoto": "Previous photo"
+          }
+        },
+        "updates": {
+          "title": "Change history",
+          "id": "ID",
+          "fieldName": "Field",
+          "oldValue": "Old value",
+          "newValue": "New value"
         },
         "avatarModal": {
-          "edit": "Edit Avatar"
-        }
+          "editAvatar": "Edit Avatar"
+        },
+        "deletePlant": "Delete plant"
       },
       "modal": {
         "close": "Close",
@@ -168,5 +235,11 @@
         "cancel": "Cancel"
       }
     }
+  },
+  "pagination": {
+    "5": "5 items per page",
+    "10": "10 items per page",
+    "20": "20 items per page",
+    "all": "All"
   }
 }
