@@ -5,7 +5,7 @@
               class="nav-arrow left-arrow"
               aria-label="{{'collections.plants.details.photoGallery.fullPhoto.prevPhoto' | translate}}"
               (click)="photoSlide('prev')">
-        <span aria-hidden="true">&lsaquo;</span>
+        <span><i class="bi bi-chevron-double-left"></i></span>
       </button>
 
       <img [src]="photoUrl"
@@ -16,7 +16,7 @@
               class="nav-arrow right-arrow"
               aria-label="{{'collections.plants.details.photoGallery.fullPhoto.nextPhoto' | translate}}"
               (click)="photoSlide('next')">
-        <span aria-hidden="true">&rsaquo;</span>
+        <span><i class="bi bi-chevron-double-right"></i></span>
       </button>
     </div>
 
