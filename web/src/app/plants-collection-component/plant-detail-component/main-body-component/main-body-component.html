@@ -283,26 +283,25 @@
         </div>
 
 
-        <div class="row"
-             [class.active]="selectedRow === 'plantLifeExpectancy'"
-             (mouseenter)="selectedRow='plantLifeExpectancy'"
-             (mouseleave)="selectedRow = ''">
-          <div class="col-4">{{"collections.plants.details.plantLifeExpectancy" | translate}}</div>
-          <div class="col-1">
-            <button
-              class="btn btn-sm btn-edit"
-              (click)="updateField('plantLifeExpectancy', plant.plantLifeExpectancy, 'select', plantLifeExpectancy)">
-              <i class="bi bi-pencil"></i>
-            </button>
-          </div>
+          <div class="row"
+               [class.active]="selectedRow === 'plantLifeExpectancy'"
+               (mouseenter)="selectedRow='plantLifeExpectancy'"
+               (mouseleave)="selectedRow = ''">
+            <div class="col-4">{{"collections.plants.details.plantLifeExpectancy" | translate}}</div>
+            <div class="col-1">
+              <button
+                class="btn btn-sm btn-edit"
+                (click)="updateField('plantLifeExpectancy', plant.plantLifeExpectancy, 'select', plantLifeExpectancy)">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </div>
+            <div class="col-7">
+              <p class="card-text">
+                {{`collections.plants.details.plantLifeExpectancyValues.${plant.plantLifeExpectancy}` | translate }}
+              </p>
+            </div>
         </div>
-          <div class="col-7">
-            <p class="card-text">
-              {{`collections.plants.details.plantLifeExpectancyValues.${plant.plantLifeExpectancy}` | translate }}
-            </p>
-          </div>
       </div>
-
       <div class="col-4">
         <div class="position-relative d-inline-block text-center">
           <img
@@ -312,6 +311,6 @@
           />
         </div>
       </div>
-    </div>
+   </div>
   </div>
 </div>
