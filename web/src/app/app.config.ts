@@ -11,6 +11,7 @@ import {provideTranslateService, TranslateService} from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import {authInterceptor} from './auth/auth-interceptor';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { provideSweetAlert2 } from "@sweetalert2/ngx-sweetalert2";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,6 +35,10 @@ export const appConfig: ApplicationConfig = {
       const  translate = inject(TranslateService);
       translate.use(translate.getBrowserLang() || "en");
     }),
-    importProvidersFrom(NgbModule)
+    importProvidersFrom(NgbModule),
+    provideSweetAlert2({
+      fireOnInit: false,
+      dismissOnDestroy: true,
+    }),
   ]
 };
