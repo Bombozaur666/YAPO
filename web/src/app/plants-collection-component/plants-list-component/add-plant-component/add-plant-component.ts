@@ -9,6 +9,9 @@ import {PlantBerth} from '../../../Interfaces/Plants/enums/PlantBerth';
 import {PlantToxicity} from '../../../Interfaces/Plants/enums/PlantToxicity';
 import {PlantLifeExpectancy} from '../../../Interfaces/Plants/enums/PlantLifeExpectancy';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {Note} from '../../../Interfaces/Plants/note';
+import {PhotoGallery} from '../../../Interfaces/Plants/photo-gallery';
+import {PlantUpdate} from '../../../Interfaces/Plants/plant-update';
 
 @Component({
   selector: 'app-add-plant-component',
@@ -20,8 +23,11 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './add-plant-component.html',
   styleUrls: ['./add-plant-component.css', '../../../shared/Card.css']
 })
-export class AddPlantComponent {
-  @Input() plant: Plant = {"alive": true} as Plant;
+export class AddPlantComponent{
+  @Input() plant: Plant = {"alive": true,
+                          "notes": [] as Note[],
+                          "photoGallery": [] as PhotoGallery[],
+                          "plantHistory": [] as PlantUpdate[]} as Plant;
 
   constructor(public activeModal: NgbActiveModal) {}
 

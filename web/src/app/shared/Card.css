@@ -1,31 +1,31 @@
 .card, .modal-content, .modal-body, .color-body {
-  background-color: #93B1A6 !important;
+  background-color: var(--main-secondary-color) !important;
   border: none !important;
   box-shadow: none !important;
 }
 
 .card-header, .modal-header, .color-header{
-  background-color: #008170;
-  color: white;
+  background-color: var(--main-active-color);
+  color: var(--color-white);
 }
+
 td .btn {
   transition: all 0.2s ease;
 }
-td .btn-outline-primary:hover {
-  background-color: #0D6EFD26;
-}
-td .btn-outline-danger:hover {
-  background-color: #DC354526;
-}
 
 tr { /* header row*/
-  --bs-table-accent-bg: #008170CB !important;
+  --bs-table-accent-bg: var(--main-active-color) !important;
+}
+
+.table-hover tr { /* hover */
+  --bs-table-hover-bg: var(--table-higlite) !important;
 }
 
 tr:nth-of-type(odd) {/* odd rows */
-  --bs-table-striped-bg: #93B1A6 !important;
+  --bs-table-striped-bg: var(--main-secondary-color) !important;
 }
 
+
 tr:nth-of-type(even) {/* even rows */
-  --bs-table-accent-bg: #008170  !important;
+  --bs-table-accent-bg: var(--main-active-color)  !important;
 }

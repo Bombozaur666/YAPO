@@ -3,3 +3,7 @@
   height: 250px !important;
   object-fit: cover;
 }
+
+.container {
+  color: var(--color-white);
+}

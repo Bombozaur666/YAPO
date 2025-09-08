@@ -13,7 +13,7 @@
       @if (authService.isAuthenticated) {
         <button
           type="button"
-          class="btn btn-outline-warning nav-item text-start"
+          class="btn btn-menu nav-item text-start"
           [class.active]="selected === 'collection'"
           (click)="selected = 'collection'"
           routerLink="/collection">
@@ -35,7 +35,7 @@
       } @else {
         <button
           type="button"
-          class="btn btn-outline-add me-1 text-end"
+          class="btn btn-menu me-1 text-end"
           [class.active]="selected === 'login'"
           (click)="selected = 'login'"
           routerLink="/login">
@@ -43,7 +43,7 @@
         </button>
         <button
           type="button"
-          class="btn btn-outline-warning me-1"
+          class="btn btn-menu me-1"
           [class.active]="selected === 'register'"
           (click)="selected = 'register'"
           routerLink="/register">

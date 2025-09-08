@@ -6,7 +6,7 @@
           <span>
             {{ plant.name }}
             <button
-              class="btn btn-sm btn-edit"
+              class="btn btn-sm btn-edit btn-round"
               (click)="updateField('name', plant.name, 'text')">
             <i class="bi bi-pencil"></i>
             </button>
@@ -20,7 +20,7 @@
             </button>
             <button
               type="button"
-              class="btn btn-sm btn-add m-1"
+              class="btn btn-sm btn-action m-1"
               (click)="onAvatarEdit()">
               {{'collections.plants.details.avatarModal.editAvatar' | translate }}
             </button>
@@ -40,7 +40,7 @@
           <div class="col-4">{{"collections.plants.details.species" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-edit"
+              class="btn btn-sm btn-round btn-edit"
               (click)="updateField('species', plant.species, 'text')">
               <i class="bi bi-pencil"></i>
             </button>
@@ -59,7 +59,7 @@
           <div class="col-4">{{"collections.plants.details.purchaseDate" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-edit"
+              class="btn btn-sm btn-round btn-edit"
               (click)="updateField('purchaseDate', plant.purchaseDate, 'date')">
               <i class="bi bi-pencil"></i>
             </button>
@@ -78,7 +78,7 @@
           <div class="col-4">{{"collections.plants.details.purchaseLocalization" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-edit"
+              class="btn btn-sm btn-round btn-edit"
               (click)="updateField('purchaseLocalization', plant.purchaseLocalization, 'text')">
               <i class="bi bi-pencil"></i>
             </button>
@@ -97,7 +97,7 @@
           <div class="col-4">{{"collections.plants.details.fertilizationDate" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-edit"
+              class="btn btn-sm btn-round btn-round btn-edit"
               (click)="updateField('fertilizationDate', plant.fertilizationDate, 'date')">
               <i class="bi bi-pencil"></i>
             </button>
@@ -116,7 +116,7 @@
           <div class="col-4">{{"collections.plants.details.wateringDate" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-edit"
+              class="btn btn-sm btn-round btn-edit"
               (click)="updateField('wateringDate', plant.wateringDate, 'date')">
               <i class="bi bi-pencil"></i>
             </button>
@@ -124,25 +124,6 @@
           <div class="col-7">
             <p class="card-text">
               {{plant.wateringDate | date:'dd.MM.yyyy'}}
-            </p>
-          </div>
-        </div>
-
-        <div class="row"
-             [class.active]="selectedRow === 'alive'"
-             (mouseenter)="selectedRow='alive'"
-             (mouseleave)="selectedRow = ''">
-          <div class="col-4">{{"collections.plants.details.alive" | translate}}</div>
-          <div class="col-1">
-            <button
-              class="btn btn-sm btn-edit"
-              (click)="updateField('alive', plant.alive, 'checkbox')">
-              <i class="bi bi-pencil"></i>
-            </button>
-          </div>
-          <div class="col-7">
-            <p class="card-text">
-              {{ `collections.plants.details.${plant.alive}` | translate  }}
             </p>
           </div>
         </div>
@@ -155,7 +136,7 @@
             <div class="col-4">{{"collections.plants.details.deathReason" | translate}}</div>
             <div class="col-1">
               <button
-                class="btn btn-sm btn-edit"
+                class="btn btn-sm btn-round btn-edit"
                 (click)="updateField('deathReason', plant.deathReason, 'text')">
                 <i class="bi bi-pencil"></i>
               </button>
@@ -169,32 +150,13 @@
         }
 
         <div class="row"
-             [class.active]="selectedRow === 'shared'"
-             (mouseenter)="selectedRow='shared'"
-             (mouseleave)="selectedRow = ''">
-          <div class="col-4">{{"collections.plants.details.shared" | translate}}</div>
-          <div class="col-1">
-            <button
-              class="btn btn-sm btn-edit"
-              (click)="updateField('shared', plant.shared, 'checkbox')">
-              <i class="bi bi-pencil"></i>
-            </button>
-          </div>
-          <div class="col-7">
-            <p class="card-text">
-              {{ `collections.plants.details.${plant.shared}` | translate  }}
-            </p>
-          </div>
-        </div>
-
-        <div class="row"
              [class.active]="selectedRow === 'plantWatering'"
              (mouseenter)="selectedRow='plantWatering'"
              (mouseleave)="selectedRow = ''">
           <div class="col-4">{{"collections.plants.details.plantWatering" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-edit"
+              class="btn btn-sm btn-round btn-edit"
               (click)="updateField('plantWatering', plant.plantWatering, 'select', plantWatering)">
               <i class="bi bi-pencil"></i>
             </button>
@@ -213,7 +175,7 @@
           <div class="col-4">{{"collections.plants.details.plantSoil" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-edit"
+              class="btn btn-sm btn-round btn-edit"
               (click)="updateField('plantSoil', plant.plantSoil, 'select', plantSoil)">
               <i class="bi bi-pencil"></i>
             </button>
@@ -232,7 +194,7 @@
           <div class="col-4">{{"collections.plants.details.plantCondition" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-edit"
+              class="btn btn-sm btn-round btn-edit"
               (click)="updateField('plantCondition', plant.plantCondition, 'select', plantConditions)">
               <i class="bi bi-pencil"></i>
             </button>
@@ -251,7 +213,7 @@
           <div class="col-4">{{"collections.plants.details.plantBerth" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-edit"
+              class="btn btn-sm btn-round btn-edit"
               (click)="updateField('plantBerth', plant.plantBerth, 'select', plantBerth)">
               <i class="bi bi-pencil"></i>
             </button>
@@ -270,7 +232,7 @@
           <div class="col-4">{{"collections.plants.details.plantToxicity" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-edit"
+              class="btn btn-sm btn-round btn-edit"
               (click)="updateField('plantToxicity', plant.plantToxicity, 'select', plantToxicity)">
               <i class="bi bi-pencil"></i>
             </button>
@@ -290,7 +252,7 @@
             <div class="col-4">{{"collections.plants.details.plantLifeExpectancy" | translate}}</div>
             <div class="col-1">
               <button
-                class="btn btn-sm btn-edit"
+                class="btn btn-sm btn-round btn-edit"
                 (click)="updateField('plantLifeExpectancy', plant.plantLifeExpectancy, 'select', plantLifeExpectancy)">
                 <i class="bi bi-pencil"></i>
               </button>
@@ -301,6 +263,45 @@
               </p>
             </div>
         </div>
+
+        <div class="row"
+             [class.active]="selectedRow === 'shared'"
+             (mouseenter)="selectedRow='shared'"
+             (mouseleave)="selectedRow = ''">
+          <div class="col-4">{{"collections.plants.details.shared" | translate}}</div>
+          <div class="col-1">
+            <button
+              class="btn btn-sm btn-round btn-edit"
+              (click)="updateField('shared', plant.shared, 'checkbox')">
+              <i class="bi bi-pencil"></i>
+            </button>
+          </div>
+          <div class="col-7">
+            <p class="card-text">
+              {{ `collections.plants.details.${plant.shared}` | translate  }}
+            </p>
+          </div>
+        </div>
+
+        <div class="row"
+             [class.active]="selectedRow === 'alive'"
+             (mouseenter)="selectedRow='alive'"
+             (mouseleave)="selectedRow = ''">
+          <div class="col-4">{{"collections.plants.details.alive" | translate}}</div>
+          <div class="col-1">
+            <button
+              class="btn btn-sm btn-round btn-edit"
+              (click)="updateField('alive', plant.alive, 'checkbox')">
+              <i class="bi bi-pencil"></i>
+            </button>
+          </div>
+          <div class="col-7">
+            <p class="card-text">
+              {{ `collections.plants.details.${plant.alive}` | translate  }}
+            </p>
+          </div>
+        </div>
+
       </div>
       <div class="col-4">
         <div class="position-relative d-inline-block text-center">

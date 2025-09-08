@@ -3,7 +3,7 @@
     @for (localization of localizations; track localization.id) {
       <button
         type="button"
-        class="btn btn-dark m-1 btn-anim"
+        class="btn btn-list"
         [class.active]="selectedLocalization.name === localization.name"
         (click)="selectLocalization(localization);">
         {{localization.name}}
@@ -15,14 +15,14 @@
       @if (selectedLocalization.id) {
         <button
           type="button"
-          class="btn btn-warning"
+          class="btn btn-action"
           (click)="editOrCreateLocalization(true)">
           {{'collections.localizations.editLocalization' | translate}}
         </button>
       }
       <button
         type="button"
-        class="btn btn-warning ms-1"
+        class="btn btn-action ms-1"
         (click)="editOrCreateLocalization(false)">
         {{'collections.localizations.addLocalization' | translate}}
       </button>

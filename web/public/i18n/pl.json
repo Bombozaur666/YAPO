@@ -40,6 +40,7 @@
   "loginPage": {
     "register": "Zarejestruj się",
     "login": "Zaloguj się",
+    "title": "Logowanie",
     "password": {
       "password": "Hasło",
       "isRequired": "Hasło nie może być puste!"

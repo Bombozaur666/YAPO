@@ -18,13 +18,13 @@
   border-radius: 8px;
   display: flex;
   overflow: hidden;
-  background: #008170;
+  background: var(--main-active-color);
 }
 
 .custom-modal-details {
   width: 300px;
   overflow-y: auto;
-  background-color: #93B1A6;
+  background-color: var(--main-secondary-color);
 }
 
 .photo-container {

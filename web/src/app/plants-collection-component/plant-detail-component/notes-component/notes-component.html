@@ -2,21 +2,23 @@
   <div class="card-header">
     <h3>
       {{'collections.plants.details.notes.title' | translate }}
+
       <button
         type="button"
-        class="btn btn-sm btn-add m-1 float-end"
+        class="btn btn-sm btn-action m-1 float-end"
         (click)="addNote()">
         {{'collections.plants.details.notes.addNote' | translate }}
       </button>
     </h3>
   </div>
+
   <div class="card-body">
-    <table class="table table-dark table-hover table-striped w-100">
+    <table class="table table-dark table-hover table-striped">
       <thead>
       <tr>
         <th style="width: 16%">{{ 'collections.plants.details.notes.note.noteDate' | translate }}</th>
         <th style="width: 16%">{{ 'collections.plants.details.notes.note.editDate' | translate }}</th>
-        <th style="width: 50%">{{ 'collections.plants.details.notes.note.body' | translate }}</th>
+        <th style="width: 52%">{{ 'collections.plants.details.notes.note.body' | translate }}</th>
         <th class="text-end" style="width: 16%">{{ 'collections.plants.details.notes.note.utility.title' | translate }}</th>
       </tr>
       </thead>

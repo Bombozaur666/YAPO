@@ -1,5 +1,5 @@
 .navbar-custom{
-  background-color: #0c2d2d !important;
+  background-color: var(--menu-header-color)!important;
   color: goldenrod !important;
 }
 
