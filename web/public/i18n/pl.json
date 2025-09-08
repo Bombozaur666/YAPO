@@ -54,6 +54,8 @@
     },
     "forgotPassword": {
       "title": "Zapomniałem hasła",
+      "success": "Pomyślna zmiana hasła!",
+      "failure": "Nie udało się zmienić hasła. Sprawdź czy nie dostałeś/aś wczesniej mail",
       "reset": "Zresetuj hasło"
     }
   },
@@ -75,6 +77,12 @@
       "cancel": "Anuluj",
       "upload": "Wgraj",
       "alt": "Podgląd wgranego zdjęcia"
+    },
+    "alerts": {
+      "footerButtons": {
+        "close": "Zamknij",
+        "ok": "OK"
+      }
     }
   },
   "collections": {

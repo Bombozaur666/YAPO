@@ -8,7 +8,7 @@ import {FullPhotoComponent} from './full-photo-component/full-photo.component';
   selector: 'app-photo-component',
   imports: [],
   templateUrl: './photo-component.html',
-  styleUrl: './photo-component.css'
+  styleUrls: ['./photo-component.css', '../../../../shared/Card.css']
 })
 export class PhotoComponent implements OnInit {
   @Input() photo!: PhotoGallery;

@@ -18,9 +18,7 @@ export class ForgotPasswordComponent {
 
   constructor(private authService: AuthService) {}
 
-  onSubmit(): void {this.authService.forgotPassword(this.forgotRequest).subscribe({
-    next: () => {
-      console.log("ok");
-    }
-  })}
+  onSubmit(): void {
+    this.authService.forgotPassword(this.forgotRequest).subscribe({});
+  }
 }

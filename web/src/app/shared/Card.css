@@ -1,9 +1,12 @@
-.card, .modal-content, .modal-body {
-  background-color: #93B1A6;
+.card, .modal-content, .modal-body, .color-body {
+  background-color: #93B1A6 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-.card-header, .modal-header{
+.card-header, .modal-header, .color-header{
   background-color: #008170;
+  color: white;
 }
 td .btn {
   transition: all 0.2s ease;
