@@ -21,7 +21,7 @@ import {PlantUpdate} from '../../../Interfaces/Plants/plant-update';
         TranslatePipe
     ],
   templateUrl: './add-plant-component.html',
-  styleUrls: ['./add-plant-component.css', '../../../shared/Card.css']
+  styleUrls: ['../../../shared/Card.css', './add-plant-component.css']
 })
 export class AddPlantComponent{
   @Input() plant: Plant = {"alive": true,

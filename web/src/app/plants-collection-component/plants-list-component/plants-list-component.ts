@@ -46,7 +46,7 @@ export class PlantsListComponent {
   }
 
   addPlant(): void {
-    const modalRef: NgbModalRef = this.modalService.open(AddPlantComponent);
+    const modalRef: NgbModalRef = this.modalService.open(AddPlantComponent, {size: 'lg'});
 
     modalRef.result.then((result: Plant): void => {this.onUploadPlant(result);}
     );
