@@ -5,8 +5,10 @@ import com.example.YAPO.models.enums.ErrorList;
 import com.example.YAPO.models.plant.Localization;
 import com.example.YAPO.models.User.User;
 import com.example.YAPO.repositories.plant.LocalizationRepo;
+import com.example.YAPO.repositories.plant.PlantRepo;
 import com.example.YAPO.repositories.user.UserRepo;
 import com.example.YAPO.utility.ValueConverter;
+import org.hibernate.Hibernate;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -21,10 +23,12 @@ import java.util.List;
 public class LocalizationService {
     private final LocalizationRepo  localizationRepo;
     private final UserRepo userRepo;
+    private final PlantRepo plantRepo;
 
-    public LocalizationService(LocalizationRepo localizationRepo, UserRepo userRepo) {
+    public LocalizationService(LocalizationRepo localizationRepo, UserRepo userRepo, PlantRepo plantRepo) {
         this.localizationRepo = localizationRepo;
         this.userRepo = userRepo;
+        this.plantRepo = plantRepo;
     }
 
     public List<Localization> getAllLocalizationsByUsername(String username) {
@@ -52,30 +56,22 @@ public class LocalizationService {
 
     @Transactional
     public Localization updateLocalization(String username, UpdateField updateField, long id) {
-        List<String> allowedFields = List.of("name");
-        if (!allowedFields.contains(updateField.getFieldName())) {
-            throw new RuntimeException(ErrorList.WRONG_FIELD_TO_UPDATE.toString());
-        }
         Localization _localization = localizationRepo.findByIdAndUser_Username(id, username);
-
-        try {
-            Field field = Localization.class.getDeclaredField(updateField.getFieldName());
-            field.setAccessible(true);
-
-            Object convertedValue = ValueConverter.convert(field.getType(), updateField.getFieldValue());
-            field.set(_localization, convertedValue);
-
-            _localization = localizationRepo.save(_localization);
-        } catch (NoSuchFieldException | IllegalAccessException |DataIntegrityViolationException |
-                 ConstraintViolationException | TransactionSystemException e) {
-            throw  new RuntimeException(ErrorList.ERROR_DURING_DATABASE_SAVING.toString());
+        if (_localization == null) {
+            throw new RuntimeException(ErrorList.LOCALIZATION_NOT_FOUND.toString());
         }
+
+        Hibernate.initialize(_localization.getPlants());
+
+        _localization.setName(updateField.getFieldValue());
         return _localization;
     }
 
     @Transactional
     public boolean deleteByIdAndUsername(long id, String username) {
         try {
+            plantRepo.deleteAllByLocalization_IdAndLocalization_User_Username(id, username);
+
             localizationRepo.deleteByIdAndUser_Username(id, username);
         } catch (EmptyResultDataAccessException | DataIntegrityViolationException | TransactionSystemException e ) {
             throw  new RuntimeException(ErrorList.UNEXPECTED_ERROR_DURING_DELETE.toString());

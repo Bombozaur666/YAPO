@@ -16,11 +16,12 @@ export class PlantsCollectionService {
   constructor(private httpClient: HttpClient) {}
 
   locationsFetch():  Observable<Localization[]> {
-    return this.httpClient.get<Localization[]>(this.baseUrl + 'localization/');
+    return this.httpClient.get<Localization[]>(`${this.baseUrl}localization/`);
   }
 
   localizationUpdateOrCreate(localization: LocalizationWithoutPlants): Observable<Localization>{
-    return this.httpClient.post<Localization>(this.baseUrl + "localization/create-localization", localization,{withCredentials: true});
+    if (localization.id !== null) { return this.httpClient.post<Localization>(`${this.baseUrl}localization/create-localization`, localization,{withCredentials: true});}
+    else {return this.httpClient.post<Localization>(`${ this.baseUrl}localization/${localization.id}`, localization,{withCredentials: true});}
   }
 
   createPlant(plant: Plant): Observable<Plant> {
@@ -34,15 +35,15 @@ export class PlantsCollectionService {
   updatePlantAvatar(file: File, plantID: number): Observable<Plant> {
     const form = new FormData();
     form.append('file', file);
-    return this.httpClient.post<Plant>(this.baseUrl + "plants/avatar/" + plantID, form);
+    return this.httpClient.post<Plant>(`${this.baseUrl}plants/avatar/` + plantID, form);
   }
 
   avatarPath(plant: Plant): string {
-    return `http://localhost:8080/plants/avatar/${plant.avatarPath}`;
+    return `${this.baseUrl}plants/avatar/${plant.avatarPath}`;
   }
 
   photoPath(plantId: number, photoName: string): string{
-    return `http://localhost:8080/plants/${plantId}/photo/${photoName}`
+    return `${this.baseUrl}plants/${plantId}/photo/${photoName}`
   }
 
   removePlant(id: number): Observable<any> {

@@ -24,6 +24,6 @@ public class Localization {
     private User user;
 
     @JsonManagedReference(value = "localization-plant")
-    @OneToMany(mappedBy = "localization", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "localization", fetch = FetchType.LAZY)
     private List<Plant> plants;
 }

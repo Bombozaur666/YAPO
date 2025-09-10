@@ -84,20 +84,14 @@ export class PlantsCollectionComponent implements OnInit {
   }
 
   createPlant(newPlant: Plant): void {
-    this.localizations = this.localizations.map((_localization: Localization) => {
-      if (_localization.id === this.selectedLocalization) {
-        if (_localization.plants) {
-          const plantIndex: number = _localization.plants.findIndex((_plant: Plant):boolean => _plant.id === newPlant.id);
-          const updatedPlants: Plant[] = plantIndex !== -1
-            ? _localization.plants.map((_plant: Plant, _index: number): Plant => _index === plantIndex ? newPlant : _plant)
-            : [..._localization.plants, newPlant];
-          return { ..._localization, plants: updatedPlants };
-        } else {
-          return { ..._localization, newPlant}
-        }
+    const _localization = this.localizations.find((localizations: Localization): boolean => localizations.id === this.selectedLocalization);
+    if (_localization) {
+      if (!_localization.plants) {
+        _localization.plants = [] as Plant[];
       }
-      return _localization;
-    });
+      _localization.plants.push(newPlant);
+    }
+
     this.showPlants = this.preparePlants(this.selectedLocalization!);
   }
 

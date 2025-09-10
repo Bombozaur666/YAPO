@@ -37,7 +37,11 @@ export class PlantsListComponent {
       id: this.localizationId!
     };
     this.plantCollectionService.createPlant(plant).subscribe(
-      {next: (_plant: Plant):void => {this.createPlant.emit(_plant);}}
+      {
+        next: (_plant: Plant):void => {
+          this.createPlant.emit(_plant);
+        }
+      }
     )
   }
 

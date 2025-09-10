@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from "@ngx-translate/core";
+import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 import {Note} from '../../../Interfaces/Plants/note';
 import {NoteComponent} from './note/note-component';
 import {NgbModal, NgbModalRef, NgbPagination} from '@ng-bootstrap/ng-bootstrap';
@@ -7,6 +7,8 @@ import {AddNotesComponent} from './add-note-component/add-note-component';
 import {PlantsCollectionService} from '../../plants-collection-service';
 import {SlicePipe} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import Swal from 'sweetalert2';
+import {getCSSVariable} from '../../../shared/utils';
 
 @Component({
   selector: 'app-notes-component',
@@ -28,7 +30,8 @@ export class NotesComponent {
   @Output() notesChanged: EventEmitter<Note[]> = new EventEmitter<Note[]>();
 
   constructor(private plantsCollectionService: PlantsCollectionService,
-              private modalService: NgbModal) {}
+              private modalService: NgbModal,
+              private translate: TranslateService) {}
 
   addNote(): void {
     const modalRef: NgbModalRef = this.modalService.open(AddNotesComponent);
@@ -65,6 +68,37 @@ export class NotesComponent {
           _note.id !== note.id
         );
         this.notesChanged.emit(this.notes);
+
+        this.translate.get([
+          'alerts.noteDelete.successTitle',
+          'alerts.noteDelete.successText',
+          'alerts.noteDelete.ok',
+        ]).subscribe(translations => {
+          Swal.fire({
+            title: translations['alerts.noteDelete.successTitle'],
+            text: translations['alerts.noteDelete.successText'],
+            icon: "success",
+            confirmButtonText: translations['alerts.noteDelete.ok'],
+            confirmButtonColor: getCSSVariable('--action-button'),
+            background: getCSSVariable('--main-secondary-color'),
+          })
+        });
+      },
+      error: (): void => {
+        this.translate.get([
+          'alerts.noteDelete.failureSuccess',
+          'alerts.noteDelete.failureText',
+          'alerts.noteDelete.ok',
+        ]).subscribe(translations => {
+          Swal.fire({
+            title: translations['alerts.noteDelete.failureSuccess'],
+            text: translations['alerts.noteDelete.failureText'],
+            icon: "error",
+            confirmButtonText: translations['alerts.noteDelete.ok'],
+            confirmButtonColor: getCSSVariable('--action-button'),
+            background: getCSSVariable('--main-secondary-color'),
+          })
+        });
       }
     });
   }

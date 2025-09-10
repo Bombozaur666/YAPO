@@ -266,6 +266,28 @@
       "failureSuccess": "Błąd",
       "failureText": "Nie udało się usunąć rośliny. Proszę spróbować później.",
       "ok": "Ok"
+    },
+    "noteDelete": {
+      "title": "Usuniecie notatki",
+      "text": "Czy na pewno chcesz usunąć notatkę?",
+      "confirmButton": "Tak",
+      "cancelButton": "Nie",
+      "successTitle": "Sukces",
+      "successText": "Poprawnie usunięto notatkę",
+      "failureSuccess": "Błąd",
+      "failureText": "Nie udało się usunąć notatkę. Proszę spróbować później.",
+      "ok": "Ok"
+    },
+    "localizationDelete": {
+      "title": "Usuniecie Lokalizacji",
+      "text": "Czy na pewno chcesz usunąć lokalizację?",
+      "confirmButton": "Tak",
+      "cancelButton": "Nie",
+      "successTitle": "Sukces",
+      "successText": "Poprawnie usunięto lokalizację",
+      "failureSuccess": "Błąd",
+      "failureText": "Nie udało się usunąć lokalizacji. Proszę spróbować później.",
+      "ok": "Ok"
     }
   }
 }
