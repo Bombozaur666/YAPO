@@ -254,5 +254,18 @@
     "10": "10 pozycji na stronę.",
     "20": "20 pozycji na stronę.",
     "all": "Wszystkie"
+  },
+  "alerts": {
+    "deletePlant": {
+      "title": "Usuniecie rośliny",
+      "text": "Czy na pewno chcesz usunać rośline?",
+      "confirmButton": "Tak",
+      "cancelButton": "Nie",
+      "successTitle": "Sukces",
+      "successText": "Poprawnie usunieto roślinę",
+      "failureSuccess": "Błąd",
+      "failureText": "Nie udało się usunąć rośliny. Proszę spróbować później.",
+      "ok": "Ok"
+    }
   }
 }

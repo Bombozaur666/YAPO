@@ -14,11 +14,9 @@
   --in-case-pink: #BD18DAFF;
 
   --action-button: rgb(5, 197, 230);
+  --cancel-button: #112022;
   --menu-button: #ffc107;
   --table-higlite: #33a89b;
-
-  --bs-pagination-color: #33a89b;
-  --bs-pagination-bg: var(--main-active-color);
 }
 
 .body {
@@ -76,7 +74,7 @@
 .btn-list.active {
   background-color: var(--main-active-color) !important;
   color: var(--color-white) !important;
-  border: 0;
+  border: 1px solid transparent !important;
 }
 
 .btn-menu {
@@ -89,6 +87,7 @@
 }
 
 .btn-list:hover {
+  background-color: var(--main-active-color) !important;
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgb(0, 0, 0);
   cursor: pointer;

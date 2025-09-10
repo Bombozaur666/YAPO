@@ -1,4 +1,4 @@
-<div class="container-fluid" style="width: 100%">
+<div class="container-fluid w-100">
   @if (initialized) {
     <div class="row w-100">
       <app-localizations-component
@@ -8,6 +8,7 @@
       (localizationRemove)="localizationRemove($event)">
       </app-localizations-component>
     </div>
+
     <div class="row">
       <div class="col-3">
         @if (selectedLocalization) {
@@ -19,6 +20,7 @@
           </app-plants-list-component>
         }
       </div>
+
       <div class="col">
         @if (selectedPlant) {
           <app-plant-detail-component

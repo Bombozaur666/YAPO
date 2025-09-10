@@ -98,5 +98,4 @@ public class Plant {
     @Column
     @Enumerated(EnumType.STRING)
     private PlantLifeExpectancy plantLifeExpectancy;
-
 }

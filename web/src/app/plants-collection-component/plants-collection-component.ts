@@ -4,9 +4,11 @@ import {Localization, LocalizationWithoutPlants} from '../Interfaces/Plants/loca
 import {Plant} from '../Interfaces/Plants/plant';
 import {LocalizationsComponent} from './localizations-component/localizations-component';
 import {PlantDetailComponent} from './plant-detail-component/plant-detail-component';
-import {TranslatePipe} from '@ngx-translate/core';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {PlantsListComponent} from './plants-list-component/plants-list-component';
 import {Note} from '../Interfaces/Plants/note';
+import Swal from 'sweetalert2';
+import {getCSSVariable} from '../shared/utils';
 
 @Component({
   selector: 'app-plants-collection-component',
@@ -32,7 +34,8 @@ export class PlantsCollectionComponent implements OnInit {
   protected showPlants: Plant[] = [];
   protected plant: Plant = {} as Plant;
 
-  constructor(private  plantsCollectionService: PlantsCollectionService) {}
+  constructor(private  plantsCollectionService: PlantsCollectionService,
+              private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.plantsCollectionService.locationsFetch().subscribe(
@@ -116,8 +119,38 @@ export class PlantsCollectionComponent implements OnInit {
         this.localizationsWithoutPlants = this.localizationList();
         this.showPlants =  this.preparePlants(this.selectedLocalization!);
         this.selectedPlant = null;
+
+        this.translate.get([
+          'alerts.deletePlant.successTitle',
+          'alerts.deletePlant.successText',
+          'alerts.deletePlant.ok',
+        ]).subscribe(translations => {
+          Swal.fire({
+            title: translations['alerts.deletePlant.successTitle'],
+            text: translations['alerts.deletePlant.successText'],
+            icon: "success",
+            confirmButtonText: translations['alerts.deletePlant.ok'],
+            confirmButtonColor: getCSSVariable('--action-button'),
+            background: getCSSVariable('--main-secondary-color'),
+          })
+        });
       },
-      error: (error: any): void => {console.log(error.message);}
+      error: (): void => {
+        this.translate.get([
+          'alerts.deletePlant.failureSuccess',
+          'alerts.deletePlant.failureText',
+          'alerts.deletePlant.ok',
+        ]).subscribe(translations => {
+          Swal.fire({
+            title: translations['alerts.deletePlant.failureSuccess'],
+            text: translations['alerts.deletePlant.failureText'],
+            icon: "error",
+            confirmButtonText: translations['alerts.deletePlant.ok'],
+            confirmButtonColor: getCSSVariable('--action-button'),
+            background: getCSSVariable('--main-secondary-color'),
+          })
+        });
+      }
     })
   }
 

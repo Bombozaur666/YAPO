@@ -3,10 +3,11 @@
     <h5 class="modal-title" id="locationModalLabel">
       {{title | translate}}
     </h5>
+
     <button
       type="button"
       class="btn-close"
-      [attr.aria-label]="'collections.localizations.editLocalization' | translate"
+      [attr.aria-label]="'collections.localizations.cancel' | translate"
       (click)="close()">
     </button>
   </div>
@@ -25,7 +26,9 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-delete" (click)="delete()">{{'collections.localizations.modal.remove' | translate}}</button>
+      @if (localization.name !== "") {
+        <button type="button" class="btn btn-delete" (click)="delete()">{{'collections.localizations.modal.remove' | translate}}</button>
+      }
       <button type="button" class="btn btn-secondary" (click)="close()">{{'collections.localizations.modal.cancel' | translate}}</button>
       <button type="submit" class="btn btn-action" (click)="save()">{{'collections.localizations.modal.save' | translate}}</button>
     </div>

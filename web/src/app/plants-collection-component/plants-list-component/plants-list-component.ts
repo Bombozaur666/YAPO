@@ -19,13 +19,17 @@ export class PlantsListComponent {
   @Input() plants: Plant[] = [];
   selectedPlant: number = -1;
   @Output() plantsChange: EventEmitter<number> = new EventEmitter<number>();
-  @Output() createPlant: EventEmitter<Plant>= new EventEmitter<Plant>();
+  @Output() createPlant: EventEmitter<Plant> = new EventEmitter<Plant>();
   @Input() localizationId: number | undefined = undefined;
 
   constructor(private plantCollectionService: PlantsCollectionService,
-              private modalService: NgbModal) {}
+              private modalService: NgbModal) {
+  }
 
-  selectPlant(plantId: number): void {this.plantsChange.emit(plantId); this.selectedPlant= plantId;}
+  selectPlant(plantId: number): void {
+    this.plantsChange.emit(plantId);
+    this.selectedPlant = plantId;
+  }
 
   onUploadPlant(plant: Plant): void {
     plant.localization = {

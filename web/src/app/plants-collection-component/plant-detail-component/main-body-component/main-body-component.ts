@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from "@ngx-translate/core";
+import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 import {Plant} from '../../../Interfaces/Plants/plant';
 import {UploadImageDialogComponent} from '../../../shared/upload-image-dialog-component/upload-image-dialog-component';
 import {PlantsCollectionService} from '../../plants-collection-service';
@@ -13,6 +13,8 @@ import {PlantWatering} from '../../../Interfaces/Plants/enums/PlantWatering';
 import {PlantBerth} from '../../../Interfaces/Plants/enums/PlantBerth';
 import {PlantToxicity} from '../../../Interfaces/Plants/enums/PlantToxicity';
 import {PlantLifeExpectancy} from '../../../Interfaces/Plants/enums/PlantLifeExpectancy';
+import Swal from 'sweetalert2'
+import {getCSSVariable} from '../../../shared/utils';
 
 @Component({
   selector: 'app-main-body-component',
@@ -32,7 +34,8 @@ export class MainBodyComponent {
   @Output() plantUpdate: EventEmitter<Plant> = new EventEmitter();
 
   constructor(private plantsCollectionService: PlantsCollectionService,
-              private modalService: NgbModal) {}
+              private modalService: NgbModal,
+              private translate: TranslateService) {}
 
   get avatarPath(): string {return this.plantsCollectionService.avatarPath(this.plant);}
 
@@ -54,7 +57,30 @@ export class MainBodyComponent {
     modalRef.result.then((result: File): void => {this.onPlantAvatarChange(result);});
   }
 
-  onRemovePlant(): void {this.removePlant.emit(this.plant);}
+  onRemovePlant(): void {
+    this.translate.get([
+      'alerts.deletePlant.title',
+      'alerts.deletePlant.text',
+      'alerts.deletePlant.confirmButton',
+      'alerts.deletePlant.cancelButton',
+    ]).subscribe(translations => {
+      Swal.fire({
+        title: translations['alerts.deletePlant.title'],
+        text: translations['alerts.deletePlant.text'],
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: translations['alerts.deletePlant.confirmButton'],
+        cancelButtonText: translations['alerts.deletePlant.cancelButton'],
+        cancelButtonColor: getCSSVariable('--cancel-button'),
+        confirmButtonColor: getCSSVariable('--action-button'),
+        background: getCSSVariable('--main-secondary-color'),
+      }).then((result): void => {
+        if (result.isConfirmed) {
+          this.removePlant.emit(this.plant);
+        }
+      });
+    });
+  }
 
 
   updateField(name: string, value: any, typeData: string, options?: PlantLifeExpectancy[] | PlantCondition[] | PlantSoil[] | PlantWatering[] | PlantBerth[] | PlantToxicity[]): void {
