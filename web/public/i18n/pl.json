@@ -278,6 +278,16 @@
       "failureText": "Nie udało się usunąć notatkę. Proszę spróbować później.",
       "ok": "Ok"
     },
+    "addNote": {
+      "failureTitle": "Błąd",
+      "failureText": "Nie udało się dodać notatki. Proszę spróbować później.",
+      "ok": "Ok"
+    },
+    "changeNote": {
+      "failureTitle": "Błąd",
+      "failureText": "Nie udało się zaktualizować notatki. Proszę spróbować później.",
+      "ok": "Ok"
+    },
     "localizationDelete": {
       "title": "Usuniecie Lokalizacji",
       "text": "Czy na pewno chcesz usunąć lokalizację?",
@@ -285,8 +295,42 @@
       "cancelButton": "Nie",
       "successTitle": "Sukces",
       "successText": "Poprawnie usunięto lokalizację",
-      "failureSuccess": "Błąd",
+      "failureTitle": "Błąd",
       "failureText": "Nie udało się usunąć lokalizacji. Proszę spróbować później.",
+      "ok": "Ok"
+    },
+    "dataFetching": {
+      "failureTitle": "Błąd",
+      "failureText": "Nie udało się pobrać danych. Proszę spróbować później.",
+      "ok": "Ok"
+    },
+    "uploadPlant": {
+      "failureTitle": "Błąd",
+      "failureText": "Nie udało się utworzyć rosliny. Proszę spróbować później.",
+      "ok": "Ok"
+    },
+    "updatePlant": {
+      "failureTitle": "Błąd",
+      "failureText": "Nie udało się zaktualizować pola. Proszę spróbować później.",
+      "ok": "Ok"
+    },
+    "uploadPhoto": {
+      "failureTitle": "Błąd",
+      "failureText": "Nie udało się wgrać zdjęcia. Proszę spróbować później.",
+      "ok": "Ok"
+    },
+    "login": {
+      "failureTitle": "Błąd",
+      "failureText": "Nie udało się zalogować. Proszę spróbować później.",
+      "ok": "Ok"
+    },
+    "register": {
+      "confirmButton": "Tak",
+      "cancelButton": "Nie",
+      "successTitle": "Pomyślna rejestracja.",
+      "successText": "Teraz proszę potwierdzić email.",
+      "failureSuccess": "Błąd",
+      "failureText": "Nie udało się zarejestrować. Proszę spróbować później.",
       "ok": "Ok"
     }
   }

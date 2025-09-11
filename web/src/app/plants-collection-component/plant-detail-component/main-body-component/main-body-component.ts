@@ -44,6 +44,22 @@ export class MainBodyComponent {
       next: (data: Plant): void => {
         this.plant = data;
         return this.plantAvatarChange.emit(data);
+      },
+      error: (): void => {
+        this.translate.get([
+          'alerts.uploadPhoto.failureTitle',
+          'alerts.uploadPhoto.failureText',
+          'alerts.uploadPhoto.ok',
+        ]).subscribe(translations => {
+          Swal.fire({
+            title: translations['alerts.uploadPhoto.failureTitle'],
+            text: translations['alerts.uploadPhoto.failureText'],
+            icon: "error",
+            confirmButtonText: translations['alerts.uploadPhoto.ok'],
+            confirmButtonColor: getCSSVariable('--action-button'),
+            background: getCSSVariable('--main-secondary-color'),
+          })
+        });
       }
     });
   };
@@ -98,6 +114,22 @@ export class MainBodyComponent {
         this.plantsCollectionService.updatePlantField(result, this.plant.id).subscribe({
           next: (data: Plant): void => {
             this.plantUpdate.emit(data);
+          },
+          error: (): void => {
+            this.translate.get([
+              'alerts.updatePlant.failureTitle',
+              'alerts.updatePlant.failureText',
+              'alerts.updatePlant.ok',
+            ]).subscribe(translations => {
+              Swal.fire({
+                title: translations['alerts.updatePlant.failureTitle'],
+                text: translations['alerts.updatePlant.failureText'],
+                icon: "error",
+                confirmButtonText: translations['alerts.updatePlant.ok'],
+                confirmButtonColor: getCSSVariable('--action-button'),
+                background: getCSSVariable('--main-secondary-color'),
+              })
+            });
           }
         })
       });

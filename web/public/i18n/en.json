@@ -13,9 +13,9 @@
       "general": "Languages"
     },
     "user": {
-      "login": "Login",
+      "login": "Log in",
       "register": "Register",
-      "logout": "Logout",
+      "logout": "Log out",
       "profile": "Profile"
     }
   },
@@ -29,7 +29,7 @@
       "COMMENT_NOT_FOUND": "Comment not found",
       "PHOTO_NOT_FOUND": "Photo not found",
       "USERNAME_OR_EMAIL_ALREADY_IN_USE": "Username or email is already in use",
-      "UNEXPECTED_ERROR_DURING_DELETE": "Unexpected error during deletion",
+      "UNEXPECTED_ERROR_DURING_DELETE": "Unexpected error while deleting",
       "VALIDATION_ERROR": "Validation error",
       "ERROR_DURING_SENDING_MAIL": "Error while sending email",
       "INVALID_TOKEN": "Invalid token",
@@ -39,7 +39,8 @@
   },
   "loginPage": {
     "register": "Register",
-    "login": "Login",
+    "login": "Log in",
+    "title": "Login",
     "password": {
       "password": "Password",
       "isRequired": "Password cannot be empty!"
@@ -51,10 +52,16 @@
     "username": {
       "username": "Username",
       "isRequired": "Username cannot be empty!"
+    },
+    "forgotPassword": {
+      "title": "Forgot password",
+      "success": "Password successfully changed!",
+      "failure": "Password change failed. Check if you received an email earlier",
+      "reset": "Reset password"
     }
   },
   "profile": {
-    "profile": "User Profile",
+    "profile": "User profile",
     "username": "Username: ",
     "email": "Email: ",
     "registrationDate": "Registration date: ",
@@ -70,11 +77,17 @@
       "close": "Close",
       "cancel": "Cancel",
       "upload": "Upload",
-      "alt": "Preview of uploaded photo"
+      "alt": "Uploaded photo preview"
+    },
+    "alerts": {
+      "footerButtons": {
+        "close": "Close",
+        "ok": "OK"
+      }
     }
   },
   "collections": {
-    "loading": "Loading data...",
+    "loading": "Fetching data...",
     "localizations": {
       "addLocalization": "Add localization",
       "editLocalization": "Edit localization",
@@ -88,7 +101,7 @@
     },
     "plants": {
       "addPlant": "Add plant",
-      "alt": "Plant thumbnail",
+      "alt": "Plant thumbnail ",
       "details": {
         "true": "Yes",
         "false": "No",
@@ -97,27 +110,27 @@
         "purchaseDate": "Purchase date",
         "purchaseLocalization": "Purchase location",
         "fertilizationDate": "Fertilization date",
-        "alive": "Alive",
-        "shared": "Shared",
+        "alive": "Is alive",
+        "shared": "Is shared",
         "avatarPath": "Plant avatar",
         "wateringDate": "Watering date",
-        "deathReason": "Death reason",
+        "deathReason": "Cause of death",
         "plantCondition": "Plant condition",
         "plantSoil": "Soil",
         "plantWatering": "Watering",
-        "plantBerth": "Location",
-        "plantToxicity": "Toxicity level",
-        "plantLifeExpectancy": "Expected lifespan",
+        "plantBerth": "Placement",
+        "plantToxicity": "Toxicity",
+        "plantLifeExpectancy": "Life expectancy",
         "plantConditionValues": {
           "HEALTHY": "Healthy",
           "NEEDS_WATER": "Needs water",
           "NEEDS_SUNLIGHT": "Needs sunlight",
           "NEEDS_FERTILIZER": "Needs fertilizer",
-          "DIEBACK": "Dying",
-          "INFESTED": "Infested by pests",
+          "DIEBACK": "Dying back",
+          "INFESTED": "Infested",
           "DISEASED": "Diseased",
           "STRESSED": "Stressed",
-          "FUCK_THIS_SHIT_IM_OUT": "Plant decided to die",
+          "FUCK_THIS_SHIT_IM_OUT": "The plant decided to die",
           "null": ""
         },
         "plantSoilValues": {
@@ -135,7 +148,7 @@
           "ALKALINE_SOIL": "Alkaline soil",
           "NEUTRAL_SOIL": "Neutral soil",
           "PERLITE_MIX": "Perlite mix",
-          "COCONUT_SUBSTRATE": "Coconut fiber",
+          "COCONUT_SUBSTRATE": "Coconut substrate",
           "ORCHID_SOIL": "Orchid soil",
           "null": ""
         },
@@ -145,7 +158,7 @@
           "TWO_TIMES_A_WEEK": "Twice a week",
           "WEEKLY": "Weekly",
           "MONTHLY": "Monthly",
-          "WHEN_NEEDED": "As needed",
+          "WHEN_NEEDED": "When needed",
           "null": ""
         },
         "plantBerthValues": {
@@ -174,7 +187,7 @@
         },
         "notes": {
           "note": {
-            "id": "NP",
+            "id": "ID",
             "body": "Content",
             "noteDate": "Creation date",
             "editDate": "Edit date",
@@ -208,7 +221,7 @@
           "fullPhoto": {
             "title": "Title: ",
             "date": "Date: ",
-            "creationDate": "Creation date: ",
+            "creationDate": "Added on: ",
             "description": "Description: ",
             "close": "Close",
             "deletePhoto": "Delete photo",
@@ -237,9 +250,44 @@
     }
   },
   "pagination": {
-    "5": "5 items per page",
-    "10": "10 items per page",
-    "20": "20 items per page",
+    "5": "5 items per page.",
+    "10": "10 items per page.",
+    "20": "20 items per page.",
     "all": "All"
+  },
+  "alerts": {
+    "deletePlant": {
+      "title": "Delete plant",
+      "text": "Are you sure you want to delete the plant?",
+      "confirmButton": "Yes",
+      "cancelButton": "No",
+      "successTitle": "Success",
+      "successText": "Plant successfully deleted",
+      "failureSuccess": "Error",
+      "failureText": "Failed to delete the plant. Please try again later.",
+      "ok": "Ok"
+    },
+    "noteDelete": {
+      "title": "Delete note",
+      "text": "Are you sure you want to delete the note?",
+      "confirmButton": "Yes",
+      "cancelButton": "No",
+      "successTitle": "Success",
+      "successText": "Note successfully deleted",
+      "failureSuccess": "Error",
+      "failureText": "Failed to delete the note. Please try again later.",
+      "ok": "Ok"
+    },
+    "localizationDelete": {
+      "title": "Delete localization",
+      "text": "Are you sure you want to delete the localization?",
+      "confirmButton": "Yes",
+      "cancelButton": "No",
+      "successTitle": "Success",
+      "successText": "Localization successfully deleted",
+      "failureSuccess": "Error",
+      "failureText": "Failed to delete the localization. Please try again later.",
+      "ok": "Ok"
+    }
   }
 }

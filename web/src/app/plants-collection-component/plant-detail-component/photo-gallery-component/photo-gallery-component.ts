@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output, QueryList, ViewChildren} from '@angular/core';
-import {TranslatePipe} from "@ngx-translate/core";
+import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 import {PhotoGallery} from '../../../Interfaces/Plants/photo-gallery';
 import {PhotoComponent} from './photo-component/photo-component';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
@@ -7,6 +7,8 @@ import {PlantsCollectionService} from '../../plants-collection-service';
 import {UploadPhotoGalleryComponent} from './upload-photo-gallery-component/upload-photo-gallery-component';
 import {PhotoGalleryRequest} from '../../../Interfaces/Plants/PhotoGalleryRequest';
 import {Plant} from '../../../Interfaces/Plants/plant';
+import Swal from 'sweetalert2';
+import {getCSSVariable} from '../../../shared/utils';
 
 @Component({
   selector: 'app-photo-gallery-component',
@@ -26,7 +28,8 @@ export class PhotoGalleryComponent {
   @ViewChildren(PhotoComponent) photoComponents!: QueryList<PhotoComponent>;
 
   constructor(private modalService: NgbModal,
-              private plantsCollectionService: PlantsCollectionService) {}
+              private plantsCollectionService: PlantsCollectionService,
+              private translate: TranslateService) {}
 
   uploadPhoto(): void {
     const modalRef: NgbModalRef = this.modalService.open(UploadPhotoGalleryComponent);
@@ -37,7 +40,23 @@ export class PhotoGalleryComponent {
     modalRef.result.then(
       (result: PhotoGalleryRequest): void => {
         this.plantsCollectionService.addPhoto(result, this.plantId).subscribe({
-          next: (data: Plant): void => {this.plantUpdate.emit(data);}
+          next: (data: Plant): void => {this.plantUpdate.emit(data);},
+          error: (): void => {
+            this.translate.get([
+              'alerts.uploadPhoto.failureTitle',
+              'alerts.uploadPhoto.failureText',
+              'alerts.uploadPhoto.ok',
+            ]).subscribe(translations => {
+              Swal.fire({
+                title: translations['alerts.uploadPhoto.failureTitle'],
+                text: translations['alerts.uploadPhoto.failureText'],
+                icon: "error",
+                confirmButtonText: translations['alerts.uploadPhoto.ok'],
+                confirmButtonColor: getCSSVariable('--action-button'),
+                background: getCSSVariable('--main-secondary-color'),
+              })
+            });
+          }
         });
       }
     );

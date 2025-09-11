@@ -44,6 +44,22 @@ export class PlantsCollectionComponent implements OnInit {
           this.localizations = data;
           this.localizationsWithoutPlants = this.localizationList();
           this.initialized = true;
+        },
+        error: (): void => {
+          this.translate.get([
+            'alerts.dataFetching.failureTitle',
+            'alerts.dataFetching.failureText',
+            'alerts.dataFetching.ok',
+          ]).subscribe(translations => {
+            Swal.fire({
+              title: translations['alerts.dataFetching.failureTitle'],
+              text: translations['alerts.dataFetching.failureText'],
+              icon: "error",
+              confirmButtonText: translations['alerts.dataFetching.ok'],
+              confirmButtonColor: getCSSVariable('--action-button'),
+              background: getCSSVariable('--main-secondary-color'),
+            })
+          });
         }
       }
     );
@@ -70,17 +86,17 @@ export class PlantsCollectionComponent implements OnInit {
   }
 
   localizationUpdateOrCreate(localization: Localization): void {
-      const index: number = this.localizations.findIndex((_localization: Localization): boolean => _localization.id === localization.id);
-      if (index === -1) {
-        this.localizations = [...this.localizations, localization];
-        this.localizationsWithoutPlants = this.localizationList();
-      }
-      else {
-        this.localizations = this.localizations.map((_localization: Localization, _index: number): Localization =>
-          _index === index ? localization : _localization
-        );
-        this.localizationsWithoutPlants = this.localizationList();
-      }
+    const index: number = this.localizations.findIndex((_localization: Localization): boolean => _localization.id === localization.id);
+    if (index === -1) {
+      this.localizations = [...this.localizations, localization];
+      this.localizationsWithoutPlants = this.localizationList();
+    }
+    else {
+      this.localizations = this.localizations.map((_localization: Localization, _index: number): Localization =>
+        _index === index ? localization : _localization
+      );
+      this.localizationsWithoutPlants = this.localizationList();
+    }
   }
 
   createPlant(newPlant: Plant): void {
@@ -100,6 +116,20 @@ export class PlantsCollectionComponent implements OnInit {
     this.localizationsWithoutPlants = this.localizationList();
     this.selectedLocalization = null;
     this.showPlants = [];
+    this.translate.get([
+      'alerts.localizationDelete.successTitle',
+      'alerts.localizationDelete.successText',
+      'alerts.localizationDelete.ok',
+    ]).subscribe(translations => {
+      Swal.fire({
+        title: translations['alerts.localizationDelete.successTitle'],
+        text: translations['alerts.localizationDelete.successText'],
+        icon: "success",
+        confirmButtonText: translations['alerts.localizationDelete.ok'],
+        confirmButtonColor: getCSSVariable('--action-button'),
+        background: getCSSVariable('--main-secondary-color'),
+      })
+    });
   }
 
   onRemovePlant(plant: Plant): void {
@@ -156,7 +186,7 @@ export class PlantsCollectionComponent implements OnInit {
               _plant.id === plant.id
                 ? { ..._plant, avatarPath: plant.avatarPath }
                 : _plant),
-            }
+          }
           : _localization
     );
     this.showPlants = this.preparePlants(this.selectedLocalization!);

@@ -22,15 +22,14 @@ export class PhotoComponent implements OnInit {
               private modalService: NgbModal) {}
 
   ngOnInit(): void {
-        this.getPhotoImage();
-    }
+    this.getPhotoImage();
+  }
 
   getPhotoImage(): void {
     this.plantsCollectionService.getPhoto(this.photoPath).subscribe({
       next: (blob: Blob): void => {
         this.photoUrl = URL.createObjectURL(blob);
-      },
-      error: (err) => console.error(err)
+      }
     })
   }
 

@@ -39,10 +39,26 @@ export class NotesComponent {
     modalRef.result.then(
       (result: Note): void => {
         this.plantsCollectionService.addNote(this.plantId, result).subscribe({
-           next: (data: Note): void => {
-             this.notes.push(data);
-             this.notesChanged.emit(this.notes);
-           }
+          next: (data: Note): void => {
+            this.notes.push(data);
+            this.notesChanged.emit(this.notes);
+          },
+          error: (): void => {
+            this.translate.get([
+              'alerts.addNote.failureTitle',
+              'alerts.addNote.failureText',
+              'alerts.addNote.ok',
+            ]).subscribe(translations => {
+              Swal.fire({
+                title: translations['alerts.addNote.failureTitle'],
+                text: translations['alerts.addNote.failureText'],
+                icon: "error",
+                confirmButtonText: translations['alerts.addNote.ok'],
+                confirmButtonColor: getCSSVariable('--action-button'),
+                background: getCSSVariable('--main-secondary-color'),
+              })
+            });
+          }
         });
       }
     );
@@ -53,10 +69,26 @@ export class NotesComponent {
       next: (data: Note): void => {
         this.notes = this.notes.map((_note: Note): Note =>
           _note.id === note.id
-          ? data
-          :  _note
+            ? data
+            :  _note
         );
         this.notesChanged.emit(this.notes);
+      },
+      error: (): void => {
+        this.translate.get([
+          'alerts.changeNote.failureTitle',
+          'alerts.changeNote.failureText',
+          'alerts.changeNote.ok',
+        ]).subscribe(translations => {
+          Swal.fire({
+            title: translations['alerts.changeNote.failureTitle'],
+            text: translations['alerts.changeNote.failureText'],
+            icon: "error",
+            confirmButtonText: translations['alerts.changeNote.ok'],
+            confirmButtonColor: getCSSVariable('--action-button'),
+            background: getCSSVariable('--main-secondary-color'),
+          })
+        });
       }
     });
   }
