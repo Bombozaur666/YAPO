@@ -1,10 +1,14 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import {LoginRequest, RegisterRequest, User, UsernameRequest} from '../Interfaces/Users/user';
 import {HttpClient} from '@angular/common/http';
 import {catchError, map, Observable, of, tap} from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
 import {Router} from '@angular/router';
 import {JWT_TOKEN, REFRESH_TOKEN, TokenResponse} from '../Interfaces/Users/token';
+import {TranslateService} from '@ngx-translate/core';
+import Swal from 'sweetalert2';
+import {getCSSVariable} from '../shared/utils';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +19,19 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient,
               private cookieService: CookieService,
-              private router: Router) {}
+              private router: Router,
+              private injector: Injector) {}
+
+  private get translate(): TranslateService {
+    return this.injector.get(TranslateService);
+  }
 
   get token(): string | null {
     return this.cookieService.get(JWT_TOKEN);
   }
 
   get path(): string {
-    return this.baseUrl + "avatar";
+    return `${this.baseUrl}avatar`;
   }
 
   get isAuthenticated(): boolean {
@@ -34,7 +43,7 @@ export class AuthService {
   }
 
   login(loginRequest: LoginRequest): void{
-    this.httpClient.post<TokenResponse>(this.baseUrl + 'login', loginRequest, {
+    this.httpClient.post<TokenResponse>(`${this.baseUrl}login`, loginRequest, {
       headers: {'Content-Type': 'application/json'},
       withCredentials: true
     }
@@ -45,8 +54,21 @@ export class AuthService {
         this.authenticated = true;
         this.router.navigate(['/']);
       },
-      error: (err: any): void => {
-        alert(`Błąd logowania: ${err.status} - ${err.error}`);
+      error: (): void => {
+        this.translate.get([
+          'alerts.login.failureTitle',
+          'alerts.login.failureText',
+          'alerts.login.ok',
+        ]).subscribe(translations => {
+          Swal.fire({
+            title: translations['alerts.login.failureTitle'],
+            text: translations['alerts.login.failureText'],
+            icon: "error",
+            confirmButtonText: translations['alerts.login.ok'],
+            confirmButtonColor: getCSSVariable('--action-button'),
+            background: getCSSVariable('--main-secondary-color'),
+          })
+        });
       }
     });
   }
@@ -65,7 +87,7 @@ export class AuthService {
   }
 
   register(registerRequest: RegisterRequest):Observable<User> {
-    return  this.httpClient.post<User>(this.baseUrl + 'register', registerRequest);
+    return  this.httpClient.post<User>(`${this.baseUrl}register` , registerRequest);
   }
 
   refresh():  Observable<TokenResponse | null>  {
@@ -73,7 +95,7 @@ export class AuthService {
     if (!refreshToken) return of(null);
 
     return this.httpClient
-      .post<TokenResponse>(this.baseUrl + "refresh", { refreshToken })
+      .post<TokenResponse>(`${this.baseUrl}refresh`, { refreshToken })
       .pipe(
         tap((data: TokenResponse): void => {
           this.cookieService.set(JWT_TOKEN, data.accessToken, { path: '/' });
