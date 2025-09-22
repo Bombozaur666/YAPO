@@ -6,6 +6,7 @@ import {RegisterComponent} from './auth/register-component/register-component';
 import {authGuard} from './auth/auth-guard';
 import {PlantsCollectionComponent} from './plants-collection-component/plants-collection-component';
 import {ForgotPasswordComponent} from './auth/forgot-password-component/forgot-password.component';
+import {ConfirmAccountComponent} from './auth/confirm-account-component/confirm-account.component';
 
 
 export const routes: Routes = [
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'collection', component: PlantsCollectionComponent, canActivate: [authGuard] },
+  { path: 'confirm-account', component: ConfirmAccountComponent },
   { path: '**', redirectTo: '' }
 ];

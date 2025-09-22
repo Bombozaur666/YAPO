@@ -3,7 +3,6 @@ import {FormsModule} from "@angular/forms";
 import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 import {RegisterRequest} from '../../Interfaces/Users/user';
 import {AuthService} from '../auth-service';
-import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
 import {getCSSVariable} from '../../shared/utils';
 
@@ -20,7 +19,6 @@ export class RegisterComponent {
   protected registerForm: RegisterRequest = {username: '', password: '', email: ''};
 
   constructor(private authService: AuthService,
-              private  router: Router,
               private translate: TranslateService) {}
 
   onSubmit(): void {

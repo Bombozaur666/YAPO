@@ -117,5 +117,9 @@ export class AuthService {
   forgotPassword(forgotRequest: UsernameRequest): Observable<any> {
     return this.httpClient.post(`${this.baseUrl}forgot-password`, forgotRequest);
   }
+
+  confirmAccount(confirm_token: string): Observable<any> {
+    return this.httpClient.get(`${this.baseUrl}enable?token=${confirm_token}`);
+  }
 }
 

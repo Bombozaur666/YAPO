@@ -51,7 +51,7 @@ public class UserService {
 
     @Transactional
     public User registerUser(User user, String role){
-        String url = "enable";
+        String url = "confirm-account";
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.getRoles().add(roleRepo.findByName(role));

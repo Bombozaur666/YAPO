@@ -329,8 +329,18 @@
       "cancelButton": "Nie",
       "successTitle": "Pomyślna rejestracja.",
       "successText": "Teraz proszę potwierdzić email.",
-      "failureSuccess": "Błąd",
+      "failureTitle": "Błąd",
       "failureText": "Nie udało się zarejestrować. Proszę spróbować później.",
+      "ok": "Ok"
+    },
+    "confirmAccount": {
+      "confirmButton": "Tak",
+      "cancelButton": "Nie",
+      "successTitle": "Pomyślna rejestracja.",
+      "successText": "Konto aktywne. Można się zalogować",
+      "failureTitle": "Błąd",
+      "failureTextToken": "Niepoprawny link aktywacyjny",
+      "failureText": "Nie udało się potwierdzić konta. Spróbuj ponownie później.",
       "ok": "Ok"
     }
   }

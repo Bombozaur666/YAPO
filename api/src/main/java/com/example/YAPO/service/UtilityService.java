@@ -4,6 +4,7 @@ import com.example.YAPO.models.User.User;
 import com.example.YAPO.models.User.VerificationToken;
 import com.example.YAPO.models.enums.ErrorList;
 import com.example.YAPO.repositories.user.VerificationTokenRepo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,8 @@ import java.util.UUID;
 
 @Service
 public class UtilityService {
+    @Value("${spring.mail.link}")
+    private String site;
     private final VerificationTokenRepo verificationTokenRepo;
 
     public UtilityService(VerificationTokenRepo verificationTokenRepo) {
@@ -36,6 +39,6 @@ public class UtilityService {
     }
 
     public String linkGenerator(String token, String url) {
-        return  "http://localhost:8080/user/"+ url + "?token=" + token;
+        return  this.site + url + "?token=" + token;
     }
 }

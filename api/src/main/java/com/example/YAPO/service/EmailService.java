@@ -16,6 +16,7 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String mailFrom;
 
+
     public EmailService(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
@@ -33,7 +34,6 @@ public class EmailService {
     }
 
     public void sendConfirmationEmail(@Email @NotNull @NotBlank String email, String subject, String link) throws MessagingException {
-        String htmlTemplate = link;
-        sendHtmlEmail(email, subject, htmlTemplate);
+        sendHtmlEmail(email, subject, link);
     }
 }

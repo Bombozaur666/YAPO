@@ -34,6 +34,7 @@ services:
       - spring_mail_host=${MAIL_HOST}
       - spring_mail_port=${MAIL_PORT}
       - spring_mail_username=${MAIL_USERNAME}
+      - spring_mail_link=${MAIL_LINK}
       - spring_mail_password=${MAIL_PASSWORD}
       - spring_mail_protocol=${MAIL_PROTOCOL}
       - spring_mail_default-encoding=${MAIL_ENCODING}
