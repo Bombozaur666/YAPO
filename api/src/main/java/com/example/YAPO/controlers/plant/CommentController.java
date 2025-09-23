@@ -16,9 +16,7 @@ import java.util.List;
 public class CommentController {
     private final CommentService commentService;
 
-    public CommentController(CommentService commentService) {
-        this.commentService = commentService;
-    }
+    public CommentController(CommentService commentService) {this.commentService = commentService;}
 
     @GetMapping("")
     public ResponseEntity<List<Comment>> getCommentsPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
