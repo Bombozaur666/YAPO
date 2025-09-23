@@ -19,20 +19,29 @@ public class NoteController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Note> createNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long plantId, @RequestBody @Valid Note note) {
+    public ResponseEntity<Note> createNotePage(
+            @AuthenticationPrincipal MyUserDetails userDetails,
+            @PathVariable Long plantId,
+            @RequestBody @Valid Note note) {
         Note _note = noteService.createNote(plantId, note, userDetails.getUser());
         return ResponseEntity.ok(_note);
     }
 
-    @DeleteMapping("/{idNote}")
-    public ResponseEntity<Void> deleteNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long plantId, @PathVariable Long idNote) {
-        boolean _isDeleted = noteService.deleteNoteById(plantId, idNote, userDetails.getUser().getId());
-        return _isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
-    }
-
     @PatchMapping("")
-    public ResponseEntity<Note> updateNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long plantId, @RequestBody @Valid Note note) {
+    public ResponseEntity<Note> updateNotePage(
+            @AuthenticationPrincipal MyUserDetails userDetails,
+            @PathVariable Long plantId,
+            @RequestBody @Valid Note note) {
         Note _note = noteService.updateNote(plantId, userDetails.getUser().getId(), note);
         return ResponseEntity.ok(_note);
+    }
+
+    @DeleteMapping("/{idNote}")
+    public ResponseEntity<Void> deleteNotePage(
+            @AuthenticationPrincipal MyUserDetails userDetails,
+            @PathVariable Long plantId,
+            @PathVariable Long idNote) {
+        boolean _isDeleted = noteService.deleteNoteById(plantId, idNote, userDetails.getUser().getId());
+        return _isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
 }

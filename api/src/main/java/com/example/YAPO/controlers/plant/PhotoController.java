@@ -57,13 +57,18 @@ public class PhotoController {
     }
 
     @PatchMapping("/{photoId}")
-    public ResponseEntity<PhotoGallery> updatePhotoPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long photoId, @RequestBody PhotoGalleryRequest photoGalleryRequest) {
+    public ResponseEntity<PhotoGallery> updatePhotoPage(
+            @AuthenticationPrincipal MyUserDetails userDetails,
+            @PathVariable Long photoId,
+            @RequestBody PhotoGalleryRequest photoGalleryRequest) {
         PhotoGallery photoGallery = photoService.updatePhoto(photoId, userDetails.getUser(), photoGalleryRequest);
         return ResponseEntity.ok(photoGallery);
     }
 
     @DeleteMapping("/{photoId}")
-    public ResponseEntity<Void> deletePhotoPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long photoId) {
+    public ResponseEntity<Void> deletePhotoPage(
+            @AuthenticationPrincipal MyUserDetails userDetails,
+            @PathVariable Long photoId) {
         photoService.removePhoto(userDetails.getUser(), photoId);
         return ResponseEntity.ok().build();
     }

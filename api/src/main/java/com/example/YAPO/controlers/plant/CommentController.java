@@ -31,15 +31,15 @@ public class CommentController {
         return ResponseEntity.ok(_comment);
     }
 
-    @DeleteMapping("/{commentId}")
-    public ResponseEntity<Void> deleteCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @PathVariable Long commentId) {
-        boolean _isDeleted = commentService.deleteComment(id, commentId, userDetails.getUser());
-        return  _isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
-    }
-
     @PatchMapping("")
     public ResponseEntity<Comment> updateCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid UpdateField  updateField) {
         Comment _comment = commentService.updateComment(id, updateField, userDetails.getUser());
         return ResponseEntity.ok(_comment);
+    }
+
+    @DeleteMapping("/{commentId}")
+    public ResponseEntity<Void> deleteCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @PathVariable Long commentId) {
+        boolean _isDeleted = commentService.deleteComment(id, commentId, userDetails.getUser());
+        return  _isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
 }

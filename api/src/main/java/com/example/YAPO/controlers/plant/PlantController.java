@@ -32,37 +32,48 @@ public class PlantController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Plant>>  plantsPage(@AuthenticationPrincipal MyUserDetails userDetails) {
+    public ResponseEntity<List<Plant>>  plantsPage(
+            @AuthenticationPrincipal MyUserDetails userDetails) {
         List<Plant> _plants = plantService.getAllPlants(userDetails.getUsername());
         return ResponseEntity.ok(_plants);
     }
 
     @PostMapping("/create-plant")
-    public ResponseEntity<Plant> createPlantPage(@AuthenticationPrincipal MyUserDetails userDetails, @RequestBody @Valid Plant plant) throws NoSuchElementException{
+    public ResponseEntity<Plant> createPlantPage(
+            @AuthenticationPrincipal MyUserDetails userDetails,
+            @RequestBody @Valid Plant plant) throws NoSuchElementException{
         Plant _plant = plantService.createPlant(plant, userDetails.getUser());
         return ResponseEntity.ok(_plant);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Plant> getPlantPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable long id) {
+    public ResponseEntity<Plant> getPlantPage(
+            @AuthenticationPrincipal MyUserDetails userDetails,
+            @PathVariable long id) {
         Plant _plant = plantService.getPlant(id, userDetails.getUsername());
         return ResponseEntity.ok(_plant);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePlantByIdPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
+    public ResponseEntity<Void> deletePlantByIdPage(
+            @AuthenticationPrincipal MyUserDetails userDetails,
+            @PathVariable Long id) {
         boolean _isDeleted = plantService.deletePlant(id, userDetails.getUsername());
         return _isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
 
     @PatchMapping("/{id}/update")
-    public ResponseEntity<Plant> updateFieldPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid UpdateField updateField) {
+    public ResponseEntity<Plant> updateFieldPage(
+            @AuthenticationPrincipal MyUserDetails userDetails,
+            @PathVariable Long id,
+            @RequestBody @Valid UpdateField updateField) {
         Plant _plant = plantService.updateField(id, userDetails.getUser(), updateField);
         return ResponseEntity.ok(_plant);
     }
 
     @GetMapping("/shared/{id}")
-    public ResponseEntity<Plant> sharedPlantPage(@PathVariable Long id) {
+    public ResponseEntity<Plant> sharedPlantPage(
+            @PathVariable Long id) {
         Plant _plant = plantService.sharedPlant(id);
         return  ResponseEntity.ok(_plant);
     }
@@ -77,7 +88,8 @@ public class PlantController {
     }
 
     @GetMapping("/avatar/{fileName}")
-    public ResponseEntity<Resource> getAvatar(@PathVariable String fileName) throws Exception {
+    public ResponseEntity<Resource> getAvatar(
+            @PathVariable String fileName) throws Exception {
         Path path = plantAvatarService.getAvatarPath(fileName);
         byte[] bytes = Files.readAllBytes(path);
         return ResponseEntity.ok()
