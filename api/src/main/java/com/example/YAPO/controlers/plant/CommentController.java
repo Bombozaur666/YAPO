@@ -5,6 +5,7 @@ import com.example.YAPO.models.UpdateField;
 import com.example.YAPO.models.plant.Comment;
 import com.example.YAPO.service.plant.CommentService;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,21 +21,25 @@ public class CommentController {
     }
 
     @GetMapping("")
-    public List<Comment> getCommentsPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
-        return commentService.getComments(id, userDetails.getUser());
+    public ResponseEntity<List<Comment>> getCommentsPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
+        List<Comment> _comments = commentService.getComments(id, userDetails.getUser());
+        return ResponseEntity.ok(_comments);
     }
     @PostMapping("")
-    public Comment createCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid Comment comment) {
-        return commentService.createComment(id, userDetails.getUser(), comment);
+    public ResponseEntity<Comment> createCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid Comment comment) {
+        Comment _comment = commentService.createComment(id, userDetails.getUser(), comment);
+        return ResponseEntity.ok(_comment);
     }
 
     @DeleteMapping("/{commentId}")
-    public Boolean deleteCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @PathVariable Long commentId) {
-        return commentService.deleteComment(id, commentId, userDetails.getUser());
+    public ResponseEntity<Void> deleteCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @PathVariable Long commentId) {
+        boolean _isDeleted = commentService.deleteComment(id, commentId, userDetails.getUser());
+        return  _isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
 
     @PatchMapping("")
-    public Comment updateCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid UpdateField  updateField) {
-        return commentService.updateComment(id, updateField, userDetails.getUser());
+    public ResponseEntity<Comment> updateCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid UpdateField  updateField) {
+        Comment _comment = commentService.updateComment(id, updateField, userDetails.getUser());
+        return ResponseEntity.ok(_comment);
     }
 }

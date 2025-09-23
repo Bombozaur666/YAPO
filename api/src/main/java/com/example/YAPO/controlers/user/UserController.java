@@ -30,8 +30,9 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public User getUserPage(@AuthenticationPrincipal MyUserDetails userDetails) {
-        return userDetails.getUser();
+    public ResponseEntity<User> getUserPage(@AuthenticationPrincipal MyUserDetails userDetails) {
+        User _user = userDetails.getUser();
+        return ResponseEntity.ok(_user);
     }
 
     @PostMapping("/register")
@@ -42,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginUserPage(@RequestBody User user) {
+    public ResponseEntity<Map<String, String>> loginUserPage(@RequestBody User user) {
         Map<String, String> response = userService.verifyUser(user);
         return ResponseEntity.ok(response);
     }
@@ -54,30 +55,30 @@ public class UserController {
     }
 
     @PostMapping("/deactivate")
-    public ResponseEntity<?> deactivateUserPage(@AuthenticationPrincipal MyUserDetails userDetails) {
+    public ResponseEntity<Void> deactivateUserPage(@AuthenticationPrincipal MyUserDetails userDetails) {
         userService.deactivateUser(userDetails.getUser());
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<?> forgotPasswordPage(@RequestBody @Valid UsernameField username) {
+    public ResponseEntity<Void> forgotPasswordPage(@RequestBody @Valid UsernameField username) {
         userService.forgotPassword(username.getUsername());
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/reactivate-user")
-    public ResponseEntity<?> restoreUserPage(@RequestBody UsernameField usernameField){
+    public ResponseEntity<Void> restoreUserPage(@RequestBody UsernameField usernameField){
         userService.reactivateUser(usernameField.getUsername());
         return ResponseEntity.ok().build();
     }
 
     @GetMapping( "/enable")
-    public ResponseEntity<?> enableUserPage(@RequestParam String token ){
+    public ResponseEntity<Void> enableUserPage(@RequestParam String token ){
         userService.enableUser(token);
         return ResponseEntity.ok().build();
     }
     @PostMapping("/reset")
-    public ResponseEntity<?> resetUserPasswordPage(
+    public ResponseEntity<Void> resetUserPasswordPage(
             @RequestParam String token ,
             @RequestBody @Valid PasswordField  passwordField){
         userService.resetUserPassword(token, passwordField);
@@ -94,16 +95,16 @@ public class UserController {
     public ResponseEntity<User> uploadAvatar(
             @AuthenticationPrincipal MyUserDetails userDetails,
             @RequestParam("file") MultipartFile file) throws Exception {
-        User user = avatarService.uploadAvatar(userDetails.getUser(), file);
-        return ResponseEntity.ok(user);
+        User _user = avatarService.uploadAvatar(userDetails.getUser(), file);
+        return ResponseEntity.ok(_user);
     }
 
     @GetMapping("/avatar/{fileName}")
     public ResponseEntity<Resource> getAvatar(@PathVariable String fileName) throws Exception {
         Path path = avatarService.getAvatarPath(fileName);
-        byte[] bytes = Files.readAllBytes(path);
+        byte[] _bytes = Files.readAllBytes(path);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType("application/octet-stream"))
-                .body(new ByteArrayResource(bytes));
+                .body(new ByteArrayResource(_bytes));
     }
 }

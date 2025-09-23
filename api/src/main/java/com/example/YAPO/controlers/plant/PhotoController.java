@@ -63,7 +63,7 @@ public class PhotoController {
     }
 
     @DeleteMapping("/{photoId}")
-    public ResponseEntity<?> deletePhotoPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long photoId) {
+    public ResponseEntity<Void> deletePhotoPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long photoId) {
         photoService.removePhoto(userDetails.getUser(), photoId);
         return ResponseEntity.ok().build();
     }

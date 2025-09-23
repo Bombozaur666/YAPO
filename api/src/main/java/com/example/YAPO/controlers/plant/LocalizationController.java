@@ -21,28 +21,32 @@ public class LocalizationController {
     }
 
     @GetMapping("/")
-    public List<Localization> localizationsPage(@AuthenticationPrincipal MyUserDetails userDetails) {
-        return localizationService.getAllLocalizationsByUsername(userDetails.getUsername());
+    public ResponseEntity<List<Localization>>  localizationsPage(@AuthenticationPrincipal MyUserDetails userDetails) {
+        List<Localization> _locations = localizationService.getAllLocalizationsByUsername(userDetails.getUsername());
+        return ResponseEntity.ok(_locations);
     }
 
     @PostMapping("/create-localization")
-    public Localization createLocalizationPage(@AuthenticationPrincipal MyUserDetails userDetails, @RequestBody Localization localization) {
-        return localizationService.createLocalization(userDetails.getUser().getId(), localization);
+    public ResponseEntity<Localization> createLocalizationPage(@AuthenticationPrincipal MyUserDetails userDetails, @RequestBody Localization localization) {
+        Localization _localization = localizationService.createLocalization(userDetails.getUser().getId(), localization);
+        return ResponseEntity.ok(_localization);
     }
     
     @GetMapping("/{id}")
-    public Localization getLocalizationByIdPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable long id) {
-        return localizationService.getLocalizationByIdAndUsername(userDetails.getUsername(), id);
+    public  ResponseEntity<Localization> getLocalizationByIdPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable long id) {
+        Localization _Localization = localizationService.getLocalizationByIdAndUsername(userDetails.getUsername(), id);
+        return ResponseEntity.ok(_Localization);
     }
 
     @PutMapping("/{id}")
-    public Localization updateLocalizationPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable long id, @RequestBody @Valid UpdateField  updateField) {
-        return localizationService.updateLocalization(userDetails.getUsername(), updateField, id);
+    public  ResponseEntity<Localization> updateLocalizationPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable long id, @RequestBody @Valid UpdateField  updateField) {
+        Localization _Localization = localizationService.updateLocalization(userDetails.getUsername(), updateField, id);
+        return ResponseEntity.ok(_Localization);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteLocalizationPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable long id) {
-        boolean response = localizationService.deleteByIdAndUsername(id, userDetails.getUsername());
-        return ResponseEntity.ok(response);
+    public ResponseEntity<Void> deleteLocalizationPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable long id) {
+        boolean _isDeleted = localizationService.deleteByIdAndUsername(id, userDetails.getUsername());
+        return _isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
 }

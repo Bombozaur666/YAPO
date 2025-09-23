@@ -32,33 +32,39 @@ public class PlantController {
     }
 
     @GetMapping("/")
-    public List<Plant> plantsPage(@AuthenticationPrincipal MyUserDetails userDetails) {
-        return plantService.getAllPlants(userDetails.getUsername());
+    public ResponseEntity<List<Plant>>  plantsPage(@AuthenticationPrincipal MyUserDetails userDetails) {
+        List<Plant> _plants = plantService.getAllPlants(userDetails.getUsername());
+        return ResponseEntity.ok(_plants);
     }
 
     @PostMapping("/create-plant")
-    public Plant createPlantPage(@AuthenticationPrincipal MyUserDetails userDetails, @RequestBody @Valid Plant plant) throws NoSuchElementException{
-        return plantService.createPlant(plant, userDetails.getUser());
+    public ResponseEntity<Plant> createPlantPage(@AuthenticationPrincipal MyUserDetails userDetails, @RequestBody @Valid Plant plant) throws NoSuchElementException{
+        Plant _plant = plantService.createPlant(plant, userDetails.getUser());
+        return ResponseEntity.ok(_plant);
     }
 
     @GetMapping("/{id}")
-    public Plant getPlantPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable long id) {
-        return plantService.getPlant(id, userDetails.getUsername());
+    public ResponseEntity<Plant> getPlantPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable long id) {
+        Plant _plant = plantService.getPlant(id, userDetails.getUsername());
+        return ResponseEntity.ok(_plant);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deletePlantByIdPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
-        return !plantService.deletePlant(id, userDetails.getUsername()) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    public ResponseEntity<Void> deletePlantByIdPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
+        boolean _isDeleted = plantService.deletePlant(id, userDetails.getUsername());
+        return _isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
 
     @PatchMapping("/{id}/update")
-    public  Plant updateFieldPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid UpdateField updateField) {
-        return plantService.updateField(id, userDetails.getUser(), updateField);
+    public ResponseEntity<Plant> updateFieldPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid UpdateField updateField) {
+        Plant _plant = plantService.updateField(id, userDetails.getUser(), updateField);
+        return ResponseEntity.ok(_plant);
     }
 
     @GetMapping("/shared/{id}")
-    public Plant sharedPlantPage(@PathVariable Long id) {
-        return  plantService.sharedPlant(id);
+    public ResponseEntity<Plant> sharedPlantPage(@PathVariable Long id) {
+        Plant _plant = plantService.sharedPlant(id);
+        return  ResponseEntity.ok(_plant);
     }
 
     @PostMapping(value = "/avatar/{plantId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

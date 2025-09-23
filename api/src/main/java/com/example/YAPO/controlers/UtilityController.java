@@ -14,7 +14,9 @@ public class UtilityController {
     public CsrfToken getCsrfTokenPage(HttpServletRequest request) {
         return (CsrfToken) request.getAttribute("_csrf");
     }
-    @GetMapping(value = "/session", produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @GetMapping(value = "/session",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public String getSessionPage(HttpServletRequest request) {
         return "{\"Session ID\": " + request.getSession().getId() + "}";
     }

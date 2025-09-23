@@ -25,9 +25,9 @@ public class NoteController {
     }
 
     @DeleteMapping("/{idNote}")
-    public ResponseEntity<?> deleteNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long plantId, @PathVariable Long idNote) {
-        boolean isDeleted = noteService.deleteNoteById(plantId, idNote, userDetails.getUser().getId());
-        return isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+    public ResponseEntity<Void> deleteNotePage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long plantId, @PathVariable Long idNote) {
+        boolean _isDeleted = noteService.deleteNoteById(plantId, idNote, userDetails.getUser().getId());
+        return _isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
 
     @PatchMapping("")

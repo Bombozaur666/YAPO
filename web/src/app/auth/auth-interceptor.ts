@@ -1,7 +1,7 @@
 import { HttpInterceptorFn, HttpRequest, HttpHandlerFn, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 
-import { catchError, from, switchMap, throwError } from 'rxjs';
+import { catchError, switchMap, throwError } from 'rxjs';
 import {AuthService} from './auth-service';
 
 const PUBLIC_ENDPOINTS = ['/login', '/register'];
@@ -21,7 +21,6 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: 
     headers = headers.set('Authorization', `Bearer ${token}`);
   }
 
-  // 🚨 kluczowa poprawka → jeśli body jest FormData → usuwamy Content-Type
   if (req.body instanceof FormData) {
     headers = headers.delete('Content-Type');
   }
@@ -31,11 +30,13 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: 
   return next(authReq).pipe(
     catchError((err: HttpErrorResponse) => {
       if (err.status === 401) {
-        return from(authService.refresh()).pipe(
-          switchMap((newToken) => {
-            if (!newToken) return throwError(() => err);
+        return authService.refresh().pipe(
+          switchMap((res) => {
+            if (!res?.accessToken) {
+              return throwError(() => err);
+            }
             const retried = req.clone({
-              setHeaders: { Authorization: `Bearer ${newToken}` }
+              setHeaders: { Authorization: `Bearer ${res.accessToken}` }
             });
             return next(retried);
           })

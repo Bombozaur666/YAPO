@@ -17,17 +17,18 @@ public class AdminController {
     }
 
     @GetMapping("/")
-    public String adminHomePage() {
-        return "Admin Page";
+    public ResponseEntity<String> adminHomePage() {
+        return ResponseEntity.ok("Admin Page");
     }
 
     @PostMapping("/create-admin")
-    public User createAdminPage(@RequestBody @Valid User user) {
-        return userService.registerUser(user, Roles.ROLE_ADMIN.toString());
+    public ResponseEntity<User> createAdminPage(@RequestBody @Valid User user) {
+        User _user =  userService.registerUser(user, Roles.ROLE_ADMIN.toString());
+        return ResponseEntity.ok(_user);
     }
 
     @PostMapping("/ban-user/{userId}")
-    public ResponseEntity<?> banUserPage(@PathVariable Long userId) {
+    public ResponseEntity<Void> banUserPage(@PathVariable Long userId) {
         userService.banUser(userId);
         return ResponseEntity.ok().build();
     }
