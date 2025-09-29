@@ -2,9 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../../Interfaces/Users/user';
 import {AuthService} from '../auth-service';
 import {DatePipe} from '@angular/common';
-import {TranslatePipe} from '@ngx-translate/core';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {UploadImageDialogComponent} from '../../shared/upload-image-dialog-component/upload-image-dialog-component';
 import {NgbModal, NgbModalModule, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
+import {getCSSVariable} from '../../shared/utils';
+import {colors} from '../../shared/colors';
 
 @Component({
   selector: 'app-profile-component',
@@ -21,7 +24,8 @@ export class ProfileComponent implements OnInit {
   protected avatarUrl!: string;
 
   constructor(private authService: AuthService,
-              private modalService: NgbModal) {}
+              private modalService: NgbModal,
+              private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.authService.userProfile().subscribe({
@@ -29,7 +33,22 @@ export class ProfileComponent implements OnInit {
           this.user = data;
           this.avatarUrl = this.avatarPath;
           },
-        error: (err: any): void => {console.log(err.message);}
+        error: (): void => {
+          this.translate.get([
+            'alerts.dataFetching.failureTitle',
+            'alerts.dataFetching.failureText',
+            'alerts.dataFetching.ok',
+          ]).subscribe(translations => {
+            Swal.fire({
+              title: translations['alerts.dataFetching.failureTitle'],
+              text: translations['alerts.dataFetching.failureText'],
+              icon: "error",
+              confirmButtonText: translations['alerts.dataFetching.ok'],
+              confirmButtonColor: colors['action-button'],
+              background: colors['main-secondary-color']
+            })
+          });
+        }
       }
     );
   }

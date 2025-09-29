@@ -91,15 +91,17 @@ export class AuthService {
   }
 
   refresh():  Observable<TokenResponse | null>  {
-    const refreshToken: string = this.cookieService.get(REFRESH_TOKEN);
+    const refreshToken: { refreshToken: string } = {"refreshToken": this.cookieService.get(REFRESH_TOKEN)};
     if (!refreshToken) return of(null);
 
     return this.httpClient
-      .post<TokenResponse>(`${this.baseUrl}refresh`, { refreshToken })
+      .post<TokenResponse>(`${this.baseUrl}refresh`,
+                                refreshToken,
+                                { withCredentials: true })
       .pipe(
         tap((data: TokenResponse): void => {
-          this.cookieService.set(JWT_TOKEN, data.accessToken, { path: '/' });
-          this.cookieService.set(REFRESH_TOKEN, data.refreshToken, { path: '/' });
+          this.cookieService.set(JWT_TOKEN, data.accessToken);
+          this.cookieService.set(REFRESH_TOKEN, data.refreshToken);
         }),
         map((data: TokenResponse): TokenResponse => data),
         catchError( (): Observable<null> => {

@@ -23,7 +23,6 @@ export class ConfirmAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.confirm_token = this.site.snapshot.queryParamMap.get('token');
-    console.log(this.confirm_token);
 
     if (this.confirm_token) {
       this.authService.confirmAccount(this.confirm_token).subscribe({

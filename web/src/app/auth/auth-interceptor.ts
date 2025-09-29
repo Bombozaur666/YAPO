@@ -29,7 +29,7 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: 
 
   return next(authReq).pipe(
     catchError((err: HttpErrorResponse) => {
-      if (err.status === 401) {
+      if (err.status === 403) {
         return authService.refresh().pipe(
           switchMap((res) => {
             if (!res?.accessToken) {

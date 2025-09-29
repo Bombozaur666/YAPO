@@ -45,6 +45,7 @@ public class SecurityConfig {
                                 "/user/reactivate-user",
                                 "/user/enable",
                                 "/user/reset",
+                                "/user/refresh",
                                 "/plants/shared/**",
                                 "/user/avatar/**",
                                 "/plants/avatar/**")
