@@ -29,7 +29,7 @@ services:
       - "8080:8080"
     environment:
       - spring_profiles_active=prod
-      - spring_datasource_url=${DB_INTERFACE:-jdbc}:${DB_TYPE:-postgresql}://yapo-databse:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-YAPO}
+      - spring_datasource_url=${DB_INTERFACE:-jdbc}:${DB_TYPE:-postgresql}://yapo-database:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-YAPO}
       - spring_datasource_username=${POSTGRES_USER:-yapo}
       - spring_datasource_password=${POSTGRES_PASSWORD:-yapo}
       - spring_datasource_driver-class-name=org.postgresql.Driver
