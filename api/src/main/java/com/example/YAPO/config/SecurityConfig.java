@@ -2,6 +2,7 @@ package com.example.YAPO.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -38,6 +39,8 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(requests
                     -> requests
+                        .requestMatchers(HttpMethod.OPTIONS, "/**")
+                            .permitAll()
                         .requestMatchers(
                                 "/user/register",
                                 "/user/login",
@@ -80,7 +83,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://yapo-plants.eu", "http://65.21.191.82", "http://localhost"));
+        configuration.setAllowedOrigins(List.of(
+                "http://yapo-plants.eu",
+                "http://65.21.191.82:8080",
+                "http://localhost"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
