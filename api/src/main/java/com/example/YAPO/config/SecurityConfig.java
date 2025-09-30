@@ -85,6 +85,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
                 "http://yapo-plants.eu",
+                "http://www.yapo-plants.eu",
                 "http://65.21.191.82:8080",
                 "http://localhost"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
