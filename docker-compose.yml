@@ -1,5 +1,5 @@
 services:
-  yapo-databse:
+  yapo-database:
     image: postgres:17-alpine
     container_name: "yapo-database"
     restart: always
@@ -23,6 +23,8 @@ services:
       context: api
     container_name: "yapo-api"
     restart: always
+    volumes:
+      - ./uploads:/app/uploads
     ports:
       - "8080:8080"
     environment:
@@ -47,7 +49,7 @@ services:
       - spring_security_user_name=${ROOT_USER:-yapo}
       - spring_security_user_password=${ROOT_PASSWORD:-yapo}
     depends_on:
-      yapo-databse:
+      yapo-database:
         condition: service_healthy
 
   yapo-web:
