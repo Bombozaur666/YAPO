@@ -15,7 +15,7 @@ import {getCSSVariable} from '../shared/utils';
 })
 export class AuthService {
   private authenticated: boolean = false;
-  protected baseUrl: string = 'http://localhost:8080/user/';
+  protected baseUrl: string = 'http://yapo-plants.eu:8080/user/';
 
   constructor(private httpClient: HttpClient,
               private cookieService: CookieService,

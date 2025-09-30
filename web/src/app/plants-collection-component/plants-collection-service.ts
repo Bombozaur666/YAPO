@@ -12,7 +12,7 @@ import {PhotoGallery} from '../Interfaces/Plants/photo-gallery';
   providedIn: 'root'
 })
 export class PlantsCollectionService {
-  protected baseUrl: string = 'http://localhost:8080/';
+  protected baseUrl: string = 'http://yapo-plants.eu:8080/';
   constructor(private httpClient: HttpClient) {}
 
   locationsFetch():  Observable<Localization[]> {
