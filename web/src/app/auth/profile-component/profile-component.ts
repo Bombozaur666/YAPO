@@ -6,8 +6,7 @@ import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {UploadImageDialogComponent} from '../../shared/upload-image-dialog-component/upload-image-dialog-component';
 import {NgbModal, NgbModalModule, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
-import {getCSSVariable} from '../../shared/utils';
-import {colors} from '../../shared/colors';
+import {colors} from '../../shared/setup/colors';
 
 @Component({
   selector: 'app-profile-component',

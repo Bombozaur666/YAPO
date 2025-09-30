@@ -8,6 +8,7 @@ import {JWT_TOKEN, REFRESH_TOKEN, TokenResponse} from '../Interfaces/Users/token
 import {TranslateService} from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 import {getCSSVariable} from '../shared/utils';
+import {host} from '../shared/setup/host';
 
 
 @Injectable({
@@ -15,7 +16,7 @@ import {getCSSVariable} from '../shared/utils';
 })
 export class AuthService {
   private authenticated: boolean = false;
-  protected baseUrl: string = 'http://yapo-plants.eu:8080/user/';
+  protected baseUrl: string = `http://${host.hostname}:8080/user/`;
 
   constructor(private httpClient: HttpClient,
               private cookieService: CookieService,

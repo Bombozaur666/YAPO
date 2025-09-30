@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../auth-service';
 import Swal from 'sweetalert2';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
-import {colors} from '../../shared/colors';
+import {colors} from '../../shared/setup/colors';
 
 @Component({
   selector: 'app-login-component',

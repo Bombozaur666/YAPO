@@ -6,6 +6,7 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import {host} from './app/shared/setup/host';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -58,7 +59,7 @@ if (isMainModule(import.meta.url)) {
       throw error;
     }
 
-    console.log(`Node Express server listening on http://yapo-plants.eu:${port}`);
+    console.log(`Node Express server listening on http://${host.hostname}:${port}`);
   });
 }
 

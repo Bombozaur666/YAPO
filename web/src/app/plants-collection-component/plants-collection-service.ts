@@ -7,12 +7,13 @@ import {Note} from '../Interfaces/Plants/note';
 import {UpdateField} from '../Interfaces/update-field';
 import {PhotoGalleryRequest} from '../Interfaces/Plants/PhotoGalleryRequest';
 import {PhotoGallery} from '../Interfaces/Plants/photo-gallery';
+import {host} from '../shared/setup/host';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlantsCollectionService {
-  protected baseUrl: string = 'http://yapo-plants.eu:8080/';
+  protected baseUrl: string = `http://${host.hostname}:8080/`;
   constructor(private httpClient: HttpClient) {}
 
   locationsFetch():  Observable<Localization[]> {
