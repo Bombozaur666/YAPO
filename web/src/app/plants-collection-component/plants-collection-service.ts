@@ -13,7 +13,7 @@ import {host} from '../shared/setup/host';
   providedIn: 'root'
 })
 export class PlantsCollectionService {
-  protected baseUrl: string = `http://${host.hostname}:8080/`;
+  protected baseUrl: string = `${host.protocol}${host.hostname}:${host.port}/`;
   constructor(private httpClient: HttpClient) {}
 
   locationsFetch():  Observable<Localization[]> {

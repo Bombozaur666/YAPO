@@ -16,7 +16,7 @@ import {host} from '../shared/setup/host';
 })
 export class AuthService {
   private authenticated: boolean = false;
-  protected baseUrl: string = `http://${host.hostname}:8080/user/`;
+  protected baseUrl: string = `${host.protocol}${host.hostname}:${host.port}/user/`;
 
   constructor(private httpClient: HttpClient,
               private cookieService: CookieService,
