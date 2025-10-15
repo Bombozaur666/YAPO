@@ -31,6 +31,7 @@ import {colors} from '../../../shared/setup/colors';
 export class MainBodyComponent {
   protected selectedRow: string = '';
   @Input() plant: Plant = {} as Plant;
+  @Input() editMode: boolean = false;
   @Output() plantAvatarChange: EventEmitter<Plant> = new EventEmitter();
   @Output() removePlant: EventEmitter<Plant> = new EventEmitter();
   @Output() plantUpdate: EventEmitter<Plant> = new EventEmitter();

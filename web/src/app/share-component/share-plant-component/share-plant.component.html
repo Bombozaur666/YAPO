@@ -1,9 +1,10 @@
-<p>share-plant-component works!</p>
-
 @if (loading) {
   {{'fetching' | translate }}
 } @else {
-  pobrało
-
-  {{plant.name}}
+  @if (plant) {
+    <app-main-body-component
+      [plant]="plant"
+      [editMode]="false">
+    </app-main-body-component>
+  } @else {}
 }

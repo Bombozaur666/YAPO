@@ -5,11 +5,15 @@ import {ShareService} from '../share.service';
 import {Plant} from '../../Interfaces/Plants/plant';
 import Swal from 'sweetalert2';
 import {colors} from '../../shared/setup/colors';
+import {
+  MainBodyComponent
+} from '../../plants-collection-component/plant-detail-component/main-body-component/main-body-component';
 
 @Component({
   selector: 'app-share-component',
   imports: [
-    TranslatePipe
+    TranslatePipe,
+    MainBodyComponent
   ],
   templateUrl: './share-plant.component.html',
   styleUrl: './share-plant.component.css'
