@@ -5,7 +5,7 @@ import {NgbModal, NgbModalRef, NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {AddNotesComponent} from '../add-note-component/add-note-component';
 import Swal from 'sweetalert2';
-import {getCSSVariable} from '../../../../shared/utils';
+import {colors} from '../../../../shared/setup/colors';
 
 @Component({
   selector: 'tr[app-note-component]',
@@ -44,9 +44,9 @@ export class NoteComponent {
         showCancelButton: true,
         confirmButtonText: translations['alerts.noteDelete.confirmButton'],
         cancelButtonText: translations['alerts.noteDelete.cancelButton'],
-        cancelButtonColor: getCSSVariable('--cancel-button'),
-        confirmButtonColor: getCSSVariable('--action-button'),
-        background: getCSSVariable('--main-secondary-color'),
+        cancelButtonColor: colors['cancel-button'],
+        confirmButtonColor: colors['action-button'],
+        background: colors['main-secondary-color'],
       }).then((result): void => {
         if (result.isConfirmed) {
           this.noteDelete.emit(this.note);

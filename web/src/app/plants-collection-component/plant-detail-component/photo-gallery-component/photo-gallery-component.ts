@@ -8,7 +8,7 @@ import {UploadPhotoGalleryComponent} from './upload-photo-gallery-component/uplo
 import {PhotoGalleryRequest} from '../../../Interfaces/Plants/PhotoGalleryRequest';
 import {Plant} from '../../../Interfaces/Plants/plant';
 import Swal from 'sweetalert2';
-import {getCSSVariable} from '../../../shared/utils';
+import {colors} from '../../../shared/setup/colors';
 
 @Component({
   selector: 'app-photo-gallery-component',
@@ -52,8 +52,8 @@ export class PhotoGalleryComponent {
                 text: translations['alerts.uploadPhoto.failureText'],
                 icon: "error",
                 confirmButtonText: translations['alerts.uploadPhoto.ok'],
-                confirmButtonColor: getCSSVariable('--action-button'),
-                background: getCSSVariable('--main-secondary-color'),
+                confirmButtonColor: colors['action-button'],
+                background: colors['main-secondary-color'],
               })
             });
           }

@@ -6,7 +6,7 @@ import {PlantsCollectionService} from '../plants-collection-service';
 import {PlantComponent} from './plant-component/plant-component';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
-import {getCSSVariable} from '../../shared/utils';
+import {colors} from '../../shared/setup/colors';
 
 @Component({
   selector: 'app-plants-list-component',
@@ -55,8 +55,8 @@ export class PlantsListComponent {
               text: translations['alerts.uploadPlant.failureText'],
               icon: "error",
               confirmButtonText: translations['alerts.uploadPlant.ok'],
-              confirmButtonColor: getCSSVariable('--action-button'),
-              background: getCSSVariable('--main-secondary-color'),
+              confirmButtonColor: colors['action-button'],
+              background: colors['main-secondary-color'],
             })
           });
         }

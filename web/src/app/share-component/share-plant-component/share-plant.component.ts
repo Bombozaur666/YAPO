@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {TranslatePipe} from '@ngx-translate/core';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {ShareService} from '../share.service';
 import {Plant} from '../../Interfaces/Plants/plant';
+import Swal from 'sweetalert2';
+import {colors} from '../../shared/setup/colors';
 
 @Component({
   selector: 'app-share-component',
@@ -15,21 +17,39 @@ import {Plant} from '../../Interfaces/Plants/plant';
 export class SharePlantComponent implements OnInit{
   private plantId: string | null = null;
 
-  protected plant: Plant|null = null;
+  protected plant!: Plant;
 
-  protected loading: boolean = false;
+  protected loading: boolean = true;
 
   constructor(private route: ActivatedRoute,
-              private shareService: ShareService) {}
+              private shareService: ShareService,
+              private translate: TranslateService) {}
 
   ngOnInit(): void {
-    this.plantId = this.route.snapshot.queryParamMap.get('query');
+    this.plantId = this.route.snapshot.queryParamMap.get('plantId');
 
     this.shareService.getPlant(this.plantId).subscribe({
-      next: Plant => {},
-      error: error => {}
+      next: (data: Plant): void => {
+        this.plant = data;
+        this.loading = false;
+      },
+      error: ():void => {
+        this.translate.get([
+          'alerts.dataFetching.failureTitle',
+          'alerts.dataFetching.failureText',
+          'alerts.dataFetching.ok',
+        ]).subscribe(translations => {
+          Swal.fire({
+            title: translations['alerts.dataFetching.failureTitle'],
+            text: translations['alerts.dataFetching.failureText'],
+            icon: "error",
+            confirmButtonText: translations['alerts.dataFetching.ok'],
+            confirmButtonColor: colors['action-button'],
+            background: colors['main-secondary-color'],
+          })
+        });
       }
-    );
+    });
 
   }
 }

@@ -5,7 +5,7 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {LocalizationChangeComponent} from './localization-change-componennt/localization-change.component';
 import {PlantsCollectionService} from '../plants-collection-service';
 import Swal from 'sweetalert2';
-import {getCSSVariable} from '../../shared/utils';
+import {colors} from '../../shared/setup/colors';
 
 @Component({
   selector: 'app-localizations-component',
@@ -61,8 +61,8 @@ export class LocalizationsComponent {
                   text: translations['alerts.localizationDelete.failureText'],
                   icon: "success",
                   confirmButtonText: translations['alerts.localizationDelete.ok'],
-                  confirmButtonColor: getCSSVariable('--action-button'),
-                  background: getCSSVariable('--main-secondary-color'),
+                  confirmButtonColor: colors['action-button'],
+                  background: colors['main-secondary-color'],
                 })
               });
             }

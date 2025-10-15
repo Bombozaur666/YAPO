@@ -4,7 +4,7 @@ import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 import {RegisterRequest} from '../../Interfaces/Users/user';
 import {AuthService} from '../auth-service';
 import Swal from 'sweetalert2';
-import {getCSSVariable} from '../../shared/utils';
+import {colors} from '../../shared/setup/colors';
 
 @Component({
   selector: 'app-register-component',
@@ -34,8 +34,8 @@ export class RegisterComponent {
             text: translations['alerts.register.successText'],
             icon: "success",
             confirmButtonText: translations['alerts.register.ok'],
-            confirmButtonColor: getCSSVariable('--action-button'),
-            background: getCSSVariable('--main-secondary-color'),
+            confirmButtonColor: colors['action-button'],
+            background: colors['main-secondary-color'],
           })
         });
       },
@@ -50,8 +50,8 @@ export class RegisterComponent {
             text: translations['alerts.register.failureText'],
             icon: "error",
             confirmButtonText: translations['alerts.register.ok'],
-            confirmButtonColor: getCSSVariable('--action-button'),
-            background: getCSSVariable('--main-secondary-color'),
+            confirmButtonColor: colors['action-button'],
+            background: colors['main-secondary-color'],
           })
         });
       }

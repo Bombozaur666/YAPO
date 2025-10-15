@@ -8,7 +8,7 @@ import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {PlantsListComponent} from './plants-list-component/plants-list-component';
 import {Note} from '../Interfaces/Plants/note';
 import Swal from 'sweetalert2';
-import {getCSSVariable} from '../shared/utils';
+import {colors} from '../shared/setup/colors';
 
 @Component({
   selector: 'app-plants-collection-component',
@@ -56,8 +56,8 @@ export class PlantsCollectionComponent implements OnInit {
               text: translations['alerts.dataFetching.failureText'],
               icon: "error",
               confirmButtonText: translations['alerts.dataFetching.ok'],
-              confirmButtonColor: getCSSVariable('--action-button'),
-              background: getCSSVariable('--main-secondary-color'),
+              confirmButtonColor: colors['action-button'],
+              background: colors['main-secondary-color'],
             })
           });
         }
@@ -126,8 +126,8 @@ export class PlantsCollectionComponent implements OnInit {
         text: translations['alerts.localizationDelete.successText'],
         icon: "success",
         confirmButtonText: translations['alerts.localizationDelete.ok'],
-        confirmButtonColor: getCSSVariable('--action-button'),
-        background: getCSSVariable('--main-secondary-color'),
+        confirmButtonColor: colors['action-button'],
+        background: colors['main-secondary-color'],
       })
     });
   }
@@ -154,8 +154,8 @@ export class PlantsCollectionComponent implements OnInit {
             text: translations['alerts.deletePlant.successText'],
             icon: "success",
             confirmButtonText: translations['alerts.deletePlant.ok'],
-            confirmButtonColor: getCSSVariable('--action-button'),
-            background: getCSSVariable('--main-secondary-color'),
+            confirmButtonColor: colors['action-button'],
+            background: colors['main-secondary-color'],
           })
         });
       },
@@ -170,8 +170,8 @@ export class PlantsCollectionComponent implements OnInit {
             text: translations['alerts.deletePlant.failureText'],
             icon: "error",
             confirmButtonText: translations['alerts.deletePlant.ok'],
-            confirmButtonColor: getCSSVariable('--action-button'),
-            background: getCSSVariable('--main-secondary-color'),
+            confirmButtonColor: colors['action-button'],
+            background: colors['main-secondary-color'],
           })
         });
       }

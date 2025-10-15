@@ -38,7 +38,8 @@ public class JwtFilter extends OncePerRequestFilter {
             path.startsWith("/user/refresh")  ||
             path.startsWith("/user/register") ||
             ( path.startsWith("/user/avatar")   && Objects.equals(request.getMethod(), "GET")) ||
-            ( path.startsWith("/plants/avatar") && Objects.equals(request.getMethod(), "GET"))) {
+            ( path.startsWith("/plants/avatar") && Objects.equals(request.getMethod(), "GET")) ||
+            ( path.startsWith("/plants/shared") && Objects.equals(request.getMethod(), "GET"))) {
                 filterChain.doFilter(request, response);
                 return;
         }

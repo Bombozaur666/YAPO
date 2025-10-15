@@ -7,8 +7,8 @@ import {Router} from '@angular/router';
 import {JWT_TOKEN, REFRESH_TOKEN, TokenResponse} from '../Interfaces/Users/token';
 import {TranslateService} from '@ngx-translate/core';
 import Swal from 'sweetalert2';
-import {getCSSVariable} from '../shared/utils';
 import {host} from '../shared/setup/host';
+import {colors} from '../shared/setup/colors';
 
 
 @Injectable({
@@ -66,8 +66,8 @@ export class AuthService {
             text: translations['alerts.login.failureText'],
             icon: "error",
             confirmButtonText: translations['alerts.login.ok'],
-            confirmButtonColor: getCSSVariable('--action-button'),
-            background: getCSSVariable('--main-secondary-color'),
+            confirmButtonColor: colors['action-button'],
+            background: colors['main-secondary-color'],
           })
         });
       }

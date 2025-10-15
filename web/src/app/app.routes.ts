@@ -7,13 +7,13 @@ import {authGuard} from './auth/auth-guard';
 import {PlantsCollectionComponent} from './plants-collection-component/plants-collection-component';
 import {ForgotPasswordComponent} from './auth/forgot-password-component/forgot-password.component';
 import {ConfirmAccountComponent} from './auth/confirm-account-component/confirm-account.component';
-import {ShareComponent} from './share-component/share-component';
+import {SharePlantComponent} from './share-component/share-plant-component/share-plant.component';
 
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'share/plant', component: ShareComponent },
+  { path: 'share/plant', component: SharePlantComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'register', component: RegisterComponent },

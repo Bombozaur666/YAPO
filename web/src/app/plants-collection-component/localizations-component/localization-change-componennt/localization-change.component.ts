@@ -4,7 +4,7 @@ import {LocalizationWithoutPlants} from '../../../Interfaces/Plants/localization
 import {FormsModule} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2'
-import {getCSSVariable} from '../../../shared/utils';
+import {colors} from '../../../shared/setup/colors';
 
 @Component({
   selector: 'app-localization-change-component',
@@ -40,9 +40,9 @@ export class LocalizationChangeComponent {
         showCancelButton: true,
         confirmButtonText: translations['alerts.localizationDelete.confirmButton'],
         cancelButtonText: translations['alerts.localizationDelete.cancelButton'],
-        cancelButtonColor: getCSSVariable('--cancel-button'),
-        confirmButtonColor: getCSSVariable('--action-button'),
-        background: getCSSVariable('--main-secondary-color'),
+        cancelButtonColor: colors['cancel-button'],
+        confirmButtonColor: colors['action-button'],
+        background: colors['main-secondary-color'],
       }).then((result): void => {
         if (result.isConfirmed) {
           this.activeModal.close({"mode": "delete", "localization": this.localization});

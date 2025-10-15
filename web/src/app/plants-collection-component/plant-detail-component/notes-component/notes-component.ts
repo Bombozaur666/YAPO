@@ -8,7 +8,7 @@ import {PlantsCollectionService} from '../../plants-collection-service';
 import {SlicePipe} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import Swal from 'sweetalert2';
-import {getCSSVariable} from '../../../shared/utils';
+import {colors} from '../../../shared/setup/colors';
 
 @Component({
   selector: 'app-notes-component',
@@ -54,8 +54,8 @@ export class NotesComponent {
                 text: translations['alerts.addNote.failureText'],
                 icon: "error",
                 confirmButtonText: translations['alerts.addNote.ok'],
-                confirmButtonColor: getCSSVariable('--action-button'),
-                background: getCSSVariable('--main-secondary-color'),
+                confirmButtonColor: colors['action-button'],
+                background: colors['main-secondary-color'],
               })
             });
           }
@@ -85,8 +85,8 @@ export class NotesComponent {
             text: translations['alerts.changeNote.failureText'],
             icon: "error",
             confirmButtonText: translations['alerts.changeNote.ok'],
-            confirmButtonColor: getCSSVariable('--action-button'),
-            background: getCSSVariable('--main-secondary-color'),
+            confirmButtonColor: colors['action-button'],
+            background: colors['main-secondary-color'],
           })
         });
       }
@@ -111,8 +111,8 @@ export class NotesComponent {
             text: translations['alerts.noteDelete.successText'],
             icon: "success",
             confirmButtonText: translations['alerts.noteDelete.ok'],
-            confirmButtonColor: getCSSVariable('--action-button'),
-            background: getCSSVariable('--main-secondary-color'),
+            confirmButtonColor: colors['action-button'],
+            background: colors['main-secondary-color'],
           })
         });
       },
@@ -127,8 +127,8 @@ export class NotesComponent {
             text: translations['alerts.noteDelete.failureText'],
             icon: "error",
             confirmButtonText: translations['alerts.noteDelete.ok'],
-            confirmButtonColor: getCSSVariable('--action-button'),
-            background: getCSSVariable('--main-secondary-color'),
+            confirmButtonColor: colors['action-button'],
+            background: colors['main-secondary-color'],
           })
         });
       }

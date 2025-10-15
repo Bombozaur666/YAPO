@@ -14,8 +14,8 @@ import {PlantBerth} from '../../../Interfaces/Plants/enums/PlantBerth';
 import {PlantToxicity} from '../../../Interfaces/Plants/enums/PlantToxicity';
 import {PlantLifeExpectancy} from '../../../Interfaces/Plants/enums/PlantLifeExpectancy';
 import Swal from 'sweetalert2'
-import {getCSSVariable} from '../../../shared/utils';
 import {host} from '../../../shared/setup/host';
+import {colors} from '../../../shared/setup/colors';
 
 @Component({
   selector: 'app-main-body-component',
@@ -59,8 +59,8 @@ export class MainBodyComponent {
             text: translations['alerts.uploadPhoto.failureText'],
             icon: "error",
             confirmButtonText: translations['alerts.uploadPhoto.ok'],
-            confirmButtonColor: getCSSVariable('--action-button'),
-            background: getCSSVariable('--main-secondary-color'),
+            confirmButtonColor: colors['action-button'],
+            background: colors['main-secondary-color'],
           })
         });
       }
@@ -90,9 +90,9 @@ export class MainBodyComponent {
         showCancelButton: true,
         confirmButtonText: translations['alerts.deletePlant.confirmButton'],
         cancelButtonText: translations['alerts.deletePlant.cancelButton'],
-        cancelButtonColor: getCSSVariable('--cancel-button'),
-        confirmButtonColor: getCSSVariable('--action-button'),
-        background: getCSSVariable('--main-secondary-color'),
+        cancelButtonColor: colors['cancel-button'],
+        confirmButtonColor: colors['action-button'],
+        background: colors['main-secondary-color'],
       }).then((result): void => {
         if (result.isConfirmed) {
           this.removePlant.emit(this.plant);
@@ -129,8 +129,8 @@ export class MainBodyComponent {
                 text: translations['alerts.updatePlant.failureText'],
                 icon: "error",
                 confirmButtonText: translations['alerts.updatePlant.ok'],
-                confirmButtonColor: getCSSVariable('--action-button'),
-                background: getCSSVariable('--main-secondary-color'),
+                confirmButtonColor: colors['action-button'],
+                background: colors['main-secondary-color'],
               })
             });
           }
@@ -140,7 +140,7 @@ export class MainBodyComponent {
 
   async sharePlant(): Promise<void> {
     try {
-      await navigator.clipboard.writeText(`${host.hostname}/share/plant?id=${this.plant.id}`);
+      await navigator.clipboard.writeText(`${host.hostname}/share/plant?plantId=${this.plant.id}`);
 
       this.tooltip.open();
 

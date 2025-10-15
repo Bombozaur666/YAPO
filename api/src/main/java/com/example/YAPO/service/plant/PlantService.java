@@ -72,7 +72,7 @@ public class PlantService {
 
     @Transactional
     public Plant updateField(Long id, User userDetails, UpdateField updateField) {
-        List<String> allowedFields = List.of("name", "species", "purchaseDate", "purchaseLocalization", "fertilizationDate", "alive", "deathReason", "wateringDate", "plantCondition", "plantSoil", "plantWatering", "plantBerth", "plantToxicity", "plantLifeExpectancy");
+        List<String> allowedFields = List.of("name", "species", "purchaseDate", "purchaseLocalization", "fertilizationDate", "shared", "alive", "deathReason", "wateringDate", "plantCondition", "plantSoil", "plantWatering", "plantBerth", "plantToxicity", "plantLifeExpectancy");
 
         if (!allowedFields.contains(updateField.getFieldName())) {
             throw new RuntimeException(ErrorList.WRONG_FIELD_TO_UPDATE.toString());
