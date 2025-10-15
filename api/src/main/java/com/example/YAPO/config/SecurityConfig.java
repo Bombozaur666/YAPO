@@ -84,9 +84,8 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
-                "http://yapo-plants.eu",
-                "http://www.yapo-plants.eu",
-                "http://65.21.191.82:8080",
+                "https://yapo-plants.eu",
+                "https://www.yapo-plants.eu",
                 "http://localhost"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));

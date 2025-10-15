@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 import {Plant} from '../../../Interfaces/Plants/plant';
 import {UploadImageDialogComponent} from '../../../shared/upload-image-dialog-component/upload-image-dialog-component';
 import {PlantsCollectionService} from '../../plants-collection-service';
-import {NgbModal, NgbModalModule, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalModule, NgbModalRef, NgbTooltip, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 import {UpdateFieldComponent} from './update-field-component/update-field-component';
 import {UpdateField} from '../../../Interfaces/update-field';
 import {DatePipe} from '@angular/common';
@@ -15,12 +15,14 @@ import {PlantToxicity} from '../../../Interfaces/Plants/enums/PlantToxicity';
 import {PlantLifeExpectancy} from '../../../Interfaces/Plants/enums/PlantLifeExpectancy';
 import Swal from 'sweetalert2'
 import {getCSSVariable} from '../../../shared/utils';
+import {host} from '../../../shared/setup/host';
 
 @Component({
   selector: 'app-main-body-component',
   imports: [
     TranslatePipe,
     NgbModalModule,
+    NgbTooltipModule,
     DatePipe
   ],
   templateUrl: './main-body-component.html',
@@ -32,6 +34,7 @@ export class MainBodyComponent {
   @Output() plantAvatarChange: EventEmitter<Plant> = new EventEmitter();
   @Output() removePlant: EventEmitter<Plant> = new EventEmitter();
   @Output() plantUpdate: EventEmitter<Plant> = new EventEmitter();
+  @ViewChild('sharePlantTooltip') tooltip!: NgbTooltip;
 
   constructor(private plantsCollectionService: PlantsCollectionService,
               private modalService: NgbModal,
@@ -135,10 +138,27 @@ export class MainBodyComponent {
       });
   }
 
+  async sharePlant(): Promise<void> {
+    try {
+      await navigator.clipboard.writeText(`${host.hostname}/share/plant/${this.plant.id}`);
+
+      this.tooltip.open();
+
+      setTimeout((): void => {
+        this.tooltip.close();
+      }, 3000);
+
+    } catch (err) {
+      console.error('Błąd podczas kopiowania linku: ', err);
+    }
+  }
+
   protected readonly plantConditions: PlantCondition[] = Object.values(PlantCondition);
   protected readonly plantSoil: PlantSoil[] = Object.values(PlantSoil);
   protected readonly plantWatering: PlantWatering[] = Object.values(PlantWatering);
   protected readonly plantBerth: PlantBerth[] = Object.values(PlantBerth);
   protected readonly plantToxicity: PlantToxicity[] = Object.values(PlantToxicity);
   protected readonly plantLifeExpectancy: PlantLifeExpectancy[] = Object.values(PlantLifeExpectancy);
+
+
 }

@@ -92,3 +92,21 @@
   box-shadow: 0 4px 12px rgb(0, 0, 0);
   cursor: pointer;
 }
+
+.icon-hover {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-hover .icon-fill {
+  display: none;
+}
+
+.icon-hover:hover .icon-fill {
+  display: inline;
+  color: #ffffff;
+}
+
+.icon-hover:hover .icon-empty {
+  display: none;
+}

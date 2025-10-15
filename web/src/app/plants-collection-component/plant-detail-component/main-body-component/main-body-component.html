@@ -6,9 +6,20 @@
           <span>
             {{ plant.name }}
             <button
-              class="btn btn-sm btn-edit btn-round"
+              class="btn btn-sm btn-edit btn-round icon-hover"
               (click)="updateField('name', plant.name, 'text')">
-            <i class="bi bi-pencil"></i>
+            <i class="bi bi-pencil icon-empty"></i>
+            <i class="bi bi-pencil-fill icon-fill"></i>
+            </button>
+            <button
+              class="btn btn-sm btn-edit btn-round icon-hover"
+              (click)="sharePlant()"
+              ngbTooltip="'copied' | translate"
+              triggers="manual"
+              #sharePlantTooltip="ngbTooltip"
+              placement="bottom">
+            <i class="bi bi-share icon-empty"></i>
+            <i class="bi bi-share-fill icon-fill"></i>
             </button>
           </span>
           <span>
@@ -40,9 +51,10 @@
           <div class="col-4">{{"collections.plants.details.species" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-round btn-edit"
+              class="btn btn-sm btn-round btn-edit icon-hover"
               (click)="updateField('species', plant.species, 'text')">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil icon-empty"></i>
+              <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
           </div>
           <div class="col-7">
@@ -59,9 +71,10 @@
           <div class="col-4">{{"collections.plants.details.purchaseDate" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-round btn-edit"
+              class="btn btn-sm btn-round btn-edit icon-hover"
               (click)="updateField('purchaseDate', plant.purchaseDate, 'date')">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil icon-empty"></i>
+              <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
           </div>
           <div class="col-7">
@@ -78,9 +91,10 @@
           <div class="col-4">{{"collections.plants.details.purchaseLocalization" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-round btn-edit"
+              class="btn btn-sm btn-round btn-edit icon-hover"
               (click)="updateField('purchaseLocalization', plant.purchaseLocalization, 'text')">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil icon-empty"></i>
+              <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
           </div>
           <div class="col-7">
@@ -97,9 +111,10 @@
           <div class="col-4">{{"collections.plants.details.fertilizationDate" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-round btn-round btn-edit"
+              class="btn btn-sm btn-round btn-round btn-edit icon-hover"
               (click)="updateField('fertilizationDate', plant.fertilizationDate, 'date')">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil icon-empty"></i>
+              <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
           </div>
           <div class="col-7">
@@ -116,9 +131,10 @@
           <div class="col-4">{{"collections.plants.details.wateringDate" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-round btn-edit"
+              class="btn btn-sm btn-round btn-edit icon-hover"
               (click)="updateField('wateringDate', plant.wateringDate, 'date')">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil icon-empty"></i>
+              <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
           </div>
           <div class="col-7">
@@ -136,9 +152,10 @@
             <div class="col-4">{{"collections.plants.details.deathReason" | translate}}</div>
             <div class="col-1">
               <button
-                class="btn btn-sm btn-round btn-edit"
+                class="btn btn-sm btn-round btn-edit icon-hover"
                 (click)="updateField('deathReason', plant.deathReason, 'text')">
-                <i class="bi bi-pencil"></i>
+                <i class="bi bi-pencil icon-empty"></i>
+                <i class="bi bi-pencil-fill icon-fill"></i>
               </button>
             </div>
             <div class="col-7">
@@ -156,9 +173,10 @@
           <div class="col-4">{{"collections.plants.details.plantWatering" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-round btn-edit"
+              class="btn btn-sm btn-round btn-edit icon-hover"
               (click)="updateField('plantWatering', plant.plantWatering, 'select', plantWatering)">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil icon-empty"></i>
+              <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
           </div>
           <div class="col-7">
@@ -175,9 +193,10 @@
           <div class="col-4">{{"collections.plants.details.plantSoil" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-round btn-edit"
+              class="btn btn-sm btn-round btn-edit icon-hover"
               (click)="updateField('plantSoil', plant.plantSoil, 'select', plantSoil)">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil icon-empty"></i>
+              <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
           </div>
           <div class="col-7">
@@ -194,9 +213,10 @@
           <div class="col-4">{{"collections.plants.details.plantCondition" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-round btn-edit"
+              class="btn btn-sm btn-round btn-edit icon-hover"
               (click)="updateField('plantCondition', plant.plantCondition, 'select', plantConditions)">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil icon-empty"></i>
+              <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
           </div>
           <div class="col-7">
@@ -213,9 +233,10 @@
           <div class="col-4">{{"collections.plants.details.plantBerth" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-round btn-edit"
+              class="btn btn-sm btn-round btn-edit icon-hover"
               (click)="updateField('plantBerth', plant.plantBerth, 'select', plantBerth)">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil icon-empty"></i>
+              <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
           </div>
           <div class="col-7">
@@ -232,9 +253,10 @@
           <div class="col-4">{{"collections.plants.details.plantToxicity" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-round btn-edit"
+              class="btn btn-sm btn-round btn-edit icon-hover"
               (click)="updateField('plantToxicity', plant.plantToxicity, 'select', plantToxicity)">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil icon-empty"></i>
+              <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
           </div>
           <div class="col-7">
@@ -252,9 +274,10 @@
             <div class="col-4">{{"collections.plants.details.plantLifeExpectancy" | translate}}</div>
             <div class="col-1">
               <button
-                class="btn btn-sm btn-round btn-edit"
+                class="btn btn-sm btn-round btn-edit icon-hover"
                 (click)="updateField('plantLifeExpectancy', plant.plantLifeExpectancy, 'select', plantLifeExpectancy)">
-                <i class="bi bi-pencil"></i>
+                <i class="bi bi-pencil icon-empty"></i>
+                <i class="bi bi-pencil-fill icon-fill"></i>
               </button>
             </div>
             <div class="col-7">
@@ -271,9 +294,10 @@
           <div class="col-4">{{"collections.plants.details.shared" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-round btn-edit"
+              class="btn btn-sm btn-round btn-edit icon-hover"
               (click)="updateField('shared', plant.shared, 'checkbox')">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil icon-empty"></i>
+              <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
           </div>
           <div class="col-7">
@@ -290,9 +314,10 @@
           <div class="col-4">{{"collections.plants.details.alive" | translate}}</div>
           <div class="col-1">
             <button
-              class="btn btn-sm btn-round btn-edit"
+              class="btn btn-sm btn-round btn-edit icon-hover"
               (click)="updateField('alive', plant.alive, 'checkbox')">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil icon-empty"></i>
+              <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
           </div>
           <div class="col-7">

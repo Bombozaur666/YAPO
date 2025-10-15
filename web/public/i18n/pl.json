@@ -72,6 +72,7 @@
     }
   },
   "fetching": "Pobieram dane...",
+  "copied": "Skopiowano",
   "shared": {
     "uploadPhoto": {
       "close": "Zamknij",
