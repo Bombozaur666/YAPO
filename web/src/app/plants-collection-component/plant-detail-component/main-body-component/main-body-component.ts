@@ -140,7 +140,7 @@ export class MainBodyComponent {
 
   async sharePlant(): Promise<void> {
     try {
-      await navigator.clipboard.writeText(`${host.hostname}/share/plant/${this.plant.id}`);
+      await navigator.clipboard.writeText(`${host.hostname}/share/plant?id=${this.plant.id}`);
 
       this.tooltip.open();
 

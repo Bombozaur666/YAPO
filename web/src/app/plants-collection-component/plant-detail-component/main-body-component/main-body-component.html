@@ -8,18 +8,18 @@
             <button
               class="btn btn-sm btn-edit btn-round icon-hover"
               (click)="updateField('name', plant.name, 'text')">
-            <i class="bi bi-pencil icon-empty"></i>
-            <i class="bi bi-pencil-fill icon-fill"></i>
+                <i class="bi bi-pencil icon-empty"></i>
+                <i class="bi bi-pencil-fill icon-fill"></i>
             </button>
             <button
               class="btn btn-sm btn-edit btn-round icon-hover"
               (click)="sharePlant()"
-              ngbTooltip="'copied' | translate"
+              ngbTooltip="{{'copied' | translate}}"
               triggers="manual"
               #sharePlantTooltip="ngbTooltip"
               placement="bottom">
-            <i class="bi bi-share icon-empty"></i>
-            <i class="bi bi-share-fill icon-fill"></i>
+               <i class="bi bi-share icon-empty"></i>
+               <i class="bi bi-share-fill icon-fill"></i>
             </button>
           </span>
           <span>
