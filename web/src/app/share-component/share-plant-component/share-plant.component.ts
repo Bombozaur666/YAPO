@@ -5,15 +5,17 @@ import {ShareService} from '../share.service';
 import {Plant} from '../../Interfaces/Plants/plant';
 import Swal from 'sweetalert2';
 import {colors} from '../../shared/setup/colors';
+import {MainBodyComponent} from '../../plants-collection-component/plant-detail-component/main-body-component/main-body-component';
 import {
-  MainBodyComponent
-} from '../../plants-collection-component/plant-detail-component/main-body-component/main-body-component';
+  CommentsComponent
+} from '../../plants-collection-component/plant-detail-component/comments-component/comments.component';
 
 @Component({
   selector: 'app-share-component',
   imports: [
     TranslatePipe,
-    MainBodyComponent
+    MainBodyComponent,
+    CommentsComponent
   ],
   templateUrl: './share-plant.component.html',
   styleUrl: './share-plant.component.css'
@@ -38,6 +40,7 @@ export class SharePlantComponent implements OnInit{
         this.loading = false;
       },
       error: ():void => {
+        this.loading = false;
         this.translate.get([
           'alerts.dataFetching.failureTitle',
           'alerts.dataFetching.failureText',

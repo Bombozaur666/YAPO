@@ -35,6 +35,8 @@
               (noteChanged)="onNoteChange($event)"
               (noteDelete)="onNoteDelete($event)">
             </tr>
+          } @empty {
+            {{ 'collections.plants.details.notes.noNotes' | translate }}
           }
         </tbody>
       </table>

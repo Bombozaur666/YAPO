@@ -18,6 +18,8 @@
         (photoSlide)="onPhotoSlide($event)"
         (photoRemove)="onPhotoRemove($event)">
       </app-photo-component>
+    } @empty {
+      {{'collections.plants.details.photoGallery.noPhotos' | translate }}
     }
   </div>
 </div>

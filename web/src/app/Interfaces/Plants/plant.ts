@@ -2,7 +2,7 @@ import {Localization} from './localization';
 import {User} from '../Users/user';
 import {Note} from './note';
 import {PlantUpdate} from './plant-update';
-import {Comment} from './comment';
+import {PlantComment} from './plantComment';
 import {PhotoGallery} from './photo-gallery';
 
 export interface Plant {
@@ -15,7 +15,7 @@ export interface Plant {
   localization: Localization
   plantHistory: PlantUpdate[];
   notes: Note[];
-  comments: Comment[];
+  comments: PlantComment[];
   photoGallery: PhotoGallery[];
   fertilizationDate: Date;
   alive: boolean;

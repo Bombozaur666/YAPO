@@ -187,6 +187,7 @@
           "cancel": "Anuluj"
         },
         "notes": {
+          "noNotes": "Brak notatek",
           "note": {
             "id": "NP",
             "body": "Treść",
@@ -212,6 +213,7 @@
         "photoGallery": {
           "title": "Galeria",
           "addPhoto": "Dodaj zdjęcie",
+          "noPhotos": "Brak zdjęć",
           "modal": {
             "title": "Dodaj zdjęcie",
             "titlePhoto": "Tytuł",
@@ -241,7 +243,16 @@
         "avatarModal": {
           "editAvatar": "Edytuj Awatar"
         },
-        "deletePlant": "Usuń roślinę"
+        "deletePlant": "Usuń roślinę",
+        "comments": {
+          "title": "Komentarze",
+          "addComment": "Dodaj komentarz",
+          "noComments": "Brak komentarzy",
+          "comment": {
+            "createdAt": "Stworzono",
+            "editedAt": "Edytowano"
+          }
+        }
       },
       "modal": {
         "close": "Zamknij",

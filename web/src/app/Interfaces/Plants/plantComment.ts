@@ -1,7 +1,7 @@
 import {User} from '../Users/user';
 import {Plant} from './plant';
 
-export interface Comment {
+export interface PlantComment {
   id: number;
   user: User;
   plant: Plant;

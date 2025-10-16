@@ -6,5 +6,10 @@
       [plant]="plant"
       [editMode]="false">
     </app-main-body-component>
-  } @else {}
+
+    <app-comments-component
+      [plantComments]="plant.comments">
+    </app-comments-component>
+  }
 }
+

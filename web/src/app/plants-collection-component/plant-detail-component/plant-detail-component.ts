@@ -6,6 +6,7 @@ import {UpdatesComponent} from './updates-component/updates-component';
 import {MainBodyComponent} from './main-body-component/main-body-component';
 import {Note} from '../../Interfaces/Plants/note';
 import {PhotoGallery} from '../../Interfaces/Plants/photo-gallery';
+import {CommentsComponent} from './comments-component/comments.component';
 
 @Component({
   selector: 'app-plant-detail-component',
@@ -13,7 +14,8 @@ import {PhotoGallery} from '../../Interfaces/Plants/photo-gallery';
     PhotoGalleryComponent,
     NotesComponent,
     UpdatesComponent,
-    MainBodyComponent
+    MainBodyComponent,
+    CommentsComponent
   ],
   templateUrl: './plant-detail-component.html',
   styleUrl: './plant-detail-component.css',
