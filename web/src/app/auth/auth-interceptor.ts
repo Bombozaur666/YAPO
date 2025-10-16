@@ -4,7 +4,7 @@ import { inject } from '@angular/core';
 import { catchError, switchMap, throwError } from 'rxjs';
 import {AuthService} from './auth-service';
 
-const PUBLIC_ENDPOINTS = ['/login', '/register', '/refresh'];
+const PUBLIC_ENDPOINTS = ['/login', '/register', '/refresh', "/share"];
 
 
 export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {

@@ -50,8 +50,9 @@ export class AuthService {
     }
     ).subscribe({
       next: (data: TokenResponse): void => {
-        this.cookieService.set(JWT_TOKEN ,data.accessToken);
-        this.cookieService.set(REFRESH_TOKEN ,data.refreshToken);
+
+        this.cookieService.set(JWT_TOKEN ,data.accessToken, 7);
+        this.cookieService.set(REFRESH_TOKEN ,data.refreshToken, 7);
         this.authenticated = true;
         this.router.navigate(['/']);
       },
@@ -101,8 +102,8 @@ export class AuthService {
                                 { withCredentials: true })
       .pipe(
         tap((data: TokenResponse): void => {
-          this.cookieService.set(JWT_TOKEN, data.accessToken);
-          this.cookieService.set(REFRESH_TOKEN, data.refreshToken);
+          this.cookieService.set(JWT_TOKEN, data.accessToken, 7);
+          this.cookieService.set(REFRESH_TOKEN, data.refreshToken, 7);
         }),
         map((data: TokenResponse): TokenResponse => data),
         catchError( (): Observable<null> => {

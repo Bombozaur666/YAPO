@@ -49,9 +49,10 @@ public class SecurityConfig {
                                 "/user/enable",
                                 "/user/reset",
                                 "/user/refresh",
-                                "/plants/shared/**",
                                 "/user/avatar/**",
-                                "/plants/avatar/**")
+                                "/plants/avatar/**",
+                                "/plants/shared/**",
+                                "/plants/*/photo/**")
                             .permitAll()
                         .requestMatchers("/admin")
                             .hasAnyRole("ADMIN")

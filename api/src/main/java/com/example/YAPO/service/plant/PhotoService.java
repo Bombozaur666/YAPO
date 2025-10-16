@@ -96,11 +96,13 @@ public class PhotoService {
 
     public Path getPhoto(Long plantId, User user, String fileName) throws IOException {
         PhotoGallery _photoGallery = photoRepo
-                .findByPlant_IdAndImagePathAndPlant_User_UsernameOrPlant_Shared(
+                .findByPlant_IdAndImagePathAndPlant_User_UsernameOrPlant_SharedAndPlant_IdAndImagePath(
                         plantId,
                         fileName,
                         user.getUsername(),
-                        true);
+                        true,
+                        plantId,
+                        fileName);
 
         if (_photoGallery == null) { throw new RuntimeException(ErrorList.PHOTO_NOT_FOUND.toString()); }
 

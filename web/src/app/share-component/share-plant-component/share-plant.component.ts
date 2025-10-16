@@ -9,13 +9,17 @@ import {MainBodyComponent} from '../../plants-collection-component/plant-detail-
 import {
   CommentsComponent
 } from '../../plants-collection-component/plant-detail-component/comments-component/comments.component';
+import {
+  PhotoGalleryComponent
+} from '../../plants-collection-component/plant-detail-component/photo-gallery-component/photo-gallery-component';
 
 @Component({
   selector: 'app-share-component',
   imports: [
     TranslatePipe,
     MainBodyComponent,
-    CommentsComponent
+    CommentsComponent,
+    PhotoGalleryComponent
   ],
   templateUrl: './share-plant.component.html',
   styleUrl: './share-plant.component.css'
