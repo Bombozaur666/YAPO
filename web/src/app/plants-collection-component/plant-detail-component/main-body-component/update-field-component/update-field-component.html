@@ -23,10 +23,15 @@
           <option [value]="option">{{`collections.plants.details.${updateField.fieldName}Values.${option}` | translate}}</option>
         }
       </select>
+    } @else if (typeData == "textarea") {
+      <textarea
+        [(ngModel)]="updateField.fieldValue"
+        rows="4">
+      </textarea>
     }
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="close()">{{"collections.plants.details.updateField.close" | translate}}</button>
-    <button type="button" class="btn btn-action" (click)="save()">{{"collections.plants.details.updateField.save" | translate}}</button>
+    <button type="button" class="btn btn-action" (click)="save()">{{saveText | translate}}</button>
   </div>
 </div>

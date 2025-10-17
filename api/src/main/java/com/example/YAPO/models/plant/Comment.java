@@ -15,7 +15,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @JsonBackReference(value = "user-comment")
+    //@JsonBackReference(value = "user-comment")
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 

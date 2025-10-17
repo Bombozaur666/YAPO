@@ -24,7 +24,7 @@ public class CommentController {
         return ResponseEntity.ok(_comments);
     }
     @PostMapping("")
-    public ResponseEntity<Comment> createCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid Comment comment) {
+    public ResponseEntity<Comment> createCommentPage(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id, @RequestBody @Valid String comment) {
         Comment _comment = commentService.createComment(id, userDetails.getUser(), comment);
         return ResponseEntity.ok(_comment);
     }

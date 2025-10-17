@@ -22,10 +22,11 @@ import {PlantToxicity} from '../../../../Interfaces/Plants/enums/PlantToxicity';
   styleUrls: ['./update-field-component.css', '../../../../shared/Card.css']
 })
 export class UpdateFieldComponent {
-  @Input() title!: string ;
+  @Input() title!: string;
   @Input() typeData!: string;
   @Input() updateField: UpdateField = {} as UpdateField;
   @Input() options?: PlantLifeExpectancy[] | PlantCondition[] | PlantSoil[] | PlantWatering[] | PlantBerth[] | PlantToxicity[];
+  @Input() saveText!:  string;
   constructor(public activeModal: NgbActiveModal) {}
 
   close(): void { this.activeModal.dismiss('user-cancel');}

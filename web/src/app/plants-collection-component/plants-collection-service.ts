@@ -8,6 +8,7 @@ import {UpdateField} from '../Interfaces/update-field';
 import {PhotoGalleryRequest} from '../Interfaces/Plants/PhotoGalleryRequest';
 import {PhotoGallery} from '../Interfaces/Plants/photo-gallery';
 import {host} from '../shared/setup/host';
+import {PlantComment} from '../Interfaces/Plants/plantComment';
 
 @Injectable({
   providedIn: 'root'
@@ -84,5 +85,9 @@ export class PlantsCollectionService {
 
   removePhoto(photo: PhotoGallery, plantId: number): Observable<any> {
     return this.httpClient.delete(`${this.baseUrl}plants/${plantId}/photo/${photo.id}`);
+  }
+
+  addComment(plantId: number,comment: string): Observable<PlantComment> {
+    return this.httpClient.post<PlantComment>(`${this.baseUrl}plants/${plantId}/comment`, comment);
   }
 }

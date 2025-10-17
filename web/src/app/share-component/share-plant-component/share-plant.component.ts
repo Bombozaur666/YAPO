@@ -59,6 +59,5 @@ export class SharePlantComponent implements OnInit{
         });
       }
     });
-
   }
 }

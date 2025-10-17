@@ -125,5 +125,9 @@ export class AuthService {
   confirmAccount(confirm_token: string): Observable<any> {
     return this.httpClient.get(`${this.baseUrl}enable?token=${confirm_token}`);
   }
+
+  avatarPath(user: User): string {
+    return this.path + "/" + user.avatarPath;
+  }
 }
 

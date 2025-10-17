@@ -32,22 +32,25 @@ public class CommentService {
     }
 
     @Transactional
-    public Comment createComment(Long plantId, User user, Comment comment) {
+    public Comment createComment(Long plantId, User user, String commentText) {
+        Comment _comment = new Comment();
         User _user = userRepo.findById(user.getId())
                 .orElseThrow(() -> new RuntimeException(ErrorList.USER_NOT_FOUND.toString()));
-        comment.setUser(_user);
+        _comment.setUser(_user);
 
         Plant _plant = plantRepo.findById(plantId)
                 .orElseThrow(() -> new RuntimeException(ErrorList.PLANT_NOT_FOUND.toString()));
-        comment.setPlant(_plant);
+        _comment.setPlant(_plant);
+
+        _comment.setComment(commentText);
 
         try {
-            commentRepo.save(comment);
+            commentRepo.save(_comment);
         } catch (DataIntegrityViolationException |
                  ConstraintViolationException | TransactionSystemException e) {
             throw new RuntimeException(ErrorList.ERROR_DURING_DATABASE_SAVING.toString());
         }
-        return comment;
+        return _comment;
     }
 
     @Transactional

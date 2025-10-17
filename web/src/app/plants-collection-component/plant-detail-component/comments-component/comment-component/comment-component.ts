@@ -1,7 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PlantComment} from '../../../../Interfaces/Plants/plantComment';
 import {DatePipe} from '@angular/common';
 import {TranslatePipe} from '@ngx-translate/core';
+import {AuthService} from '../../../../auth/auth-service';
 
 @Component({
   selector: 'app-comment-component',
@@ -12,6 +13,14 @@ import {TranslatePipe} from '@ngx-translate/core';
   templateUrl: './comment-component.html',
   styleUrls: ['./comment-component.css', '../../../../shared/Card.css']
 })
-export class CommentComponent {
+export class CommentComponent implements OnInit {
   @Input() plantComment!: PlantComment;
+  protected avatarPath!: string;
+
+  constructor(private authService: AuthService,) {
+  }
+
+  ngOnInit(): void {
+    this.avatarPath = this.authService.avatarPath(this.plantComment.user);
+  }
 }

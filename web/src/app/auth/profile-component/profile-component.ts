@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
     this.authService.userProfile().subscribe({
         next: (data: User): void => {
           this.user = data;
-          this.avatarUrl = this.avatarPath;
+          this.avatarUrl = this.authService.avatarPath(data);
           },
         error: (): void => {
           this.translate.get([
@@ -52,15 +52,11 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  get avatarPath(): string {
-    return this.authService.path + "/" + this.user.avatarPath;
-  }
-
   onAvatarUploaded(file: File): void {
     this.authService.avatarUpload(file).subscribe({
       next: (data: User): void => {
         this.user = data;
-        this.avatarUrl = this.avatarPath;},
+        this.avatarUrl = this.authService.avatarPath(data);},
     })
   }
 

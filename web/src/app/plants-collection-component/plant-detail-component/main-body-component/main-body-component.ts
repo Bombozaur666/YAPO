@@ -107,6 +107,7 @@ export class MainBodyComponent {
     const modalRef: NgbModalRef = this.modalService.open(UpdateFieldComponent);
 
     modalRef.componentInstance.title = "collections.plants.details." + name;
+    modalRef.componentInstance.saveText = "collections.plants.details.updateField.save";
     modalRef.componentInstance.typeData = typeData;
     modalRef.componentInstance.updateField = {fieldName: name, fieldValue: value};
     options
