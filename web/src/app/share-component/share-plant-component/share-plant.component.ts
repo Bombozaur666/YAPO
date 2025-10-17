@@ -25,8 +25,6 @@ import {
   styleUrl: './share-plant.component.css'
 })
 export class SharePlantComponent implements OnInit{
-  private plantId: string | null = null;
-
   protected plant!: Plant;
 
   protected loading: boolean = true;
@@ -36,9 +34,9 @@ export class SharePlantComponent implements OnInit{
               private translate: TranslateService) {}
 
   ngOnInit(): void {
-    this.plantId = this.route.snapshot.queryParamMap.get('plantId');
+    let plantId = this.route.snapshot.queryParamMap.get('plantId');
 
-    this.shareService.getPlant(this.plantId).subscribe({
+    this.shareService.getPlant(plantId).subscribe({
       next: (data: Plant): void => {
         this.plant = data;
         this.loading = false;

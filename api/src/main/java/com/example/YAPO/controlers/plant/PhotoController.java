@@ -43,11 +43,10 @@ public class PhotoController {
 
     @GetMapping("/{fileName}")
     public ResponseEntity<Resource> getAllPhotosPage(
-            @AuthenticationPrincipal MyUserDetails userDetails,
             @PathVariable Long id,
             @PathVariable String fileName) throws IOException {
 
-        Path path = photoService.getPhoto(id, userDetails.getUser(), fileName);
+        Path path = photoService.getPhoto(id, fileName);
         String contentType = Files.probeContentType(path);
         Resource fileResource  = new InputStreamResource(Files.newInputStream(path));
 

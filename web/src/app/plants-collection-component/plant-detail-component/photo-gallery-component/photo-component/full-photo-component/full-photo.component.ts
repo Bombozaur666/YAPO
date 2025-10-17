@@ -16,6 +16,7 @@ import {TranslatePipe} from '@ngx-translate/core';
 export class FullPhotoComponent {
   @Input() photo!: PhotoGallery;
   @Input() photoUrl!: string;
+  @Input() editing: boolean = false;
 
   constructor(public activeModal: NgbActiveModal) {}
 

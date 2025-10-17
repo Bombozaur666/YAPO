@@ -4,13 +4,18 @@ import { inject } from '@angular/core';
 import { catchError, switchMap, throwError } from 'rxjs';
 import {AuthService} from './auth-service';
 
-const PUBLIC_ENDPOINTS = ['/login', '/register', '/refresh', "/share"];
-
+const PUBLIC_ENDPOINTS: string[] = ['/login', '/register', '/refresh', "/share"];
+const PUBLIC_DYNAMIC_PATTERNS: RegExp[] = [
+  /\/plants\/[^\/]+\/photo\/[^\/]+/
+];
 
 export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {
   const authService = inject(AuthService);
 
-  if (PUBLIC_ENDPOINTS.some(endpoint => req.url.includes(endpoint))) {
+  const isPublicStatic: boolean = PUBLIC_ENDPOINTS.some(endpoint => req.url.includes(endpoint));
+  const isPublicDynamic: boolean = PUBLIC_DYNAMIC_PATTERNS.some(pattern => pattern.test(req.url)) && req.method === 'GET';
+
+  if (isPublicStatic || isPublicDynamic) {
     return next(req);
   }
 

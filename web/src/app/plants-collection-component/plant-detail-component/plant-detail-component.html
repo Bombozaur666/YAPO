@@ -19,6 +19,7 @@
 
   <app-photo-gallery-component
     [plantId]="plant.id"
+    [editing]="true"
     (plantUpdate)="onPlantUpdate($event)"
     [photoGallery]="plant.photoGallery"
     (photoRemove)="onPhotoRemove($event)">

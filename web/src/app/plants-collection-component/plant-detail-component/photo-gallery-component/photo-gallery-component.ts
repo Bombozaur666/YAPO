@@ -26,6 +26,7 @@ export class PhotoGalleryComponent {
   @Output() photoRemove: EventEmitter<PhotoGallery> = new EventEmitter();
 
   @ViewChildren(PhotoComponent) photoComponents!: QueryList<PhotoComponent>;
+  @Input() editing: boolean = false;
 
   constructor(private modalService: NgbModal,
               private plantsCollectionService: PlantsCollectionService,

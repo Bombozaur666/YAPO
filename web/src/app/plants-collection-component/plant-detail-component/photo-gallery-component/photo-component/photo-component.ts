@@ -17,6 +17,7 @@ export class PhotoComponent implements OnInit {
   @Output() photoRemove: EventEmitter<PhotoGallery> = new EventEmitter();
 
   protected photoUrl!: string;
+  @Input() editing: boolean = false;
 
   constructor(private plantsCollectionService: PlantsCollectionService,
               private modalService: NgbModal) {}
@@ -38,6 +39,7 @@ export class PhotoComponent implements OnInit {
   onClick(): void {
     const modalRef: NgbModalRef = this.modalService.open(FullPhotoComponent);
     modalRef.componentInstance.photo = this.photo;
+    modalRef.componentInstance.editing = this.editing;
     modalRef.componentInstance.photoUrl = this.photoUrl;
     modalRef.result.then(
       (result: 'next' | 'prev' | 'delete'): void => {

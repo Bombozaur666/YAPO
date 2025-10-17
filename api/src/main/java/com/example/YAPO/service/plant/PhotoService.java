@@ -94,13 +94,9 @@ public class PhotoService {
 
     private Path getPhotoPath(String path) {return Paths.get(uploadDir).resolve(path).normalize();}
 
-    public Path getPhoto(Long plantId, User user, String fileName) throws IOException {
+    public Path getPhoto(Long plantId, String fileName) throws IOException {
         PhotoGallery _photoGallery = photoRepo
-                .findByPlant_IdAndImagePathAndPlant_User_UsernameOrPlant_SharedAndPlant_IdAndImagePath(
-                        plantId,
-                        fileName,
-                        user.getUsername(),
-                        true,
+                .findByPlant_IdAndImagePath(
                         plantId,
                         fileName);
 
