@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
         next: (data: User): void => {
           this.user = data;
           this.avatarUrl = this.authService.avatarPath(data);
+          this.authService.setUser(data);
           },
         error: (): void => {
           this.translate.get([

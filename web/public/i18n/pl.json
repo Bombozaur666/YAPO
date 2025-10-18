@@ -249,7 +249,7 @@
           "addComment": "Dodaj komentarz",
           "noComments": "Brak komentarzy",
           "comment": {
-            "createdAt": "Stworzono",
+            "createdAt": "Dodano",
             "editedAt": "Edytowano"
           }
         }

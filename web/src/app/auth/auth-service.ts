@@ -16,6 +16,7 @@ import {colors} from '../shared/setup/colors';
 })
 export class AuthService {
   private authenticated: boolean = false;
+  private  user: User = {} as User;
   protected baseUrl: string = `${host.protocol}${host.hostname}:${host.port}/user/`;
 
   constructor(private httpClient: HttpClient,
@@ -33,6 +34,14 @@ export class AuthService {
 
   get path(): string {
     return `${this.baseUrl}avatar`;
+  }
+
+  setUser(user: User) {
+    this.user = user;
+  }
+
+  get getUer(): User {
+    return this.user;
   }
 
   get isAuthenticated(): boolean {
@@ -54,7 +63,12 @@ export class AuthService {
         this.cookieService.set(JWT_TOKEN ,data.accessToken, 7);
         this.cookieService.set(REFRESH_TOKEN ,data.refreshToken, 7);
         this.authenticated = true;
-        this.router.navigate(['/']);
+        let oldUrl = this.cookieService.get("oldUrl");
+        if (oldUrl) {
+          this.router.navigateByUrl(oldUrl);
+        } else {
+          this.router.navigate(['/']);
+        }
       },
       error: (): void => {
         this.translate.get([

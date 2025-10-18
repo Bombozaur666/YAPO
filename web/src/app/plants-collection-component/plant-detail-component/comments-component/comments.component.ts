@@ -8,6 +8,7 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {UpdateFieldComponent} from '../main-body-component/update-field-component/update-field-component';
 import {UpdateField} from '../../../Interfaces/update-field';
 import {PlantsCollectionService} from '../../plants-collection-service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-comments-component',
@@ -23,6 +24,7 @@ export class CommentsComponent  {
   @Input() plantId!: number;
 
   constructor(private authService: AuthService,
+              private cookieService: CookieService,
               private modalService: NgbModal,
               private router: Router,
               private plantsCollectionService: PlantsCollectionService) {}
@@ -48,7 +50,8 @@ export class CommentsComponent  {
           );
         });
     } else {
-      this.router.navigate(['/user/login']);
+      this.cookieService.set('oldUrl', this.router.url);
+      this.router.navigate(['/user/login'])
     }
   }
 }

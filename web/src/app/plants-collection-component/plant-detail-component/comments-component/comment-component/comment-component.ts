@@ -17,10 +17,18 @@ export class CommentComponent implements OnInit {
   @Input() plantComment!: PlantComment;
   protected avatarPath!: string;
 
-  constructor(private authService: AuthService,) {
+  constructor(protected authService: AuthService,) {
   }
 
   ngOnInit(): void {
     this.avatarPath = this.authService.avatarPath(this.plantComment.user);
+  }
+
+  editComment() {
+
+  }
+
+  removeComment() {
+
   }
 }
